@@ -1,5 +1,5 @@
 /* Azmi Finance service worker. Ubah V setiap rilis supaya cache lama dibuang. */
-const V = 'azmi-20261114g';
+const V = 'azmi-20261114h';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {
