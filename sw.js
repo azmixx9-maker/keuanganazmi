@@ -1,39 +1,23 @@
-/* Azmi Finance service worker. Ubah V setiap rilis supaya cache lama dibuang. */
-const V = 'azmi-20261114h';
-const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
-
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(V).then(c => Promise.all(CORE.map(u => c.add(new Request(u, {cache: 'reload'})).catch(() => {})))).then(() => self.skipWaiting()));
+const V='azmi-20261116c';
+const CORE=['./','manifest.webmanifest','icon-180.png','icon-192.png','logos/bca.png','logos/bri.png','logos/blu.png'];
+self.addEventListener('install',e=>{
+  e.waitUntil(caches.open(V).then(c=>Promise.allSettled(CORE.map(u=>c.add(u)))).then(()=>self.skipWaiting()));
 });
-
-self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+self.addEventListener('activate',e=>{
+  e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()));
 });
-
-self.addEventListener('fetch', e => {
-  const r = e.request;
-  if (r.method !== 'GET') return;
-  const u = new URL(r.url);
-  if (u.origin !== location.origin) return; // CDN (mis. Tesseract) tidak disentuh
-  const isPage = r.mode === 'navigate' || r.destination === 'document' || /\.html?$/.test(u.pathname) || u.pathname.endsWith('/');
-  if (isPage) {
-    // Halaman utama: ambil versi terbaru dari jaringan, jatuh ke cache bila offline
-    e.respondWith(
-      fetch(r, {cache: 'no-cache'}).then(res => {
-        if (res && res.ok) { const cp = res.clone(); caches.open(V).then(c => c.put(r, cp)); }
-        return res;
-      }).catch(() => caches.match(r).then(m => m || caches.match('index.html') || caches.match('./')))
-    );
+self.addEventListener('fetch',e=>{
+  const r=e.request,u=new URL(r.url);
+  if(r.method!=='GET'||u.origin!==location.origin)return;
+  const html=r.mode==='navigate'||/(\/|\.html)$/.test(u.pathname)||(r.headers.get('accept')||'').includes('text/html');
+  if(html){
+    // jaringan dulu supaya revisi langsung terlihat, cache sebagai cadangan offline
+    e.respondWith(fetch(r,{cache:'no-cache'}).then(res=>{const c=res.clone();caches.open(V).then(x=>x.put(r,c));return res}).catch(()=>caches.match(r).then(m=>m||caches.match('./'))));
     return;
   }
-  // Aset lain: pakai cache dulu, perbarui di belakang layar
-  e.respondWith(
-    caches.match(r).then(m => {
-      const net = fetch(r).then(res => {
-        if (res && res.ok) { const cp = res.clone(); caches.open(V).then(c => c.put(r, cp)); }
-        return res;
-      }).catch(() => m);
-      return m || net;
-    })
-  );
+  // aset statis: cache dulu, perbarui di belakang
+  e.respondWith(caches.match(r).then(m=>{
+    const n=fetch(r).then(res=>{if(res.ok){const c=res.clone();caches.open(V).then(x=>x.put(r,c))}return res}).catch(()=>m);
+    return m||n;
+  }));
 });
