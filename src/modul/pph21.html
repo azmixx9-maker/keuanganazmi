@@ -1,0 +1,936 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sistem PPH 21 Therapist</title><meta name="color-scheme" content="light dark"><link rel=preconnect href="https://fonts.googleapis.com"><link rel=preconnect href="https://fonts.gstatic.com" crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<script>try{var t=localStorage.theme;if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<style>
+:root{--ink:#17212b;--mut:#5d6b78;--line:#d8dee4;--bg:#f2f4f3;--ac:#0d6b5f;--wr:#a85d00}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 "Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+nav{display:flex;gap:4px;padding:10px 20px;background:var(--ink);flex-wrap:wrap}nav button{background:0;border:0;color:#b8c4cd;padding:8px 14px;border-radius:6px;cursor:pointer;font:inherit}nav button.on{background:#fff;color:var(--ink);font-weight:600}
+#st{display:flex;gap:6px 16px;align-items:center;flex-wrap:wrap;padding:7px 20px;background:#e6ece9;border-bottom:1px solid var(--line);font-size:12px;color:var(--mut)}#st b{color:var(--ink)}#st .w{color:var(--wr);font-weight:600}#st button{padding:3px 9px;font-size:12px}
+main{max-width:1280px;margin:0 auto;padding:20px}
+.drop{display:block;border:2px dashed var(--ac);border-radius:14px;padding:90px 20px;text-align:center;background:#fff;cursor:pointer}.drop.h{background:#e3f2ef}.drop b{font-size:22px;display:block;margin-bottom:6px}.drop span{color:var(--mut)}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:18px;overflow-x:auto}
+.card header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:12px}h2{margin:0;font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}label{display:grid;gap:3px;color:var(--mut);font-size:12px}
+input,select{font:inherit;color:var(--ink);padding:6px 8px;border:1px solid var(--line);border-radius:6px;width:100%;background:#fff}input:focus,select:focus,button:focus-visible,summary:focus-visible{outline:2px solid var(--ac);outline-offset:1px}input.bad{border-color:#d33;background:#fff5f5}
+table{border-collapse:collapse;width:100%;min-width:980px}th{text-align:left;font-size:12px;color:var(--mut);font-weight:600;padding:6px;border-bottom:2px solid var(--line)}td{padding:4px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.z{opacity:.55}tr.sdh td{background:#f1f9f6}.n{text-align:right;font-variant-numeric:tabular-nums}
+em{font-style:normal;font-size:11px;padding:1px 6px;border-radius:9px;white-space:nowrap}.cocok,.ok{background:#d7efe8;color:var(--ac)}.mirip{background:#fbe7c6;color:var(--wr)}.kosong{background:#f6d8d8;color:#a32121}
+.why{font-size:11px;color:#a32121;margin-top:2px;max-width:260px}.sm{font-size:11px;color:var(--mut);margin-top:2px}
+.wn{background:#fff6e5;border:1px solid #f0d49b;color:#6b4300;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:13px}.wn.er{background:#fdeeee;border-color:#eab8b8;color:#8a1c1c}
+.bar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 20px;margin:0 -20px -20px;display:flex;gap:12px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.p,.b{background:var(--ac);color:#fff;border:0;border-radius:7px;padding:9px 16px;font:inherit;font-weight:600;cursor:pointer}.s{background:#fff;border:1px solid var(--line);border-radius:7px;padding:7px 11px;cursor:pointer;font:inherit}.s.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+dialog{border:0;border-radius:12px;padding:20px;max-width:580px;width:calc(100% - 24px);max-height:85vh;overflow:auto}dialog .bt{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}dialog::backdrop{background:#0006}dialog p{margin:0 0 8px}
+.f{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.f input,.f select{width:auto}details summary{cursor:pointer;color:var(--ac);font-weight:600}
+@media(max-width:640px){main{padding:12px}nav{padding:8px 10px}.bar{margin:0 -12px -12px;padding:10px 12px}}
+
+:root{--ink:#1e293b;--mut:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--ac:#4f46e5;--wr:#b45309;--card:#fff;--soft:#eef2ff}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#e2e8f0;--mut:#94a3b8;--line:#334155;--bg:#0f172a;--ac:#818cf8;--wr:#fbbf24;--card:#1e293b;--soft:#27324a}}:root[data-theme=dark]{--ink:#e2e8f0;--mut:#94a3b8;--line:#334155;--bg:#0f172a;--ac:#818cf8;--wr:#fbbf24;--card:#1e293b;--soft:#27324a}
+body{background:var(--bg);color:var(--ink);font-family:Inter,"Segoe UI",system-ui,sans-serif}
+nav{background:linear-gradient(90deg,#4338ca,#6366f1)}nav button{color:#e0e7ff;transition:.15s}nav button:hover{background:#ffffff26}nav button.on{background:#fff;color:#4338ca}
+#st{background:var(--soft);border-color:var(--line)}
+.card,dialog,.bar,.drop{background:var(--card);color:var(--ink);border-color:var(--line);border-radius:14px;box-shadow:0 1px 3px #0f172a14}
+input,select{background:var(--card);color:var(--ink);border-color:var(--line);border-radius:8px}
+button{transition:.15s}.s{background:var(--card);color:var(--ink);border-color:var(--line);border-radius:8px}.s:hover{background:var(--soft)}.s.on{background:var(--ac);color:#fff}
+.p,.b{background:#4f46e5;color:#fff;border-radius:8px}.p:hover,.b:hover{background:#4338ca}
+tr:hover td{background:var(--soft)}th{color:var(--mut)}tr.sdh td{background:#ecfdf5}
+.cocok,.ok{background:#dcfce7;color:#166534}.mirip{background:#fef3c7;color:#92400e}.kosong{background:#fee2e2;color:#991b1b}
+.wn{background:#fef3c7;border-color:#fde68a;color:#78350f}.wn.er{background:#fee2e2;border-color:#fecaca;color:#7f1d1d}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) tr.sdh td{background:#14352b}:root:not([data-theme=light]) .cocok,:root:not([data-theme=light]) .ok{background:#14532d;color:#bbf7d0}:root:not([data-theme=light]) .mirip{background:#78350f;color:#fde68a}:root:not([data-theme=light]) .kosong{background:#7f1d1d;color:#fecaca}:root:not([data-theme=light]) .wn{background:#422006;border-color:#713f12;color:#fde68a}:root:not([data-theme=light]) .wn.er{background:#450a0a;border-color:#7f1d1d;color:#fecaca}}:root[data-theme=dark] tr.sdh td{background:#14352b}:root[data-theme=dark] .cocok,:root[data-theme=dark] .ok{background:#14532d;color:#bbf7d0}:root[data-theme=dark] .mirip{background:#78350f;color:#fde68a}:root[data-theme=dark] .kosong{background:#7f1d1d;color:#fecaca}:root[data-theme=dark] .wn{background:#422006;border-color:#713f12;color:#fde68a}:root[data-theme=dark] .wn.er{background:#450a0a;border-color:#7f1d1d;color:#fecaca}
+.bt1{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;margin:4px 8px 0 0;padding:4px 8px;border:1px solid var(--line);border-radius:10px;background:var(--soft)}
+
+/* ===== Tahap 1: sistem desain (skala spasi 4/8/12/16/24, radius 12) ===== */
+:root{--ok:#15803d;--wfg:#92400e;--erc:#b91c1c;--sh:0 1px 2px #0f172a0f,0 4px 14px #0f172a0d;--r:12px;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ok:#4ade80;--wfg:#fde68a;--erc:#f87171;--sh:0 1px 2px #0006,0 4px 14px #0004}}:root[data-theme=dark]{--ok:#4ade80;--wfg:#fde68a;--erc:#f87171;--sh:0 1px 2px #0006,0 4px 14px #0004}
+body{display:grid;grid-template-columns:auto minmax(0,1fr);min-height:100vh;font-size:14px;line-height:1.5}
+#app{min-width:0}main{padding:24px}
+#sb{position:sticky;top:0;align-self:start;height:100vh;width:224px;display:flex;flex-direction:column;gap:4px;padding:16px 12px;background:var(--card);border-right:1px solid var(--line);transition:width .2s;overflow:hidden}
+.brand{display:flex;gap:12px;align-items:center;padding:4px 8px 16px;font-size:15px;white-space:nowrap}
+.brand svg{width:32px;height:32px;flex:none}.brand b{white-space:normal;line-height:1.2;font-size:14px}
+#sb button{display:flex;align-items:center;gap:12px;padding:8px 12px;min-height:40px;border:0;border-radius:10px;background:0;color:var(--mut);font:inherit;font-weight:500;cursor:pointer;text-align:left;white-space:nowrap}
+#sb button:hover{background:var(--soft)}#sb button.on{background:var(--soft);color:var(--ac);font-weight:600}#sb .sp{flex:1}
+body.col #sb{width:72px}body.col #sb span,body.col .brand b{display:none}
+svg.ic{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#st{padding:8px 24px;background:var(--card);border-bottom:1px solid var(--line)}
+.p,.s,.d,.g,.b{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:8px 16px;border-radius:10px;font:inherit;font-weight:600;cursor:pointer;border:1px solid transparent}
+.p,.b{background:#4f46e5;color:#fff}.p:hover,.b:hover{background:#4338ca}
+.s{background:var(--card);color:var(--ink);border-color:var(--line)}.s:hover{background:var(--soft)}
+.g{background:0;color:var(--ac);padding:8px}.g:hover{background:var(--soft)}
+.d{background:#fee2e2;color:#b91c1c;border-color:#fecaca}.d:hover{background:#fecaca}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .d{background:#7f1d1d;color:#fecaca;border-color:#991b1b}:root:not([data-theme=light]) .d:hover{background:#991b1b}}:root[data-theme=dark] .d{background:#7f1d1d;color:#fecaca;border-color:#991b1b}:root[data-theme=dark] .d:hover{background:#991b1b}
+em{display:inline-flex;align-items:center;font-weight:600;font-size:12px;padding:2px 12px;border-radius:99px}
+.nt{background:var(--soft);color:var(--mut)}
+td{padding:12px 8px}.card,.oc,.kp div{box-shadow:var(--sh)}
+.pg{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:24px}.pg h1{font-size:24px;margin:0}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.kp>div{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.kp small,.kp3 small{display:block;color:var(--mut);font-size:12px}.kp b{font-size:20px}
+.og{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.oc{display:grid;gap:12px;align-content:start;background:var(--card);background-image:linear-gradient(color-mix(in srgb,var(--c) 8%,transparent),transparent 55%);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:var(--r);padding:16px;cursor:pointer;transition:transform .15s}
+.oc:hover{transform:translateY(-2px)}.oc:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.oc em{justify-self:start}
+.kp3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.kp3 b{font-size:14px;font-variant-numeric:tabular-nums}
+.pb{height:8px;border-radius:99px;background:var(--line);overflow:hidden}.pb i{display:block;height:100%;background:var(--ok);border-radius:99px}
+#tz{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;display:grid;gap:8px;z-index:60;width:min(92vw,440px)}
+.ts{display:flex;gap:16px;align-items:center;justify-content:space-between;background:#1e293b;color:#f8fafc;padding:12px 16px;border-radius:12px;box-shadow:0 8px 24px #0006}
+.ts button{background:0;border:0;color:#a5b4fc;font:inherit;font-weight:700;cursor:pointer}
+dialog{border:1px solid var(--line)}dialog::backdrop{background:#0f172a99}
+@media(max-width:760px){body{display:block}
+#sb{position:fixed;inset:auto 0 0 0;height:auto;width:100%;flex-direction:row;padding:4px 8px;border-right:0;border-top:1px solid var(--line);z-index:30}
+.brand,#sb .sp,.colbtn{display:none!important}
+#sb button{flex:1;flex-direction:column;gap:0;padding:8px 2px;min-height:52px;font-size:11px;justify-content:center;align-items:center}
+body.col #sb span{display:inline}main{padding:16px 12px 96px}#st{padding:8px 12px}#tz{bottom:80px}.bar{bottom:60px}.kp3{grid-template-columns:1fr 1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== Tahap 1b: tampilan hidup (warna, font, animasi) ===== */
+:root{--r:14px;--fh:"Plus Jakarta Sans",Inter,"Segoe UI",system-ui,sans-serif}
+body{font-family:Inter,"Segoe UI",system-ui,sans-serif;background:radial-gradient(900px 420px at 100% -8%,color-mix(in srgb,#7c3aed 13%,transparent),transparent),radial-gradient(700px 360px at -5% 0,color-mix(in srgb,#10b981 10%,transparent),transparent),var(--bg);background-attachment:fixed}
+h1,h2,.brand b,.kp b{font-family:var(--fh);letter-spacing:-.01em}
+#sb{background:linear-gradient(185deg,#3730a3,#4f46e5 55%,#6d28d9);border-right:0}
+#sb button{color:#e0e7ff}#sb button:hover{background:#ffffff1f}#sb button.on{background:#fff;color:#3730a3;box-shadow:0 4px 14px #1e1b4b55}
+#sb button svg{transition:transform .2s}#sb button:hover svg{transform:scale(1.15) rotate(-4deg)}.brand b{color:#fff}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) #sb{background:linear-gradient(185deg,#1e1b4b,#312e81 60%,#4c1d95)}:root:not([data-theme=light]) #sb button.on{background:#e0e7ff}}:root[data-theme=dark] #sb{background:linear-gradient(185deg,#1e1b4b,#312e81 60%,#4c1d95)}:root[data-theme=dark] #sb button.on{background:#e0e7ff}
+#st{background:color-mix(in srgb,var(--card) 80%,transparent);backdrop-filter:blur(8px);position:sticky;top:0;z-index:20}
+.p,.b{background:linear-gradient(135deg,#6366f1,#4f46e5);box-shadow:0 4px 12px #4f46e540}.p:hover,.b:hover{background:linear-gradient(135deg,#4f46e5,#4338ca);transform:translateY(-1px)}
+.p,.s,.d,.g,.b{transition:transform .15s,box-shadow .15s,background .15s}.p:active,.s:active,.d:active,.g:active{transform:scale(.97)}
+.s:hover{border-color:var(--ac)}.s.on{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;border-color:transparent}
+input:focus,select:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent)}
+em::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:6px}
+th{background:var(--soft);text-transform:uppercase;letter-spacing:.04em;font-size:11px}.card{border-radius:16px}
+.hero{position:relative;overflow:hidden;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px 24px;align-items:center;padding:24px;margin-bottom:24px;border-radius:20px;color:#fff;background:linear-gradient(120deg,#4338ca,#6d28d9 55%,#0369a1);box-shadow:0 12px 32px #4338ca40}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;background:#ffffff1a;pointer-events:none}
+.hero::before{width:220px;height:220px;right:-60px;top:-90px}.hero::after{width:140px;height:140px;right:200px;bottom:-80px}
+.hero>*{position:relative;z-index:1}.hero h1{margin:4px 0;font-size:26px}.hero p{margin:0;opacity:.95}.hero small{text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.hero select,.hero input{background:#ffffff26;color:#fff;border:1px solid #ffffff59;width:auto}.hero option{color:#1e293b}.hero .f{align-items:center}
+.hero .bw{background:#fff;color:#3730a3;box-shadow:none}.hero .bw:hover{background:#eef2ff}.hero .bq{background:#ffffff26;color:#fff;border-color:#ffffff59}.hero .bq:hover{background:#ffffff40}
+.kp>div{display:flex;gap:12px;align-items:center;transition:transform .2s,box-shadow .2s}.kp>div:hover{transform:translateY(-2px);box-shadow:0 8px 20px #0f172a1a}
+.ki{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--k) 16%,transparent);color:var(--k)}.ki svg{width:22px;height:22px}
+.oc{padding:0;gap:0;overflow:hidden;border-top:1px solid var(--line);background-image:none;transition:transform .2s,box-shadow .2s}.oc:hover{transform:translateY(-4px);box-shadow:0 14px 30px color-mix(in srgb,var(--c) 28%,transparent)}
+.oh{display:flex;gap:12px;align-items:center;padding:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 24%,var(--card)),color-mix(in srgb,var(--c) 6%,var(--card)));border-bottom:1px solid var(--line)}
+.av{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none;color:#fff;font:800 13px var(--fh);background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 55%,#312e81));box-shadow:0 4px 10px color-mix(in srgb,var(--c) 40%,transparent)}
+.ob{display:grid;gap:12px;padding:16px}.oh em{flex:none}
+.mt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mt>div{padding:8px;border-radius:10px;background:var(--soft);min-width:0}.mt small{display:flex;gap:4px;align-items:center;color:var(--mut);font-size:11px}.mt svg{width:12px;height:12px}.mt b{font-size:13px;font-variant-numeric:tabular-nums;word-break:break-all}
+.rz{display:inline-flex;gap:4px;align-items:center;font-size:12px;color:var(--wfg);background:color-mix(in srgb,#f59e0b 16%,transparent);padding:2px 8px;border-radius:99px;margin:0 4px 4px 0}.rz svg{width:12px;height:12px}
+.oa{display:flex;gap:8px;justify-content:space-between;align-items:center}
+.pb{height:10px}.pb i{background:linear-gradient(90deg,#10b981,#22c55e)}
+.drop{padding:56px 20px;border:2px dashed color-mix(in srgb,var(--ac) 60%,transparent);transition:.2s}.drop:hover,.drop.h{transform:scale(1.01);background:var(--soft)}
+.bigic{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 12px;border-radius:20px;color:#fff;background:linear-gradient(135deg,#6366f1,#7c3aed);animation:flt 3s ease-in-out infinite;box-shadow:0 10px 24px #6366f155}.bigic svg{width:30px;height:30px}
+dialog::backdrop{backdrop-filter:blur(3px)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(8px)}}
+@keyframes grow{from{width:0}}
+@keyframes flt{50%{transform:translateY(-6px)}}
+@keyframes sh{to{background-position:-200% 0}}
+main.in>*{animation:up .4s both}main.in>.og,main.in>.kp{animation:none}
+main.in .oc,main.in .kp>div{animation:up .5s both;animation-delay:calc(var(--i,0)*60ms)}
+.pb i{animation:grow .9s cubic-bezier(.2,.8,.2,1)}dialog[open]{animation:pop .22s}.ts{animation:up .25s}
+.sk{background:linear-gradient(90deg,var(--soft) 25%,var(--line) 50%,var(--soft) 75%);background-size:200% 100%;animation:sh 1.4s infinite;border-radius:8px}
+@media(prefers-reduced-motion:reduce){*,::before,::after{animation:none!important;transition:none!important}}
+
+/* ===== Master: alamat KTP, validasi NIK, filter ===== */
+textarea{font:inherit;color:var(--ink);padding:8px;border:1px solid var(--line);border-radius:8px;width:100%;min-width:250px;min-height:60px;background:var(--card);resize:vertical}
+textarea:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent)}
+input.bad,textarea.bad{border-color:#dc2626;background:color-mix(in srgb,#dc2626 12%,var(--card))}
+.why{color:var(--erc)}dialog{max-width:680px}
+#mtab td{vertical-align:top}#mtab input,#mtab select{min-width:110px}
+.mpg{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:12px 0}
+button:disabled{opacity:.45;cursor:not-allowed}
+/* ===== Versi final: ikon, efek, panduan, palet perintah ===== */
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+.p,.s,.d,.g,.b,#sb button{position:relative;overflow:hidden}
+.rpl{position:absolute;border-radius:50%;background:currentColor;opacity:.22;transform:scale(0);animation:rpl .6s ease-out forwards;pointer-events:none}
+@keyframes rpl{to{transform:scale(1);opacity:0}}
+h2 svg.ic{vertical-align:-4px;margin-right:8px;color:var(--ac)}
+.p svg.ic,.s svg.ic,.b svg.ic,.g svg.ic{width:18px;height:18px}
+.sch{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:0 6px 0 12px;background:var(--card);min-width:280px;color:var(--mut);transition:.15s}
+.sch:focus-within{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent)}
+.sch input{border:0;box-shadow:none!important;background:transparent;flex:1;min-width:0}
+.sch svg.ic{width:18px;height:18px}
+.mcell{display:flex;gap:8px;align-items:center}.mcell input{flex:1}
+.av2{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;flex:none;color:#fff;font:700 11px var(--fh);background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 55%,#312e81));outline:2px solid transparent;outline-offset:2px;transition:outline-color .2s}
+.av2.ok{outline-color:var(--ok)}.av2.warn{outline-color:#f59e0b}.av2.bad{outline-color:var(--erc)}
+.sv{animation:svf .9s}@keyframes svf{from{box-shadow:0 0 0 4px #22c55e99;border-color:#22c55e}}
+#mtab tr{transition:background .15s}
+.empty{display:grid;justify-items:center;gap:12px;text-align:center;padding:40px 16px}.empty p{margin:0;max-width:480px;color:var(--mut)}
+.empty .bigic{margin:0}
+.qs{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;margin-bottom:24px}
+.qr{position:relative;width:96px;height:96px;display:grid;place-items:center}
+.ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:7;stroke-linecap:round}.r0{stroke:var(--line)}.r1{stroke:var(--ac);animation:rg 1.1s cubic-bezier(.2,.8,.2,1)}
+@keyframes rg{from{stroke-dashoffset:var(--c0)}}
+.qr b{font:800 20px var(--fh)}
+.ql h2{margin-bottom:4px}
+.qi{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:12px;transition:background .15s}
+.qi:hover{background:var(--soft)}.qi.cur{background:color-mix(in srgb,var(--ac) 10%,transparent)}
+.qc{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex:none;font-weight:700;font-size:13px;background:var(--line);color:var(--mut)}
+.qc svg{width:16px;height:16px;stroke-width:2.6}
+.qi.done .qc{background:var(--ok);color:#fff}.qi.done .qt{opacity:.65}
+.qi.cur .qc{background:var(--ac);color:#fff;animation:pls 2s infinite}
+@keyframes pls{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--ac) 22%,transparent)}}
+.qt{flex:1;min-width:0}.qb{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+dialog.cp{padding:0;max-width:600px;overflow:hidden;margin:12vh auto auto}
+.cps{display:flex;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);color:var(--mut)}
+.cps input{border:0;box-shadow:none!important;background:transparent;font-size:16px;padding:6px 4px}
+kbd{font:600 11px var(--fh);padding:2px 6px;border:1px solid var(--line);border-radius:6px;background:var(--soft);color:var(--mut);margin-left:4px}
+#cpl{max-height:50vh;overflow:auto;padding:8px}
+.cpi{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:10px;cursor:pointer}
+.cpi.on,.cpi:hover{background:var(--soft)}.cpi svg{color:var(--ac)}
+.cpt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cpf{padding:8px 16px;border-top:1px solid var(--line)}
+.cpb{margin-left:auto;min-height:30px;padding:4px 12px}
+.cf{position:fixed;width:8px;height:12px;border-radius:2px;z-index:90;pointer-events:none}
+@media(max-width:760px){.thm{display:none!important}.cpb kbd{display:none}.sch{min-width:0;width:100%}}
+@media(max-width:640px){.qs{grid-template-columns:1fr;justify-items:center}.ql{width:100%}.qi{flex-wrap:wrap}.qb{justify-content:flex-start}}
+input.ck{width:17px!important;min-width:17px!important;height:17px;flex:none!important;padding:0!important;margin:0;border:revert!important;background:revert!important;box-shadow:none!important;accent-color:var(--ac);cursor:pointer}th.ck,td.ck{width:34px;text-align:center}tr.sel td{background:color-mix(in srgb,var(--ac) 13%,transparent)!important}.selbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px;padding:8px 10px;border:1px dashed var(--line);border-radius:10px}.selbar b{color:var(--ac)}
+/* ===== Rapi: halaman PPh 21 (Proses Komisi, Riwayat File) ===== */
+.x-ph{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 16px;flex-wrap:wrap;margin:0 0 20px}
+.x-ph h1{margin:0;font:700 24px/1.2 var(--fh,inherit);letter-spacing:-.01em}
+.x-ph p{margin:4px 0 0;color:var(--mut);font-size:13px;max-width:62ch}
+.x-acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.x-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.x-tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r,12px);padding:12px 16px;box-shadow:var(--sh)}
+.x-tile small{display:block;color:var(--mut);font-size:12px}
+.x-tile b{display:block;font-size:20px;line-height:1.3;margin-top:2px;font-variant-numeric:tabular-nums}
+.x-tile span{font-size:12px;color:var(--mut)}
+.x-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r,12px);box-shadow:var(--sh);margin-bottom:16px;border-top:4px solid var(--oc,var(--ac))}
+.x-box.plain{border-top-width:1px}
+.x-hd{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 16px}
+.x-hd h2{margin:0;font-size:17px;display:flex;align-items:center;gap:8px}
+.x-sub{color:var(--mut);font-size:13px;margin-top:2px}
+.x-body{padding:0 16px 16px;display:grid;gap:12px}
+.x-stats{display:flex;gap:8px 24px;flex-wrap:wrap;padding:10px 12px;background:var(--soft);border-radius:10px}
+.x-stats div{min-width:110px}.x-stats small{display:block;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.04em}.x-stats b{font-size:15px;font-variant-numeric:tabular-nums}
+.x-chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.x-src{display:flex;gap:6px 10px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--mut)}
+.x-src span{display:inline-flex;gap:6px;align-items:center;padding:3px 10px;border-radius:8px;background:var(--soft);color:var(--ink);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.x-src svg{width:14px;height:14px}
+.x-bf{display:flex;gap:8px 12px;flex-wrap:wrap;align-items:center;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
+.x-bf .fn{flex:1 1 260px;min-width:0;font-size:12px;color:var(--mut);overflow-wrap:anywhere}
+.x-det{border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.x-det>summary{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;cursor:pointer;list-style:none;font-weight:600;color:var(--ink)}
+.x-det>summary::-webkit-details-marker{display:none}
+.x-det>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--mut);border-bottom:2px solid var(--mut);transform:rotate(45deg);transition:transform .15s}
+.x-det[open]>summary::after{transform:rotate(-135deg)}
+.x-det>summary i{font-style:normal;font-weight:500;font-size:12px;padding:2px 10px;border-radius:99px;background:var(--soft);color:var(--mut)}
+.x-det>.in{padding:4px 12px 12px;display:grid;gap:10px}
+.x-det .sm{margin:0}
+.x-seg{display:inline-flex;gap:4px;flex-wrap:wrap;padding:4px;background:var(--soft);border-radius:12px;margin-bottom:16px}
+.x-seg button{border:0;background:transparent;color:var(--mut);padding:6px 14px;border-radius:9px;font-weight:600;min-height:34px;display:inline-flex;gap:6px;align-items:center}
+.x-seg button b{font-size:12px;padding:0 7px;border-radius:99px;background:var(--line);color:var(--ink)}
+.x-seg button.on{background:var(--card);color:var(--ac);box-shadow:0 1px 3px #0f172a1f}
+.x-seg button.on b{background:var(--ac);color:#fff}
+.x-sc{overflow:auto;max-height:72vh;border-top:1px solid var(--line)}
+.x-tbl{min-width:1100px;font-size:13px}
+.x-tbl th{position:sticky;top:0;z-index:2;background:var(--soft);padding:8px;white-space:nowrap}
+.x-tbl td{padding:6px 8px}
+.x-tbl input:not(.ck),.x-tbl select{height:32px;padding:0 8px;font-size:13px;min-width:0}
+.x-tbl td:nth-child(4) input{width:170px}.x-tbl td:nth-child(5) input{width:150px}
+.x-tbl td:nth-child(6) input{width:150px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.x-tbl td:nth-child(7) select{width:84px}.x-tbl td:nth-child(8) input{width:118px;text-align:right}
+.x-tbl td:nth-child(9){white-space:nowrap}.x-tbl td:nth-child(9) .sm{font-size:11px}.x-tbl td:nth-child(10) input{width:92px}
+.x-tbl td:nth-child(3){font-weight:600;white-space:nowrap}
+.x-tbl em{font-size:11px;padding:1px 8px}
+.x-tbl td:last-child{white-space:nowrap;text-align:right}
+.x-tbl td:last-child .s{min-height:28px;padding:2px 10px;font-weight:500;font-size:12px}
+.x-pad{padding:12px 16px}
+.x-bar{position:sticky;bottom:12px;z-index:20;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:16px 0 0;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 28px #0f172a24}
+.x-bar .cnt{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--mut)}
+.x-pop{position:relative}
+.x-pop>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:8px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-weight:600}
+.x-pop>summary::-webkit-details-marker{display:none}
+.x-pop[open]>summary{background:var(--soft)}
+.x-pop .pp{position:absolute;right:0;bottom:calc(100% + 8px);width:min(360px,86vw);padding:14px;display:grid;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px #0f172a2e}
+body:has(.x-bar) .v24fab{bottom:84px}
+.x-pill{display:flex;gap:8px;flex-wrap:wrap}
+.x-pill button{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600}
+.x-pill button i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.x-pill button.on{border-color:var(--ac);background:var(--soft);color:var(--ac);box-shadow:0 0 0 1px var(--ac) inset}
+.x-step{display:flex;gap:10px;align-items:center;margin:0 0 12px;font-weight:700}
+.x-step i{width:24px;height:24px;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-style:normal;font-size:13px}
+.x-rh{display:grid;gap:8px}
+.x-ri{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.x-av{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:12px;background:var(--c,var(--ac))}
+.x-ri b{display:block}.x-ri .sm{margin:0}
+.x-ri .fnl{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x-gh{margin:20px 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.x-ac{background:var(--card);border:1px solid var(--line);border-radius:var(--r,12px);box-shadow:var(--sh);padding:14px 16px;display:grid;gap:12px;margin-bottom:12px}
+.x-ach{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.x-ach>div:nth-child(2){flex:1;min-width:180px}
+.x-met{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.x-met div{background:var(--soft);border-radius:10px;padding:8px 12px}.x-met small{display:block;color:var(--mut);font-size:11px}.x-met b{font-variant-numeric:tabular-nums}
+.x-empty{padding:28px 16px;text-align:center;color:var(--mut);border:1px dashed var(--line);border-radius:12px}
+.x-lt{min-width:760px;font-size:13px}.x-lt td{padding:8px}
+.x-flt{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.x-flt input,.x-flt select{width:auto;min-width:150px;height:36px}
+.x-qd{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 16px;margin-bottom:16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.x-qd span{flex:1;min-width:200px;color:var(--mut);font-size:13px}
+@media(max-width:760px){.x-bar{padding:10px 12px}.x-ri{grid-template-columns:auto 1fr}.x-ri .x-acts{grid-column:1/-1}}
+.selbar .s{min-height:30px;padding:3px 10px;font-weight:500;font-size:12.5px}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style id="v24">
+@keyframes v24u{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes v24p{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.v24i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+[data-tip]{position:relative}
+[data-tip]::after{content:attr(data-tip);position:absolute;left:50%;top:calc(100% + 6px);transform:translate(-50%,-4px);background:#16212B;color:#fff;font-size:12px;font-weight:500;padding:4px 9px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:.15s;z-index:99}
+[data-tip]:hover::after{opacity:1;transform:translate(-50%,0)}
+@media(hover:none){[data-tip]::after{display:none}}
+.v24fab{position:fixed;right:20px;bottom:20px;z-index:35;display:flex;flex-direction:column-reverse;align-items:center;gap:10px}
+.v24fab>button{width:54px;height:54px;border-radius:50%;background:var(--v24c);color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px -6px color-mix(in srgb,var(--v24c) 70%,#000);border:0;padding:0;cursor:pointer;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.v24fab>button .v24i{width:24px;height:24px;stroke-width:2.2;transition:transform .3s}
+.v24fab.on>button .v24i{transform:rotate(45deg)}
+.v24fab>button:hover{transform:scale(1.08)}.v24fab>button:active{transform:scale(.93)}
+.v24fab .m{display:none;flex-direction:column-reverse;gap:10px}
+.v24fab.on .m{display:flex}
+.v24fab .m button{width:46px;height:46px;border-radius:50%;background:var(--v24s,#fff);color:var(--v24c);border:1px solid var(--v24c);display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:0 6px 16px #0003;animation:v24p .25s both;transition:transform .15s}
+.v24fab .m button:nth-child(2){animation-delay:.05s}.v24fab .m button:nth-child(3){animation-delay:.1s}
+.v24fab .m button:hover{transform:scale(1.12)}
+.v24fab .m button::after{top:50%;left:auto;right:calc(100% + 8px);transform:translate(4px,-50%)}.v24fab .m button:hover::after{transform:translate(0,-50%)}
+.v24fab .m button .v24i{width:20px;height:20px}
+.v24ek{display:block;width:60px;height:60px;margin:0 auto 10px;background:currentColor;opacity:.4;-webkit-mask:var(--v24e) center/contain no-repeat;mask:var(--v24e) center/contain no-repeat}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.v24n{display:none!important}.v24on .v24n{display:revert!important;animation:v24u .3s both}
+.v24on p.v24n,.v24on .sm.v24n,.v24on .ph p.v24n{display:block!important}
+.v24ib{width:28px;height:28px;border-radius:50%;border:1px solid var(--line,#ddd);background:var(--card,var(--sf,#fff));color:var(--mut,#667);display:inline-grid;place-items:center;padding:0;cursor:pointer;flex:none;transition:.2s;vertical-align:middle}
+.v24ib:hover{transform:scale(1.12);color:var(--v24c)}.v24on>.v24ib,.v24on .v24ib{background:var(--v24c);color:#fff;border-color:var(--v24c)}
+.v24ib .v24i{width:15px;height:15px}
+.v24btn{width:38px;padding:0!important;justify-content:center;display:inline-flex;align-items:center}
+.v24btn .tx{display:none}
+
+body{--v24c:#2F7D5B}
+:root{--v24e:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 12h-6l-2 3h-4l-2-3H2'/%3E%3Cpath d='M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z'/%3E%3C/svg%3E")}
+.empty p{display:none}
+.qs .qt .sm,.ql>p.sm{display:none}
+.qs .qb button.s{width:34px;padding:0!important;display:inline-grid;place-items:center;font-size:0}
+.qs .qb button.s::before{content:'';width:16px;height:16px;background:currentColor;-webkit-mask:var(--v24a) center/contain no-repeat;mask:var(--v24a) center/contain no-repeat}
+:root{--v24a:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E")}
+main>*,.card{animation:v24u .4s both}main>*:nth-child(2){animation-delay:.05s}main>*:nth-child(3){animation-delay:.1s}main>*:nth-child(4){animation-delay:.15s}main>*:nth-child(5){animation-delay:.2s}
+.card{transition:transform .2s cubic-bezier(.2,1,.3,1),box-shadow .2s}section.card:hover{transform:translateY(-3px);box-shadow:0 14px 28px -16px #0007}
+button{transition:transform .12s,background .15s,filter .15s}button:active{transform:scale(.95)}
+tbody tr{animation:v24u .3s both;animation-delay:calc(var(--n,0)*24ms)}
+@media(max-width:860px){.v24fab{bottom:16px;right:16px}}
+main{padding-bottom:96px!important}
+</style></head><body>
+<aside id=sb aria-label="Menu utama"></aside><div id=app><div id=st></div><main><div class=sk style="height:140px;margin-bottom:16px"></div><div class=sk style="height:260px"></div></main></div><div id=tz aria-live=polite></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rp=n=>'Rp '+Math.round(n).toLocaleString('id-ID'),pad=n=>String(n).padStart(2,'0'),nz=s=>String(s).toUpperCase().replace(/[^A-Z0-9]/g,'');
+const MN=['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+const MON={JAN:1,FEB:2,MAR:3,APR:4,MEI:5,MAY:5,JUN:6,JUL:7,AGU:8,AGS:8,AGT:8,AUG:8,SEP:9,OKT:10,OCT:10,NOV:11,DES:12,DEC:12};
+const PT=['TK/0','TK/1','TK/2','TK/3','K/0','K/1','K/2','K/3','K/I/0','K/I/1','K/I/2','K/I/3'];
+const S={g:[],m:[],a:{},l:[],ig:{},mode:'gab',fmt:'both',basis:'bruto',meth:'bulanan',f:{o:'',y:'',q:'',s:''},fl:'all',mq:'',scope:'all',tgl:25,jd:'PaymentProof',nil:'skip',mo:'',fh:null,fhs:'',pers:null,draft:null,ar:[],dm:0,dy:0,po:'',mf:'all',mp:0};let TAB='d';
+const opt=(a,v)=>a.map(x=>`<option${x==v?' selected':''}>${x}</option>`).join('');
+const lab=m=>`${m.pang} — ${m.nama}`;
+const fmt=t=>t?new Date(+t||t).toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'}):'belum pernah';
+const dl=(n,d)=>{const a=document.createElement('a');a.href=URL.createObjectURL(d instanceof Blob?d:new Blob([d]));a.download=n;a.click()};
+const ask0=(msg,bs)=>new Promise(res=>{const d=document.createElement('dialog');d.innerHTML=`<div class=msg>${msg}</div><div class=bt>${bs.map((b,i)=>`<button class="${/^(Hapus|Timpa)/.test(b)?'d':i?'s':'p'}" value=${i}>${b}</button>`).join('')}</div>`;d.onclick=e=>{if(e.target.value!==undefined&&e.target.tagName=='BUTTON'){d.close();d.remove();res(+e.target.value)}};d.oncancel=()=>{d.remove();res(bs.length-1)};document.body.append(d);d.showModal()});
+
+/* ---------- Penyimpanan: browser (localForage) + cadangan file ---------- */
+/* Semua data (master, lokasi, alias, daftar abaikan, pengaturan, arsip) disimpan di IndexedDB browser dan
+   dapat dicadangkan ke file JSON (opsional berkata sandi) atau ditautkan ke file yang ditulis otomatis. */
+let tA=0,tD=0;
+const touch=()=>{localStorage.lastEdit=Date.now();clearTimeout(tA);tA=setTimeout(autoWrite,1500);stb()};
+const saveM=()=>{localforage.setItem('master',S.m);localforage.setItem('alias',S.a);touch();R()},saveL=()=>{localforage.setItem('lokasi',S.l);touch()};
+const saveI=()=>{localforage.setItem('ignore',S.ig);touch()},saveA=()=>{localforage.setItem('alias',S.a);touch()},saveC=()=>{localforage.setItem('cfg',{basis:S.basis,meth:S.meth,mode:S.mode,fmt:S.fmt,scope:S.scope,nil:S.nil,m35:1,sc2:1,tgl:S.tgl,jd:S.jd});touch()};
+const sDraft=()=>{clearTimeout(tD);tD=setTimeout(()=>{if(!S.g.length)return localforage.removeItem('draft');localforage.setItem('draft',{at:new Date().toISOString(),g:S.g.map(({_ws,...g})=>g)})},700)};
+async function snapshot(){const o={_app:'bp21',_v:2,_at:new Date().toISOString()};await localforage.iterate((v,k)=>{if(k!='draft'&&k!='fh')o[k]=v});return o}
+const b64=u=>{let s='';for(let i=0;i<u.length;i+=0x8000)s+=String.fromCharCode(...u.subarray(i,i+0x8000));return btoa(s)},ub64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const dk=async(pw,salt)=>{const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:200000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])};
+async function enc(txt,pw){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},await dk(pw,salt),new TextEncoder().encode(txt)));return JSON.stringify({_enc:1,salt:b64(salt),iv:b64(iv),data:b64(ct)})}
+async function dec(o,pw){return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub64(o.iv)},await dk(pw,ub64(o.salt)),ub64(o.data)))}
+async function bk(){const pw=await opaAsk('Kata sandi untuk melindungi cadangan (file berisi NIK). Kosongkan jika tanpa sandi:');if(pw===null)return;if(pw&&!(window.crypto&&crypto.subtle))return alert('Browser ini tidak mendukung enkripsi. Kosongkan kata sandi atau pakai Chrome/Edge.');
+ const t=JSON.stringify(await snapshot());try{opaLog('Mengunduh cadangan data PPh 21','pph')}catch(e){}dl(`backup_bp21_${new Date().toISOString().slice(0,10)}.json`,pw?await enc(t,pw):t);localStorage.lastBackup=Date.now();stb();if(TAB=='c')R()}
+async function readBackup(t){let o;try{o=JSON.parse(t)}catch(e){alert('File ini bukan cadangan BP21 (isinya bukan JSON). Pilih file "backup_bp21_….json".');return null}
+ if(o._enc){if(!(window.crypto&&crypto.subtle)){alert('Browser ini tidak bisa membuka cadangan terkunci. Gunakan Chrome atau Edge.');return null}const pw=await opaAsk('Cadangan ini terkunci. Masukkan kata sandi:');if(!pw)return null;try{o=JSON.parse(await dec(o,pw));o._wasEnc=1}catch(e){alert('Kata sandi salah atau file rusak.');return null}}
+ if(!o.master&&!o.lokasi&&!Object.keys(o).some(k=>k.startsWith('ar:'))){alert('Isi file tidak dikenali sebagai cadangan BP21.');return null}return o}
+async function applyBackup(o){const na=Object.keys(o).filter(k=>k.startsWith('ar:')).length,c=await ask(`<p>Cadangan ini berisi <b>${(o.master||[]).length}</b> therapist, <b>${(o.lokasi||[]).length}</b> lokasi, <b>${na}</b> arsip.</p><p><b>Gabungkan</b>: data di laptop ini tetap ada, data dari cadangan ditambahkan (therapist dicocokkan lewat NIK).<br><b>Timpa semua</b>: data di laptop ini diganti persis seperti cadangan.</p>`,['Gabungkan','Timpa semua','Batal']);if(c==2)return false;
+ if(c==1){for(const k of await localforage.keys())if(k.startsWith('ar:'))await localforage.removeItem(k);for(const k in o)if(k[0]!='_')await localforage.setItem(k,o[k]);for(const[k,d]of[['master',[]],['lokasi',[]],['alias',{}],['ignore',{}]])if(o[k]===undefined)await localforage.setItem(k,d)}
+ else{const idm={};for(const m of o.master||[]){const ex=(m.nik&&S.m.find(x=>x.nik==m.nik))||S.m.find(x=>x.id==m.id);if(ex){idm[m.id]=ex.id;for(const k in m)if(k!='id'&&(ex[k]===undefined||ex[k]===''||ex[k]===null))ex[k]=m[k]}else{S.m.push(m);idm[m.id]=m.id}}
+  for(const k in o.alias||{})if(!S.a[k])S.a[k]=idm[o.alias[k]]??o.alias[k];
+  for(const l of o.lokasi||[]){const ex=S.l.find(x=>x.kode==l.kode);if(!ex)S.l.push(l);else for(const k in l)if(!ex[k])ex[k]=l[k]}
+  Object.assign(S.ig,o.ignore||{});
+  for(const k in o)if(k.startsWith('ar:')){const cur=await localforage.getItem(k);if(!cur||(o[k].at||'')>(cur.at||''))await localforage.setItem(k,o[k])}
+  await localforage.setItem('master',S.m);await localforage.setItem('alias',S.a);await localforage.setItem('lokasi',S.l);await localforage.setItem('ignore',S.ig)}
+ await init();touch();R();return true}
+async function rs(f){if(!f)return;const o=await readBackup(await f.text());if(o&&await applyBackup(o))ask('<p>Data berhasil dimuat. Master, lokasi, dan arsip sudah tersedia di laptop ini.</p>',['Tutup'])}
+async function autoWrite(){if(!S.fh)return;try{if(await S.fh.queryPermission({mode:'readwrite'})!='granted'){S.fhs='izin';return stb()}const w=await S.fh.createWritable();await w.write(JSON.stringify(await snapshot()));await w.close();localStorage.lastFile=Date.now();S.fhs='ok'}catch(e){S.fhs='gagal'}stb()}
+async function izin(){try{if(await S.fh.requestPermission({mode:'readwrite'})=='granted')await autoWrite()}catch(e){}stb();if(TAB=='c')R()}
+async function linkFile(){if(!window.showSaveFilePicker)return alert('Browser ini belum mendukung simpan otomatis ke file. Pakai Chrome atau Edge di laptop, atau klik "Simpan cadangan" secara berkala.');
+ try{const h=await showSaveFilePicker({suggestedName:'data_bp21.json',types:[{description:'Data BP21 (JSON)',accept:{'application/json':['.json']}}]});S.fh=h;await localforage.setItem('fh',h);await autoWrite()}catch(e){if(e.name!='AbortError')alert('Tidak bisa menautkan file: '+e.message)}stb();if(TAB=='c')R()}
+async function openLinked(){if(!window.showOpenFilePicker)return alert('Browser ini belum mendukung fitur ini. Pakai "Buka cadangan".');
+ try{const[h]=await showOpenFilePicker({types:[{description:'Data BP21 (JSON)',accept:{'application/json':['.json']}}]}),t=await(await h.getFile()).text(),o=await readBackup(t);if(!o)return;const ok=await applyBackup(o);if(ok&&!o._wasEnc&&await h.requestPermission({mode:'readwrite'})=='granted'){S.fh=h;await localforage.setItem('fh',h);await autoWrite()}}catch(e){if(e.name!='AbortError')alert('Gagal membuka: '+e.message)}stb();if(TAB=='c')R()}
+async function unlink(){S.fh=null;S.fhs='';await localforage.removeItem('fh');stb();R()}
+function stb(){const e=$('#st');if(!e)return;const le=+localStorage.lastEdit||0,lb=+localStorage.lastBackup||0,lf=+localStorage.lastFile||0;let h='<span>💾 Data tersimpan otomatis di browser ini</span>';
+ if(S.fh)h+=S.fhs=='izin'?`<span class=w>File cadangan «${esc(S.fh.name)}» perlu izin</span><button class=s onclick="izin()">Izinkan simpan otomatis</button>`:S.fhs=='gagal'?'<span class=w>Gagal menulis ke file cadangan</span>':`<span>Cadangan otomatis ke «${esc(S.fh.name)}» · <b>${fmt(lf)}</b></span>`;
+ else h+=le>lb?`<span class=w>⚠ Ada perubahan sejak cadangan terakhir (${fmt(lb)})</span><button class=s onclick="bk()">Simpan cadangan</button>`:`<span>Cadangan file terakhir: <b>${fmt(lb)}</b></span>`;
+ e.innerHTML=h+cpBtn()}
+/* ---------- PPh 21 (PP 58/2023, PMK 168/2023) ---------- */
+const PTC={'TK/0':'A','TK/1':'A','K/0':'A','K/I/0':'A','TK/2':'B','TK/3':'B','K/1':'B','K/2':'B','K/I/1':'B','K/I/2':'B','K/3':'C','K/I/3':'C'};
+const TT=Object.fromEntries(Object.entries({A:'5.4:0,5.65:.25,5.95:.5,6.3:.75,6.75:1,7.5:1.25,8.55:1.5,9.65:1.75,10.05:2,10.35:2.25,10.7:2.5,11.05:3,11.6:3.5,12.5:4,13.75:5,15.1:6,16.95:7,19.75:8,24.15:9,26.45:10,28:11,30.05:12,32.4:13,35.4:14,39.1:15,43.85:16,47.8:17,51.4:18,56.3:19,62.2:20,68.6:21,77.5:22,89:23,103:24,125:25,157:26,206:27,337:28,454:29,550:30,695:31,910:32,1400:33',B:'6.2:0,6.5:.25,6.85:.5,7.3:.75,9.2:1,10.75:1.5,11.25:2,11.6:2.5,12.6:3,13.6:4,14.95:5,16.4:6,18.45:7,21.85:8,26:9,27.7:10,29.35:11,31.45:12,33.95:13,37.1:14,41.1:15,45.8:16,49.5:17,53.8:18,58.5:19,64:20,71:21,80:22,93:23,109:24,129:25,163:26,211:27,374:28,459:29,555:30,704:31,957:32,1405:33',C:'6.6:0,6.95:.25,7.35:.5,7.8:.75,8.85:1,9.8:1.25,10.95:1.5,11.2:1.75,12.05:2,12.95:3,14.15:4,15.55:5,17.05:6,19.5:7,22.7:8,26.6:9,28.1:10,30.1:11,32.6:12,35.4:13,38.9:14,43:15,47.4:16,51.2:17,55.8:18,60.4:19,66.7:20,74.5:21,83.2:22,95.6:23,110:24,134:25,169:26,221:27,390:28,463:29,561:30,709:31,965:32,1419:33'}).map(([k,v])=>[k,v.split(',').map(x=>x.split(':').map(Number))]));
+const ter=(c,b)=>{for(const[u,r]of TT[c])if(b<=Math.round(u*1e6))return r;return 34};
+function pph(r){const b=r.gross;if(!(b>0))return{rate:0,tax:0,m:'-'};let m=S.meth;if(m=='harian'&&b>1e7)m='bulanan';
+ if(m=='harian'){const avg=r.hadir?b/r.hadir:b;if(avg>2.5e6)return{rate:0,tax:0,m:'harian >2,5jt',kode:'21-100-30',manual:1};const rt=avg>450000||S.nil=='half'?.5:0;return{rate:rt,tax:Math.floor(b*rt/100),m:'harian',kode:'21-100-24',nil:rt==0}}
+ const c=PTC[r.ptkp]||'A',rt=ter(c,b);return{rate:rt,tax:Math.floor(b*rt/100),m:'bulanan '+c,kode:'21-100-35'}}
+function calc(){S.g.forEach(g=>g.rows.forEach(r=>{if(!r.ov&&r.jml!==undefined)r.gross=Math.round(r.jml+(r.gapok||0));const p=pph(r);r.rate=p.rate;r.tax=p.tax;r.mt=p.m;r.man=p.manual;r.nil=p.nil;if(!r.ko||(r.kode=='21-100-24'&&S.meth=='bulanan'))r.kode=p.kode||'21-100-35'}))}
+
+function num(v){if(typeof v==='number')return v;if(v==null)return 0;let s=String(v).replace(/rp/ig,'').replace(/[^\d.,-]/g,'');if(!s)return 0;
+ if(s.includes(',')&&s.includes('.'))s=s.lastIndexOf(',')>s.lastIndexOf('.')?s.replace(/\./g,'').replace(',','.'):s.replace(/,/g,'');
+ else if(/^-?\d{1,3}([.,]\d{3})+$/.test(s))s=s.replace(/[.,]/g,'');else s=s.replace(',','.');return parseFloat(s)||0}
+/* ---------- Parser (kolom dicari dinamis dari teks header, tidak ada posisi kolom yang di-hardcode) ---------- */
+function perOf(s){s=String(s||'').toUpperCase();const ms=[...s.matchAll(/\b(JAN(?:UARI)?|FEB(?:RUARI)?|MAR(?:ET)?|APR(?:IL)?|MEI|MAY|JUNI?|JULI?|AGU(?:STUS)?|AGS|AGT|AUG(?:UST)?|SEP(?:T(?:EMBER)?)?|OKT(?:OBER)?|OCT(?:OBER)?|NOV(?:EMBER)?|DES(?:EMBER)?|DEC(?:EMBER)?)\b/g)],a=s.match(/20\d\d/g),b=s.match(/['’`]\s?(\d\d)\b/);return{m:ms.length?MON[ms[ms.length-1][1].slice(0,3)]:0,y:a?+a[a.length-1]:b?2000+ +b[1]:0}}
+const TH=/TH?ERAPIS?T?/,HL=/^(NO\.?|NAMA\b.*|TH?ERAPIS?T?|\(?\d+\)?)$/i,first=(hs,...ts)=>{for(const t of ts){const i=hs.findIndex(t);if(i>=0)return i}return -1};
+function detect(hs){const nc=first(hs,h=>/NAMA/.test(h)&&TH.test(h),h=>TH.test(h)&&!/\bNO\b|\bKODE\b/.test(h),h=>/^NAMA( PANGGUNG)?$/.test(h.trim())),
+ bk=hs.findIndex(h=>/\bBANK\b/.test(h)),jc=first(hs,h=>h.trim()=='JUMLAH',h=>/^(TOTAL |JUMLAH )?KOMISI( BRUTO| KOTOR)?$/.test(h.trim()),h=>/BRUTO/.test(h)),
+ kc=first(hs,h=>/(NO|KODE)\s*TH?ERAP/.test(h),h=>/^NO\s*THER\b/.test(h)),
+ hc=first(hs,h=>/KEHADIRAN/.test(h)&&!/TIDAK|ABSEN|POTONG/.test(h),h=>/^(JUMLAH |JML )?HADIR$|HARI KERJA|^HK$/.test(h.trim())),
+ ac=first(hs,h=>h.trim()=='GAPOK',h=>/GAPOK|GAJI POKOK|GAJI DASAR/.test(h)&&!/POTONG/.test(h));
+ let gc=first(hs,h=>/DICAIRKAN/.test(h),h=>/DIBAYARKAN/.test(h),h=>/PENCAIRAN/.test(h)&&!/PENDINGAN/.test(h));
+ if(gc<0&&bk>0&&/KOMISI/.test(hs[bk-1]))gc=bk-1;if(gc<0)gc=jc;return{nc,kc,jc,ac,hc,gc}}
+function parseSheet(ws,file,sn,ov){
+ if(!ws||!ws['!ref'])return null;const ref=XLSX.utils.decode_range(ws['!ref']),tx=v=>String(v??'').trim();let nf=0;
+ const cell=(r,c)=>{const x=ws[XLSX.utils.encode_cell({r,c})];if(!x)return undefined;if(x.v===undefined&&x.f)nf++;return x.v};
+ let outlet='',per='',th=-1,m;const R0=Math.min(ref.e.r,80);
+ for(let r=0;r<=R0;r++)for(let c=0;c<=ref.e.c;c++){const t=tx(cell(r,c));
+  if(!outlet&&(m=t.match(/(?:OUTLET|CABANG|LOKASI)\s*:\s*(.+)/i)))outlet=m[1].trim();
+  if(!per&&(m=t.match(/PERIODE\s*:\s*(.+)/i)))per=m[1].trim();
+  if(th<0&&/^therapist$/i.test(t))th=r}
+ if(th<0)for(let r=0;r<=R0&&th<0;r++)for(let c=0;c<=ref.e.c;c++)if(/^(NAMA\s+)?TH?ERAPIS?T?$/i.test(tx(cell(r,c)))){th=r;break}
+ if(th<0)for(let r=0;r<=R0&&th<0;r++)for(let c=0;c<=ref.e.c;c++)if(/^NAMA( PANGGUNG| LENGKAP)?$/i.test(tx(cell(r,c)))){let ok=false;for(let k=r;k<=r+2;k++)for(let d=0;d<=ref.e.c;d++)if(/KOMISI|JUMLAH|DICAIRKAN/i.test(tx(cell(k,d))))ok=true;if(ok){th=r;break}}
+ if(th<0)return null;
+ const mg=ws['!merges']||[],H=(c,a,b)=>{const x=[];for(let r=a;r<=b;r++){let v=cell(r,c);if(v===undefined){const k=mg.find(k=>k.s.r<=r&&k.e.r>=r&&k.s.c<=c&&k.e.c>=c);if(k)v=cell(k.s.r,k.s.c)}if(v!==undefined)x.push(tx(v))}return[...new Set(x)].join(' ').toUpperCase().replace(/\s+/g,' ')};
+ const hdr=(a,b)=>{const o=[];for(let c=0;c<=ref.e.c;c++)o.push(H(c,a,b));return o};
+ let hs=hdr(th-1,th+1),mp=detect(hs);if(mp.nc<0)return null;
+ let start=th+2;const n1=tx(cell(th+1,mp.nc)),mc=mp.gc>=0?mp.gc:mp.jc; /* format satu baris header: data langsung di bawah header */
+ if(n1&&!HL.test(n1)&&!/^(TOTAL|JUMLAH|MAGANG)/i.test(n1)&&mc>=0&&(num(cell(th+1,mc))>0||(mp.jc>=0&&num(cell(th+1,mp.jc))>0))){start=th+1;hs=hdr(th-1,th);mp=detect(hs)}
+ if(ov)mp={...mp,...ov};const{nc,kc,jc,ac,hc,gc}=mp;if(nc<0||(gc<0&&jc<0))return null;
+ const rows=[];let st=false;const nb=jc<0;
+ for(let r=start;r<=ref.e.r;r++){const name=tx(cell(r,nc));if(!name){if(st)break;continue}if(/^(TOTAL|JUMLAH|MAGANG)/i.test(name))break;if(!st&&HL.test(name))continue;st=true;
+  let v=gc>=0?num(cell(r,gc)):0,src=hs[gc]||'';
+  if(!v)for(const c of[gc-2,gc-5,jc])if(c>=0&&c!=gc&&(v=num(cell(r,c)))){src=hs[c];break}
+  const row={pang:name,kd:kc>=0?tx(cell(r,kc)):'',hadir:hc>=0?num(cell(r,hc)):0,cair:Math.round(v),jml:jc>=0?num(cell(r,jc)):v,gapok:ac>=0?num(cell(r,ac)):0,raw:v,gross:0,src,mid:null,st:undefined,nama:'',nik:'',ptkp:'TK/0',kode:'21-100-24'};
+  if(nb)row.nb=1; /* bruto tidak boleh diambil dari kolom dicairkan: baris ditandai belum lengkap */
+  rows.push(row)}
+ if(!rows.length)return null;
+ const warn=[];
+ if(nb)warn.push('Kolom JUMLAH (bruto komisi) tidak ditemukan. Pilih kolom yang benar di "Kolom yang terbaca"; sebelum itu baris belum bisa dibuat BP21 (kolom dicairkan tidak boleh jadi dasar pajak).');
+ else if(hs[jc].trim()!='JUMLAH')warn.push(`Bruto dibaca dari kolom "${hs[jc]}" (bukan "JUMLAH"). Pastikan itu kolom komisi sebelum potongan.`);
+ if(ac<0)warn.push('Kolom GAPOK tidak ditemukan; gapok dianggap 0.');
+ if(hc<0)warn.push('Kolom kehadiran tidak ditemukan; metode harian memakai bruto sebagai rata-rata harian.');
+ if(nf)warn.push(`${nf} sel berumus tidak punya nilai tersimpan dan terbaca 0. Buka file di Excel, simpan ulang, lalu upload lagi.`);
+ let pr=perOf(per);for(const s of[sn,file]){const a=perOf(s);if(!pr.m)pr.m=a.m;if(!pr.y)pr.y=a.y}
+ return{nama:outlet||file.replace(/\.\w+$/,''),month:pr.m,year:pr.y,file,sheet:sn,src:hs[gc]||'',rows,hs,map:mp,th,warn,_ws:ws}}
+const lev=(a,b)=>{const d=Array.from({length:a.length+1},(_,i)=>[i,...Array(b.length).fill(0)]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]!=b[j-1]));return d[a.length][b.length]};
+function match(p,kd,ol){const P=S.m.filter(m=>!ol||!m.outlet||m.outlet==ol),vs=p.toUpperCase().split('/').map(nz).filter(Boolean);
+ for(const v of vs){const id=S.a[v];if(id&&S.m.find(m=>m.id==id))return[id,'cocok']}
+ const k=kd&&P.find(x=>x.kd&&nz(x.kd)==nz(kd));if(k)return[k.id,Math.min(...vs.map(v=>lev(v,nz(k.pang))))<=2?'cocok':'mirip'];
+ let best=null,bd=9;for(const m of P){const d=Math.min(...vs.map(v=>lev(v,nz(m.pang))));if(d<bd){bd=d;best=m}}
+ if(best&&bd==0)return[best.id,'cocok'];if(best&&bd<=2)return[best.id,'mirip'];
+ if(P.length){const r=new Fuse(P,{keys:['pang','nama'],threshold:.3}).search(vs[0]||'');if(r[0])return[r[0].item.id,'mirip']}
+ return[null,'kosong']}
+function mt(r){const[id,st]=match(r.pang,r.kd,r.ol);r.st=st;r.mid=id;const m=S.m.find(x=>x.id==id);if(m){r.nama=m.nama;r.nik=m.nik;r.ptkp=m.ptkp}}
+const alias=(r,id)=>r.pang.toUpperCase().split('/').map(nz).filter(Boolean).forEach(v=>S.a[v]=id);
+
+/* ---------- Status baris BP21: siap / belum lengkap / sudah dibuat / dilewati ---------- */
+const NIK16=/^\d{16}$/;
+function miss(r){const w=[];if(r.nb)w.push('Kolom bruto (JUMLAH) belum dipilih');if(!NIK16.test(r.nik||''))w.push('NIK (16 digit)');if(!/^21-\d{3}-\d{2}$/.test(r.kode||''))w.push('Kode objek');if(!PT.includes(r.ptkp))w.push('Status PTKP');if(r.st=='mirip')w.push('Konfirmasi kecocokan master (klik Benar)');if(r.kode=='21-100-24'&&Number(r.rate)!==0.5)w.push('Kode 21-100-24 wajib tarif 0,5 (ganti kode ke 21-100-35)');if(r.man)w.push('Tarif Pasal 17 belum dihitung otomatis');return w}
+function rst(r){if(r.skip)return{k:'lwt',why:[r.skip==2?'Diabaikan seterusnya di outlet ini':'Dihapus dari bulan ini']};if(!(r.gross>0))return{k:'nol',why:['Tanpa penghasilan']};if(r.bp)return{k:'sdh',why:['Sudah dibuat di file bagian '+r.bp.n]};if(r.nil&&S.nil=='skip')return{k:'nol',why:['PPh nihil (upah harian ≤ Rp450.000): kode 21-100-24 tidak menerima tarif 0, jadi tidak dibuat']};const w=miss(r);return w.length?{k:'blm',why:w}:{k:'siap',why:[]}}
+const nvok=l=>l.nv=='1'||(l.nitku&&l.nitku!=l.tin+'000000'),inSc=r=>S.scope=='all'||(S.scope=='non'?!(r.tax>0):r.tax>0),sx=()=>({kena:'_KENAPAJAK',non:'_TIDAKKENAPAJAK',all:'_LENGKAP'})[S.scope]||'';
+const lerr=(g,l)=>{const e=[];if(!/^\d{16}$/.test(l.tin))e.push('TIN perusahaan (16 digit)');if(!/^\d{22}$/.test(l.nitku))e.push('NITKU (22 digit, ID outlet dari Coretax)');else if(l.nitku.slice(0,16)!=l.tin)e.push('16 digit awal NITKU harus sama dengan TIN');;if(!g.month||!g.year)e.push('masa & tahun pajak');return e};
+const cnt=g=>{const c={siap:0,blm:0,sdh:0,lwt:0,nol:0};g.rows.forEach(r=>c[rst(r).k]++);return c};
+/* ---------- Lokasi ---------- */
+const OKW=[['OCTO BATAM JAYA',/BATAM/,'Batam'],['OCTO CIREBON JAYA',/CIREBON/,'Cirebon'],['OCTO MUSI JAYA',/PALEMBANG|MUSI/,'Palembang, Musi'],['OCTO BATANG HARI JAYA',/JAMBI|BATANG/,'Jambi, Batang Hari'],['OPA LAMPUNG JAYA',/LAMPUNG|OCTOPUS|^OPA/,'Lampung, Octopus, OPA']];
+const canonOf=n=>{const k=nz(n||'');if(!k)return'';const o=OKW.find(x=>x[1].test(k));return o?o[0]:''};
+const canonIdx=n=>{const c=canonOf(n);return c?S.l.findIndex(x=>lkk(x.nama)==lkk(c)):-1};
+function lokFor(n){const ci=canonIdx(n);if(ci>=0)return ci;const k=nz(n);let i=S.l.findIndex(x=>nz(x.nama)==k||nz(x.kode)==k||lkk(x.nama)==lkk(n)||lkk(x.kode)==lkk(n));if(i<0){const t=(S.l.find(x=>x.tin)||{}).tin||'';S.l.push({kode:n.toUpperCase().replace(/[^A-Z0-9]+/g,'-').replace(/^-|-$/g,''),nama:n,tin:t,nitku:t?t+'000000':'',nv:'',alamat:''});i=S.l.length-1}return i}
+function lk(g){let i=S.l.findIndex(l=>l.kode==g.kode);if(i<0){i=lokFor(g.nama);g.kode=S.l[i].kode;saveL()}return i}
+function L(i,f,v){const l=S.l[i];v=v.trim();if(f=='kode'){v=v.toUpperCase().replace(/[^A-Z0-9-]/g,'');S.g.forEach(g=>g.kode==l.kode&&(g.kode=v))}
+ if(f=='tin'){v=v.replace(/\D/g,'');if(!l.nitku||l.nitku==l.tin+'000000')l.nitku=v+'000000'}if(f=='nitku'){v=v.replace(/\D/g,'');l.nv=''}if(f=='nv'){l.nv=v?'1':'';saveL();return R()}l[f]=v;saveL();R()}
+
+/* ---------- Progres per outlet-bulan: lanjutkan bagian berikutnya tanpa membuat ulang yang sudah selesai ---------- */
+async function rp2(g){if(!g.kode||!g.month||!g.year)return;const key=`${g.kode}|${g.year}-${pad(g.month)}`,a=await localforage.getItem('ar:'+key);if(!a)return;
+ g.key=key;g.batches=a.batches||[{n:1,legacy:1,files:a.files||[]}];const mp=new Map(a.rows.map(r=>[nz(r.pang),r]));
+ g.rows.forEach(r=>{if(r._rp)return;r._rp=1;const o=mp.get(nz(r.pang));if(!o)return;if(o.bp)r.bp=o.bp;else if(!a.schema&&o.gross>0)r.bp={n:1,legacy:1};if(o.skip)r.skip=o.skip;if(!r.nik&&o.nik)Object.assign(r,{nik:o.nik,nama:o.nama,ptkp:o.ptkp,mid:o.mid,st:o.st})})}
+async function ld(fs,po){fs=[...fs];const gs=[],bad=[];
+ for(const f of fs){let wb;try{wb=XLSX.read(await f.arrayBuffer(),{type:'array'})}catch(e){bad.push(`${f.name}: tidak bisa dibuka (rusak, terkunci sandi, atau bukan Excel). Buka di Excel lalu simpan ulang sebagai .xlsx.`);continue}
+  let n=0;wb.SheetNames.forEach(sn=>{let g=null;try{g=parseSheet(wb.Sheets[sn],f.name,sn)}catch(e){bad.push(`${f.name} / ${sn}: gagal dibaca (${e.message})`)}if(g){gs.push(g);n++}});
+  if(!n)bad.push(`${f.name}: tidak ada sheet komisi yang dikenali (butuh kolom nama therapist dan kolom JUMLAH atau DICAIRKAN).`)}
+ if(!gs.length)return ask(`<p>Tidak ada data komisi yang terbaca.</p><p class=why>${bad.map(esc).join('<br>')}</p>`,['Tutup']);
+ if(po){const L0=S.l.find(l=>l.kode==po);if(L0)gs.forEach(g=>{if(lkk(g.nama)!=lkk(L0.nama))g.warn.push(`Excel menyebut «${g.nama}»; data dimasukkan ke outlet pilihan Anda (${L0.nama}). Pastikan file ini benar.`);g.nama=L0.nama})}
+ const at0=new Date().toISOString();gs.forEach(g=>{g.srcs=[{f:g.file,s:g.sheet||''}];const kd=S.l[lokFor(g.nama)].kode,ex=S.g.find(x=>x.kode==kd&&x.month==g.month&&x.year==g.year);if(ex&&(ex.srcs||[]).some(s=>s.f==g.file&&s.s==(g.sheet||''))){g.dup=1;bad.push(`${g.file}${g.sheet?' / '+g.sheet:''}: sudah dimuat (dilewati supaya therapist tidak dobel). Untuk memuat versi baru, klik Ganti file.`);return}if(ex){ex.rows.push(...g.rows);ex._ws=null;ex.srcs=[...(ex.srcs||[]),...g.srcs];(ex.warn=ex.warn||[]).push(...g.warn);g.kode=ex.kode}else{g.kode=S.l[lokFor(g.nama)].kode;S.g.push(g)}});logUp(gs.filter(g=>!g.dup),at0);
+ S.g.forEach(g=>g.rows.forEach(r=>{r.ol=g.kode;if(r.st===undefined)mt(r);if(r._ig===undefined){r._ig=1;if(S.ig[g.kode+'|'+nz(r.pang)])r.skip=2}}));
+ for(const g of S.g)await rp2(g);calc();saveL();R();sDraft();
+ if(bad.length)ask(`<p>Sebagian sheet dilewati:</p><p class=why>${bad.map(esc).join('<br>')}</p>`,['Tutup'])}
+const clr=()=>{SEL.clear();S.g=[];localforage.removeItem('draft');S.draft=null;R()};
+async function G(i,f,v){const g=S.g[i];g[f]=v;if(f=='month'||f=='year'){g.rows.forEach(r=>{r._rp=0;delete r.bp});g.key=null;g.batches=null;await rp2(g)}R();sDraft()}
+function F(gi,i,f,v){const r=S.g[gi].rows[i];r[f]=f=='nik'?v.replace(/\D/g,''):v;if(f=='gross')r.ov=1;if(f=='kode')r.ko=1;if(f=='ptkp')r.pv=1;calc();R();sDraft()}
+function M(gi,i,v){const r=S.g[gi].rows[i];EDM.delete(r);const m=S.m.find(x=>lab(x)==v);if(m){r.mid=m.id;r.nama=m.nama;r.nik=m.nik;r.ptkp=m.ptkp;r.st='cocok';alias(r,m.id);calc();saveM()}else{r.mid=null;r.st='kosong';R()}sDraft()}
+const OK=(gi,i)=>{const r=S.g[gi].rows[i];r.st='cocok';alias(r,r.mid);saveA();R();sDraft()};
+function RM(gi,k,v){const g=S.g[gi],ng=parseSheet(g._ws,g.file,g.sheet,{...g.map,[k]:+v});if(!ng)return alert('Pilihan kolom ini tidak menghasilkan data. Coba kolom lain.');
+ Object.assign(ng,{kode:g.kode,month:g.month,year:g.year,key:g.key,batches:g.batches});ng.rows.forEach(r=>{mt(r);if(S.ig[g.kode+'|'+nz(r.pang)])r.skip=2;r._rp=0;r._ig=1});S.g[gi]=ng;rp2(ng).then(()=>{calc();R();sDraft()})}
+const SEL=new Set(),EDM=new Set();
+const vis=g=>g.rows.filter(r=>{const k=rst(r).k;return S.fl=='all'||k==S.fl||(S.fl=='lwt'&&k=='nol')});
+const selN=g=>g.rows.filter(r=>SEL.has(r)).length;
+function selBar(gi){const g=S.g[gi],n=selN(g),dl=g.rows.filter(r=>SEL.has(r)&&r.skip).length,c=cnt(g);
+ return n?`<b>${n} dipilih</b> <button class=p onclick="selDel(${gi})">Hapus</button>${dl?` <button class=s onclick="selUn(${gi})">Pulihkan</button>`:''} <button class=s onclick="selSet(${gi},'none')">Batal</button>`:(c.blm?`<button class=s onclick="selSet(${gi},'blm')">Pilih yang belum lengkap (${c.blm})</button>`:'')}
+function selUpd(gi){const g=S.g[gi],b=document.getElementById('selbar'+gi);if(b)b.innerHTML=selBar(gi);
+ const v=vis(g),a=document.getElementById('sa'+gi);if(a){const k=v.filter(r=>SEL.has(r)).length;a.checked=v.length>0&&k==v.length;a.indeterminate=k>0&&k<v.length}
+ document.querySelectorAll('#rw'+gi+' tr[data-ri]').forEach(tr=>tr.classList.toggle('sel',SEL.has(g.rows[+tr.dataset.ri])))}
+function selTg(gi,i,on){const r=S.g[gi].rows[i];on?SEL.add(r):SEL.delete(r);selUpd(gi)}
+function selAll(gi,on){vis(S.g[gi]).forEach(r=>on?SEL.add(r):SEL.delete(r));document.querySelectorAll('#rw'+gi+' tr[data-ri] input.ck').forEach(c=>c.checked=on);selUpd(gi)}
+function selSet(gi,k){const g=S.g[gi];if(k=='none'){g.rows.forEach(r=>SEL.delete(r))}else{g.rows.forEach(r=>SEL.delete(r));vis(g).forEach(r=>{const st=rst(r);if(k=='all'||(k=='blm'&&st.k=='blm')||(k=='nok'&&st.k!='lwt'&&st.k!='sdh'&&!(r.tax>0)))SEL.add(r)})}
+ document.querySelectorAll('#rw'+gi+' tr[data-ri] input.ck').forEach(c=>{c.checked=SEL.has(g.rows[+c.closest('tr').dataset.ri])});selUpd(gi)}
+async function selDel(gi){const g=S.g[gi],ch=g.rows.filter(r=>SEL.has(r)),sdh=ch.filter(r=>rst(r).k=='sdh').length,t=ch.filter(r=>{const k=rst(r).k;return k!='sdh'&&k!='lwt'});
+ if(!t.length)return toast(sdh?'Baris yang sudah dibuat BP21 tidak bisa dihapus dari sini.':'Tidak ada baris yang bisa dihapus (sudah berstatus Dihapus).');
+ const c=await ask(`<p>Hapus <b>${t.length}</b> therapist yang dipilih dari daftar BP21 ${MN[g.month]||''} ${g.year||''}?</p><p class=sm>Data di master tidak dihapus. Bisa dipulihkan lewat filter "Dihapus".${sdh?` ${sdh} baris yang sudah dibuat BP21 tidak ikut dihapus.`:''}</p>`,['Hapus dari bulan ini saja','Hapus & jangan muncul lagi di outlet ini','Batal']);
+ if(c==2)return;t.forEach(r=>{r.skip=c==1?2:1;if(c==1)S.ig[g.kode+'|'+nz(r.pang)]=1;SEL.delete(r)});if(c==1)saveI();R();sDraft()}
+function selUn(gi){const g=S.g[gi],t=g.rows.filter(r=>SEL.has(r)&&r.skip);if(!t.length)return;let ig=0;t.forEach(r=>{if(r.skip==2){delete S.ig[g.kode+'|'+nz(r.pang)];ig=1}r.skip=0;SEL.delete(r)});if(ig)saveI();R();sDraft();toast(t.length+' therapist dipulihkan')}
+async function bulkDel(gi){const gs=gi===undefined?S.g:[S.g[gi]],t=gs.flatMap(g=>g.rows.filter(r=>rst(r).k=='blm').map(r=>[g,r]));if(!t.length)return;const c=await ask(`<p>Hapus <b>${t.length}</b> therapist yang datanya belum lengkap dari daftar bulan ini?</p><p class=sm>Data di master tidak dihapus. Bisa dipulihkan lewat filter "Dihapus".</p>`,['Hapus dari bulan ini saja','Hapus & jangan muncul lagi di outlet ini','Batal']);if(c==2)return;t.forEach(([g,r])=>{r.skip=c==1?2:1;if(c==1)S.ig[g.kode+'|'+nz(r.pang)]=1});if(c==1)saveI();R();sDraft()}
+async function sk(gi,i){const g=S.g[gi],r=g.rows[i],c=await ask(`<p>Hapus <b>${esc(r.pang)}</b> dari daftar BP21 ${MN[g.month]||''} ${g.year||''}?</p><p class=sm>Therapist ini tidak ikut Generate. Data di master tidak dihapus.</p>`,['Hapus dari bulan ini saja','Hapus & jangan muncul lagi di outlet ini','Batal']);if(c==2)return;r.skip=c==1?2:1;if(c==1){S.ig[g.kode+'|'+nz(r.pang)]=1;saveI()}R();sDraft()}
+function un(gi,i){const g=S.g[gi],r=g.rows[i];if(r.skip==2){delete S.ig[g.kode+'|'+nz(r.pang)];saveI()}r.skip=0;R();sDraft()}
+async function delM(i){const m=S.m[i];if(!m)return;const al=Object.entries(S.a).filter(([k,v])=>v==m.id),rs=[];
+ S.m.splice(i,1);al.forEach(([k])=>delete S.a[k]);
+ S.g.forEach(g=>g.rows.forEach(r=>{if(r.mid==m.id&&!r.bp){rs.push([r,r.nik,r.nama,r.ptkp,r.st]);r.mid=null;r.st='kosong';r.nik='';r.nama='';r.ptkp='TK/0'}}));calc();saveM();sDraft();
+ toast(`${m.pang||'Therapist'} dihapus dari master`,{label:'Batalkan',ms:9000,undo:()=>{S.m.splice(Math.min(i,S.m.length),0,m);al.forEach(([k,v])=>S.a[k]=v);rs.forEach(([r,n,nm,p,st])=>{r.mid=m.id;r.nik=n;r.nama=nm;r.ptkp=p;r.st=st});calc();saveM();sDraft()}})}
+async function delIg(k){delete S.ig[k];saveI();S.g.forEach(g=>g.rows.forEach(r=>{if(g.kode+'|'+nz(r.pang)==k&&r.skip==2)r.skip=0}));R()}
+/* ---------- Import master: kolom dicari dari judul DAN isi kolom, jadi NIK tetap terbaca walau namanya beda ---------- */
+const hn=c=>String(c??'').toUpperCase().replace(/\s+/g,' ').trim();
+const NAMEX=/NAMA|ALAMAT|TEMPAT|LAHIR|\bKK\b|KARTU KELUARGA|TGL|TANGGAL|BERLAKU|KONTRAK/;
+const NIKH=[h=>/^NIK( KTP)?$/.test(h),h=>/\bNIK\b/.test(h)&&!NAMEX.test(h),h=>/NOMOR INDUK KEPENDUDUKAN|\bE-?KTP\b|\bNO\.? ?KTP\b|\bNOMOR KTP\b|\bID KTP\b|\bNO\.? ?IDENTITAS\b/.test(h)&&!NAMEX.test(h),h=>h=='KTP'];
+const HDR2=/^(AWAL|AKHIR|MULAI|SELESAI|TGL|TANGGAL|TEMPAT|NAMA|NIK|NO|KODE|ALAMAT|STATUS|PTKP|RT|RW|KEL|KEC|KOTA|KAB|PROV|PROVINSI|KELURAHAN|KECAMATAN)\b/;
+const SUBA=/^(RT ?\/? ?RW|RT|RW|KEL(URAHAN)?( ?\/ ?DESA)?|DESA|KEC(AMATAN)?|KAB(UPATEN)?( ?\/ ?KOTA)?|KOTA( ?\/ ?KAB(UPATEN)?)?|PROVINSI|KODE ?POS)$/;
+const subFmt=(h,v)=>/^RT ?\/? ?RW$/.test(h)?'RT/RW '+v:/^RT$/.test(h)?'RT '+v:/^RW$/.test(h)?'RW '+v:/^(KEL|DESA)/.test(h)?'Kel. '+v:/^KEC/.test(h)?'Kec. '+v:/^KODE/.test(h)?v:v;
+/* NIK dibaca dari nilai MENTAH sel: sel angka 16 digit tidak boleh lewat teks berformat (jadi 3.2E+15) */
+function nikOf(txt,rw){const s=String(txt??'').trim();let d='',num=false,sci=false;
+ if(typeof rw==='number'&&isFinite(rw)){num=true;try{d=BigInt(Math.round(rw)).toString()}catch(e){d=String(rw).replace(/\D/g,'')}}
+ else if(/\d[.,]?\d*E\+?\d+/i.test(s))sci=true;else d=s.replace(/\D/g,'');
+ return{d,num,sci,sus:num&&d.length==16&&(d.endsWith('0')||Number(d)>9007199254740991)}}
+const nptkp=s=>{s=String(s||'').toUpperCase().replace(/[\s.\-_]+/g,'/').replace(/^\/|\/$/g,'');const m=s.match(/^(TK|K\/I|KI|K)\/?(\d)$/);if(!m)return'';const r=(m[1]=='KI'?'K/I':m[1])+'/'+m[2];return PT.includes(r)?r:''};
+/* mLay: murni atas array 2 dimensi (a = teks berformat, ar = nilai mentah), mudah diuji */
+function mLay(a,ar,sn){
+ const W=a.reduce((m,r)=>Math.max(m,r.length),0),RN=Math.min(a.length,500),nk=(r,c)=>nikOf(a[r][c],ar[r]&&ar[r][c]),filled=r=>r.filter(x=>String(x).trim()).length;
+ let hr=-1,mode='judul';
+ for(let r=0;r<Math.min(a.length,80)&&hr<0;r++){const row=a[r];if(filled(row)<3)continue;if(row.some(x=>{const h=hn(x);return h&&h.length<=40&&NIKH.some(f=>f(h))}))hr=r}
+ const cnt=Array.from({length:W},(_,c)=>{let n=0,f=-1;for(let r=Math.max(hr+1,0);r<RN;r++)if(nk(r,c).d.length==16){n++;if(f<0)f=r}return{n,f}});
+ let best=-1;cnt.forEach((x,c)=>{if(x.n>0&&(best<0||x.n>cnt[best].n))best=c});
+ if(hr<0){if(best<0)return null;hr=cnt[best].f-1;while(hr>0&&!filled(a[hr]))hr--;mode='isi'}
+ const nr=a[hr+1],two=!!(nr&&hr>=0&&nr.some(x=>HDR2.test(hn(x)))&&!nr.some(x=>nikOf(x).d.length==16)),
+  hs=Array.from({length:W},(_,c)=>(hr>=0?hn(a[hr][c])+(two?' '+hn(a[hr+1][c]):''):'').trim()),start=Math.max(hr,-1)+1+(two?1:0),used=new Set(),
+  pick=(...ts)=>{for(const t of ts){const i=hs.findIndex((h,c)=>h&&!used.has(c)&&t(h));if(i>=0){used.add(i);return i}}return -1};
+ let kc=-1,note='';
+ for(const f of NIKH){const i=hs.findIndex((h,c)=>h&&f(h));if(i>=0){kc=i;break}}
+ if(kc>=0&&cnt[kc].n==0&&best>=0&&best!=kc){note=`Kolom «${hs[kc]}» tidak berisi 16 digit; NIK diambil dari kolom ${XLSX.utils.encode_col(best)} (isinya 16 digit).`;kc=best;mode='isi'}
+ if(kc<0)kc=best;if(kc<0)return null;used.add(kc);
+ const pc=pick(h=>/PANGGUNG|SAMARAN|PANGGILAN|ALIAS|NAMA ?TH?ERAPIS?T?|TH?ERAPIS?T? NAMA/.test(h),h=>/^TH?ERAPIS?T?$/.test(h)),
+  nc=pick(h=>/NAMA/.test(h)&&/KTP|ASLI|LENGKAP|SESUAI|IDENTITAS|KARYAWAN|PEGAWAI/.test(h)&&!/PANGGUNG|THERAP/.test(h),h=>/^NAMA( LENGKAP)?$/.test(h),h=>/NAMA/.test(h)&&!/PANGGUNG|THERAP|OUTLET|ALIAS|IBU|AYAH|BANK|REKENING|DARURAT|SUAMI|ISTRI|KONTAK|PEMILIK/.test(h)),
+  kd=pick(h=>/NO\.? ?TH?ER|KODE ?TH?ER|ID ?TH?ER|^KODE$/.test(h)),
+  al=pick(h=>/ALAMAT/.test(h)&&/KTP|IDENTITAS/.test(h)||/(KTP|IDENTITAS).*ALAMAT/.test(h),h=>/^ALAMAT( LENGKAP)?$/.test(h),h=>/ALAMAT/.test(h)&&!/DOMISILI|TINGGAL|KOS|MESS|EMAIL|SURAT|OUTLET|KONTAK|DARURAT|ORANG TUA|KANTOR/.test(h)),
+  als=[];
+ if(al>=0)for(let c=al+1;c<W&&hs[c]&&SUBA.test(hs[c])&&!used.has(c);c++){als.push(c);used.add(c)}
+ const dom=al<0&&hs.some(h=>/ALAMAT/.test(h)&&/DOMISILI|TINGGAL|KOS|MESS/.test(h)),
+  lc=hs.map((h,c)=>c).filter(c=>hs[c]&&!used.has(c)&&/TEMPAT|TTL|LAHIR/.test(hs[c]));lc.forEach(c=>used.add(c));
+ const pt=pick(h=>/PTKP/.test(h),h=>/^STATUS( PERKAWINAN| KAWIN| PAJAK)?$/.test(h)),aw=pick(h=>/AWAL|MULAI/.test(h)),ak=pick(h=>/AKHIR|BERAKHIR|SELESAI/.test(h)),ot=pick(h=>/^(NAMA )?(OUTLET|CABANG|LOKASI)$/.test(h)||/^OUTLET/.test(h));
+ const rows=[];let sus=0,ptBad=0;
+ for(let r=start;r<a.length;r++){const rw=a[r],g=c=>c>=0?String(rw[c]??'').trim():'',n=nikOf(rw[kc],ar[r]&&ar[r][kc]);let pg=g(pc),nm=g(nc);
+  if(!pg&&!nm&&!n.d&&!n.sci)continue;if(/^(TOTAL|JUMLAH|NO\.?)$/i.test(pg||nm))continue;
+  if(!pg&&pc<0)pg=nm;
+  const addr=[g(al),...als.map(c=>{const v=g(c);return v?subFmt(hs[c],v):''})].filter(Boolean).join(', '),pr=g(pt),ps=nptkp(pr);if(pr&&!ps)ptBad++;if(n.sus)sus++;
+  rows.push({r:r+1,pg,nm,nik:n.d,sci:n.sci,sus:n.sus,kd:g(kd),lahir:lc.map(g).filter(Boolean).join(', '),alamat:addr,ptkp:ps,ptRaw:pr,ot:g(ot),awal:g(aw),akhir:g(ak)})}
+ return{sn,hr,mode,kc,pc,nc,kd,al,als,lc,pt,aw,ak,ot,hs,rows,dom,note,sus,ptBad}}
+function mParse(ws,sn){if(!ws||!ws['!ref'])return null;const o={header:1,defval:'',blankrows:true};
+ return mLay(XLSX.utils.sheet_to_json(ws,{...o,raw:false,dateNF:'dd/mm/yyyy'}),XLSX.utils.sheet_to_json(ws,{...o,raw:true}),sn)}
+function mMapHtml(l){const col=c=>c>=0?`«${esc(l.hs[c]||'(tanpa judul)')}» <span class=sm>kolom ${XLSX.utils.encode_col(c)}</span>`:'<span class=why>tidak ditemukan</span>',
+ line=(t,v)=>`<div style="display:flex;gap:8px"><span style="width:118px;flex:none;color:var(--mut)">${t}</span><span>${v}</span></div>`;
+ return`<div style="margin:6px 0 10px;font-size:13px">${line('NIK KTP',col(l.kc)+(l.mode=='isi'?' <span class=sm>(dikenali dari isi kolom)</span>':''))}${line('Nama panggung',l.pc>=0?col(l.pc):'memakai kolom Nama')}${line('Nama KTP',col(l.nc))}${line('Alamat KTP',l.al>=0?col(l.al)+(l.als.length?` <span class=sm>+ ${l.als.length} kolom wilayah</span>`:''):(l.dom?'<span class=why>hanya ada alamat domisili, tidak dipakai sebagai alamat KTP</span>':'<span class=why>tidak ditemukan</span>'))}${line('Tempat/Tgl lahir',l.lc.length?l.lc.map(col).join(' + '):'<span class=sm>tidak ada</span>')}${line('PTKP',l.pt>=0?col(l.pt):'<span class=sm>tidak ada (default TK/0)</span>')}${l.ot>=0?line('Outlet',col(l.ot)):''}${l.aw>=0||l.ak>=0?line('Kontrak',[l.aw,l.ak].filter(c=>c>=0).map(col).join(' – ')):''}</div>`}
+async function imp(f){if(!f)return;let wb;try{wb=XLSX.read(await f.arrayBuffer(),{type:'array'})}catch(e){return alert('File tidak bisa dibuka. Pastikan file Excel (.xlsx/.xls) yang utuh.')}
+ const lays=[],tops=[];wb.SheetNames.forEach(sn=>{let l=null;try{l=mParse(wb.Sheets[sn],sn)}catch(e){console.error(sn,e)}if(l&&l.rows.length)lays.push(l);else{const a=XLSX.utils.sheet_to_json(wb.Sheets[sn],{header:1,raw:false,defval:''}),r=a.find(x=>x.filter(c=>String(c).trim()).length>=2);if(r)tops.push(`${sn}: ${r.map(x=>String(x).trim()).filter(Boolean).slice(0,12).join(' | ')}`)}});
+ if(!lays.length)return ask0(`<p><b>Kolom NIK tidak ditemukan.</b> Aplikasi mencari judul seperti NIK, NIK KTP, No. KTP, e-KTP, dan juga kolom yang isinya angka 16 digit, tetapi tidak ada yang cocok.</p>${tops.length?`<p class=sm>Judul yang terbaca:<br>${tops.slice(0,4).map(esc).join('<br>')}</p>`:''}<p class=sm>Jika NIK tersimpan sebagai angka, Excel sering memotong digit terakhir. Format kolom NIK sebagai Text, ketik ulang NIK-nya, lalu import lagi.</p>`,['Tutup']);
+ const seen={},all=[];lays.forEach(l=>l.rows.forEach(x=>{const y={...x,sn:l.sn};if(NIK16.test(y.nik)){if(seen[y.nik]){y.skip=`NIK sama dengan ${seen[y.nik].pg} (baris ${seen[y.nik].r}) di file ini`}else seen[y.nik]=y}all.push(y)}));
+ const nm=x=>x.pg||x.nm,why=x=>x.skip||(!nm(x)?'nama kosong':x.sci?'NIK terpotong Excel (notasi ilmiah, mis. 3,2E+15). Format kolom NIK sebagai Text lalu ketik ulang':!x.nik?'NIK kosong':!NIK16.test(x.nik)?`NIK ${x.nik.length} digit (harus 16)`:''),
+  good=[],bad=[],skip=[];all.forEach(x=>{const w=why(x);if(!w)good.push(x);else if(x.skip||!nm(x))skip.push([x,w]);else bad.push([x,w])});
+ const lbl=x=>`${nm(x)||'(tanpa nama)'}${lays.length>1?' ['+x.sn+']':''}`,sus=lays.reduce((s,l)=>s+l.sus,0),ptb=lays.reduce((s,l)=>s+l.ptBad,0),wr=[...lays.map(l=>l.note).filter(Boolean),
+  ...(sus?[`${sus} NIK berasal dari sel angka dan berakhiran 0: kemungkinan digit terakhir terpotong Excel. Periksa.`]:[]),...(ptb?[`${ptb} nilai PTKP tidak dikenali dan diabaikan.`]:[])],
+  nAl=good.concat(bad.map(b=>b[0])).filter(x=>x.alamat).length,nTot=good.length+bad.length;
+ const html=`<h3 style="margin:0 0 6px">Import master therapist</h3><p class=sm style="margin:0 0 4px">${esc(f.name)} · ${lays.map(l=>esc(l.sn)+' ('+l.rows.length+' baris)').join(', ')}</p>${lays.map(l=>(lays.length>1?`<div style="font-weight:600;margin-top:8px">Sheet ${esc(l.sn)}</div>`:'')+mMapHtml(l)).join('')}
+<div class=kp3 style="margin:8px 0"><div><small>NIK 16 digit valid</small><b>${good.length}</b></div><div><small>NIK bermasalah</small><b style="color:${bad.length?'var(--erc)':'inherit'}">${bad.length}</b></div><div><small>Alamat KTP terisi</small><b>${nAl} / ${nTot}</b></div></div>
+${wr.map(w=>`<div class=wn style="margin:6px 0">${esc(w)}</div>`).join('')}
+${good.length?`<p class=sm style="margin:6px 0 2px">Contoh hasil baca:</p>${good.slice(0,3).map(x=>`<div class=sm>• ${esc(nm(x))} · ${esc(x.nik)}${x.alamat?' · '+esc(x.alamat.slice(0,60))+(x.alamat.length>60?'…':''):' · <span class=why>alamat kosong</span>'}</div>`).join('')}`:''}
+${bad.length?`<p class=why style="margin:8px 0 2px"><b>NIK bermasalah (${bad.length}):</b><br>${bad.slice(0,8).map(([x,w])=>`${esc(lbl(x))}: ${esc(w)}`).join('<br>')}${bad.length>8?`<br>…dan ${bad.length-8} lainnya`:''}</p>`:''}
+${skip.length?`<p class=sm style="margin:8px 0 2px">Dilewati (${skip.length}): ${skip.slice(0,5).map(([x,w])=>esc(lbl(x))+' – '+esc(w)).join('; ')}${skip.length>5?'; …':''}</p>`:''}`;
+ const acts=[];if(good.length)acts.push(['v',`Impor ${good.length} yang NIK valid`]);if(bad.length)acts.push(['a',good.length?`Impor semua (${nTot}), NIK bermasalah ditandai merah`:`Impor ${bad.length} (NIK bermasalah ditandai merah)`]);
+ if(!acts.length)return ask0(html+'<p>Tidak ada baris yang bisa diimpor.</p>',['Tutup']);acts.push(['x','Batal']);
+ const c=await ask0(html,acts.map(a=>a[1])),act=acts[c][0];if(act=='x')return;
+ const items=act=='a'?good.concat(bad.map(b=>b[0])):good;mCommit(items,nTot-items.length+skip.length)}
+function mCommit(items,left){let baru=0,upd=0,alm=0;const conf=[];
+ items.forEach(x=>{const k=nz(x.pg||x.nm);let m=NIK16.test(x.nik)?S.m.find(y=>y.nik==x.nik):null;
+  if(!m&&k){m=S.m.find(y=>nz(y.pang)==k&&!NIK16.test(y.nik||''));if(!m&&NIK16.test(x.nik)){const s=S.m.find(y=>nz(y.pang)==k);if(s)conf.push(`${x.pg||x.nm} (NIK beda dengan master)`)}}
+  const nw=!m;if(nw){m={id:Math.random(),ptkp:'TK/0'};S.m.push(m);baru++}else upd++;
+  const up=(f,v)=>{if(v)m[f]=v};m.pang=x.pg||x.nm;up('nama',x.nm);if(x.nik)m.nik=x.nik;else if(nw)m.nik='';up('kd',x.kd);up('lahir',x.lahir);up('alamat',x.alamat);up('awal',x.awal);up('akhir',x.akhir);if(x.alamat)alm++;
+  if(x.ot){const ci=canonIdx(x.ot),l=ci>=0?S.l[ci]:S.l.find(l=>lkk(l.nama)==lkk(x.ot)||lkk(l.kode)==lkk(x.ot));if(l)m.outlet=l.kode}
+  if(x.ptkp){m.ptkp=x.ptkp;m.pv=1}});
+ S.g.forEach(g=>g.rows.forEach(r=>{if(r.st!='cocok')mt(r)}));calc();S.mf='all';S.mp=0;saveM();sDraft();
+ const bd=items.filter(x=>!NIK16.test(x.nik)).length;
+ ask0(`<p><b>${baru}</b> therapist baru, <b>${upd}</b> diperbarui, alamat KTP terisi untuk <b>${alm}</b>.${left?` <b>${left}</b> baris tidak diimpor.`:''}</p>${bd?`<p class=why>${bd} therapist NIK-nya belum valid. Filter «NIK bermasalah» di Master menampilkannya.</p>`:''}${conf.length?`<p class=sm>Perlu dicek, nama panggung sudah ada di master dengan NIK lain: ${conf.slice(0,6).map(esc).join('; ')}${conf.length>6?'; …':''}</p>`:''}<p class=sm>Status PTKP memakai TK/0 bila file tidak memuatnya. Baris itu ditandai «PTKP belum diverifikasi» di Master; ubah sesuai kondisi sebenarnya.</p>`,['Tutup'])}
+const MCOL=[{wch:10},{wch:22},{wch:28},{wch:20},{wch:24},{wch:52},{wch:8},{wch:22},{wch:14},{wch:14}],MH=['NO THER','NAMA THERAPIST','NAMA (KTP)','NIK KTP','TEMPAT TGL LAHIR','ALAMAT KTP','PTKP','OUTLET','AWAL KONTRAK','AKHIR KONTRAK'];
+function expM(){const ol=k=>(S.l.find(l=>l.kode==k)||{}).nama||'',ws=XLSX.utils.aoa_to_sheet([MH,...S.m.map(m=>[m.kd||'',m.pang||'',m.nama||'',String(m.nik||''),m.lahir||'',m.alamat||'',m.ptkp||'',ol(m.outlet),m.awal||'',m.akhir||''])]),wb=XLSX.utils.book_new();
+ for(let r=2;r<=S.m.length+1;r++){const c=ws['D'+r];if(c)c.z='@'}ws['!cols']=MCOL;XLSX.utils.book_append_sheet(wb,ws,'MASTER');dl(`master_therapist_${new Date().toISOString().slice(0,10)}.xlsx`,new Blob([XLSX.write(wb,{type:'array',bookType:'xlsx'})]))}
+function tplM(){const ws=XLSX.utils.aoa_to_sheet([MH]);for(let r=2;r<=501;r++)ws['D'+r]={t:'s',v:'',z:'@'};ws['!ref']='A1:J501';ws['!cols']=MCOL;
+ const pt=XLSX.utils.aoa_to_sheet([['Petunjuk pengisian'],['1. Isi satu therapist per baris mulai baris 2. Jangan ubah baris judul.'],['2. NIK KTP: 16 digit. Kolom ini sudah berformat Text agar tidak terpotong Excel. Judul kolom boleh berbeda (NIK, NIK KTP, No. KTP, e-KTP).'],['3. ALAMAT KTP: alamat lengkap sesuai KTP (jalan, RT/RW, kelurahan, kecamatan, kota).'],['4. PTKP: TK/0, TK/1, K/0, K/I/0, dan seterusnya. Boleh dikosongkan, nanti diverifikasi di Master.'],['5. OUTLET: nama outlet seperti di menu Outlet. Boleh dikosongkan.']]),wb=XLSX.utils.book_new();
+ pt['!cols']=[{wch:120}];XLSX.utils.book_append_sheet(wb,ws,'MASTER');XLSX.utils.book_append_sheet(wb,pt,'PETUNJUK');dl('template_master_therapist.xlsx',new Blob([XLSX.write(wb,{type:'array',bookType:'xlsx'})]))}
+
+/* ---------- Export: hanya baris yang siap; sisanya menyusul di file bagian berikutnya ---------- */
+const eom=(y,m)=>`${y}-${pad(m)}-${pad(new Date(y,m,0).getDate())}`;
+const dtp=(y,m)=>`${y}-${pad(m)}-${pad(Math.min(+S.tgl||25,new Date(y,m,0).getDate()))}`;
+const recs=(g,l,rows)=>{const el=g.rows.filter(r=>!r.skip&&r.gross>0),dp=l.dp||l.kode.split('-').map(w=>w[0]).join(''),d=dtp(g.year,g.month);return rows.map(r=>({m:g.month,y:g.year,nik:r.nik,ptkp:r.ptkp,kode:r.kode,gross:r.gross,rate:r.rate||0,nitku:l.nitku,d,dn:`${dp}/BP.${pad(g.month)}.${String(g.year).slice(2)}/${String(el.indexOf(r)+1).padStart(3,'0')}`,jd:S.jd||'PaymentProof',ot:l.nama,pg:r.pang,nm:r.nama}))};
+window.opaLog=function(t,src){try{if(window.parent&&window.parent!==window&&parent.opaDaily)parent.opaDaily.add(t,src)}catch(e){}};
+const opaSan=x=>String(x==null?'':x).replace(/[\\\/:*?"<>|\u0000-\u001f]+/g,' ').replace(/\s+/g,' ').trim();
+const nm=(l,g,n)=>`BP21 - ${opaSan(l.nama||l.kode)} - ${g.year}-${pad(g.month)}`+sx()+(n?` - Bagian ${String(n).padStart(2,'0')}`:'');
+const xe=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const xml=(tin,rs)=>`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Bp21Bulk xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n\t<TIN>${tin}</TIN>\n\t<ListOfBp21>\n${rs.map(r=>`\t\t<Bp21>\n\t\t\t<TaxPeriodMonth>${r.m}</TaxPeriodMonth>\n\t\t\t<TaxPeriodYear>${r.y}</TaxPeriodYear>\n\t\t\t<CounterpartTin>${r.nik}</CounterpartTin>\n\t\t\t<IDPlaceOfBusinessActivityOfIncomeRecipient>${r.nik}000000</IDPlaceOfBusinessActivityOfIncomeRecipient>\n\t\t\t<StatusTaxExemption>${xe(r.ptkp)}</StatusTaxExemption>\n\t\t\t<TaxCertificate>N/A</TaxCertificate>\n\t\t\t<TaxObjectCode>${xe(r.kode)}</TaxObjectCode>\n\t\t\t<Gross>${r.gross}</Gross>\n\t\t\t<Deemed>100</Deemed>\n\t\t\t<Rate>${r.rate}</Rate>\n\t\t\t<Document>${xe(r.jd||'PaymentProof')}</Document>\n\t\t\t<DocumentNumber>${xe(r.dn||'KOM-'+r.y+pad(r.m))}</DocumentNumber>\n\t\t\t<DocumentDate>${r.d}</DocumentDate>\n\t\t\t<IDPlaceOfBusinessActivity>${r.nitku}</IDPlaceOfBusinessActivity>\n\t\t\t<WithholdingDate>${r.d}</WithholdingDate>\n\t\t</Bp21>`).join('\n')}\n\t</ListOfBp21>\n</Bp21Bulk>`;
+function xlsx(rs,tin){const h=['Masa Pajak','Tahun Pajak','NPWP','ID TKU Penerima Penghasilan','Status PTKP','Fasilitas','Kode Objek Pajak','Penghasilan','Deemed','Tarif','Jenis Dok. Referensi','Nomor Dok. Referensi','Tanggal Dok. Referensi','ID TKU Pemotong','Tanggal Pemotongan'],dt=x=>new Date(x+'T00:00:00'),ws=XLSX.utils.aoa_to_sheet([['NPWP Pemotong','',String(tin||'')],[],['',...h],...rs.map(r=>['',r.m,r.y,String(r.nik),r.nik+'000000',r.ptkp,'N/A',r.kode,r.gross,100,r.rate,r.jd||'PaymentProof',r.dn||'',dt(r.d),r.nitku,dt(r.d)])],{cellDates:true}),wb=XLSX.utils.book_new();rs.forEach((r,i)=>['N','P'].forEach(c=>{const x=ws[c+(i+4)];if(x)x.z='yyyy-mm-dd'}));XLSX.utils.book_append_sheet(wb,ws,'DATA');XLSX.utils.book_append_sheet(wb,petaWs(rs),'PETA_BARIS');return XLSX.write(wb,{type:'array',bookType:'xlsx'})}
+const petaWs=rs=>XLSX.utils.aoa_to_sheet([['No baris Coretax','Outlet','Nama panggung','Nama KTP','NIK','Bruto','Tarif','Kode objek','NITKU'],...rs.map((r,i)=>[i+1,r.ot||'',r.pg||'',r.nm||'',String(r.nik),r.gross,r.rate,r.kode,r.nitku])]);
+const peta=rs=>{const ws=XLSX.utils.aoa_to_sheet([['No baris Coretax','Outlet','Nama panggung','Nama KTP','NIK','Bruto','Tarif','Kode objek'],...rs.map((r,i)=>[i+1,r.ot||'',r.pg||'',r.nm||'',String(r.nik),r.gross,r.rate,r.kode])]),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'PETA');return XLSX.write(wb,{type:'array',bookType:'xlsx'})};
+async function emit(jobs){const out=[];jobs.forEach(j=>{try{const r0=(j.rs&&j.rs[0])||{};opaLog('Memproses BP21 PPh 21 '+(r0.ot||'')+' masa '+String(r0.m||'').padStart(2,'0')+'/'+(r0.y||'')+' untuk kepentingan pajak ('+(j.rs||[]).length+' bukti potong)','pph')}catch(e){}if(S.fmt!='xml')out.push([j.name+'.xlsx',xlsx(j.rs,j.tin)]);if(S.fmt!='xlsx')out.push([j.name+'.xml',xml(j.tin,j.rs)]);if(S.fmt=='xml')out.push([j.name+'_PETA_BARIS.xlsx',peta(j.rs)])});
+ for(const[n,d]of out){dl(n,new Blob([d]));await new Promise(r=>setTimeout(r,600))}return out.map(o=>o[0])}
+async function gen(only){
+ const pl=S.g.filter((g,gi)=>only===undefined||gi===only).map(g=>{const l=S.l[lk(g)],c={siap:[],blm:[],sdh:[],lwt:[],nol:[]};g.rows.forEach((r,i)=>{const s=rst(r);c[s.k].push({r,i,why:s.why})});return{g,l,le:lerr(g,l),c}}),
+ rd=pl.filter(p=>!p.le.length),nS=rd.reduce((s,p)=>s+p.c.siap.filter(x=>inSc(x.r)).length,0),nD=rd.reduce((s,p)=>s+p.c.sdh.length,0);
+ const info=pl.map(p=>`<p><b>${esc(p.l.nama)}</b> · ${MN[p.g.month]||'?'} ${p.g.year||''}<br><span class=sm>TIN ${p.l.tin} · NITKU ${p.l.nitku}</span><br>Siap: <b>${p.c.siap.length}</b> · Belum lengkap: <b>${p.c.blm.length}</b> · Sudah dibuat: ${p.c.sdh.length} · Dihapus/dilewati: ${p.c.lwt.length}`+(p.le.length?`<br><span class=why>Outlet ini belum bisa dibuat. Isi dulu: ${p.le.join(', ')}.</span>`:'')+(p.c.blm.length?`<br><span class=why>Belum lengkap: ${p.c.blm.slice(0,8).map(x=>esc(x.r.pang)+' ('+x.why.join(', ')+')').join('; ')}${p.c.blm.length>8?'; …':''}</span>`:'')+'</p>').join('');
+ const tot=rd.reduce((s,p)=>s+p.c.siap.length,0);if(!nS&&!nD&&tot&&S.scope=='kena'){const z=await ask('<p><b>Tidak ada BP21 yang perlu dibuat.</b></p><p>'+tot+' therapist siap, tetapi semuanya PPh 21 Rp 0 (tidak kena pajak).</p><p class=sm>Tarif 0% sering ditolak Coretax (error 400), jadi file hanya berisi yang kena pajak.</p>',['Tutup','Tetap buat semua (berisiko ditolak)']);if(z!=1)return;S.scope='all';saveC();return gen(only)}
+ if(!nS&&!nD)return ask(info+'<p>Belum ada therapist yang siap dibuat. Lengkapi data yang kurang, lalu klik Generate lagi. Yang belum lengkap tidak menghalangi yang lain.</p>',['Tutup']);
+ const bs=[`Buat file untuk ${nS} yang siap`,...(nD?[`Termasuk ${nD} yang sudah dibuat`]:[]),'Batal'],c=await ask(info+`<p class=sm>Yang belum lengkap dilewati dan bisa dibuat belakangan sebagai file bagian berikutnya. Coretax menerima beberapa file untuk satu masa pajak.</p>`,nS||nD?bs:['Batal']);
+ if(c==bs.length-1)return;const all=nD&&c==1;
+ const sel=rd.map(p=>({...p,rows:[...p.c.siap,...(all?p.c.sdh:[])].map(x=>x.r).filter(inSc)})).filter(p=>p.rows.length);if(!sel.length)return ask('<p>Tidak ada baris yang cocok dengan pilihan <b>Isi file</b> ('+({kena:'kena pajak saja',non:'tidak kena pajak saja',all:'lengkap'})[S.scope]+').</p>',['Tutup']);
+ if(S.scope!='kena'&&sel.some(p=>p.rows.some(r=>!(r.tax>0)&&r.kode=='21-100-24'))&&await ask('<p>Ada baris <b>tarif 0%</b> berkode <b>21-100-24</b>. Coretax menolaknya ("Tarif Pajak harus 0.5"). Tetap buat file?</p>',['Tetap buat','Batal'])==1)return;
+ {const dn={};sel.forEach(p=>{const ins=new Set(p.rows);p.g.rows.forEach(r=>{if(r.skip||!(r.gross>0)||!(r.bp||ins.has(r)))return;const k=p.l.tin+'|'+p.g.year+'-'+p.g.month+'|'+r.nik;(dn[k]=dn[k]||new Set()).add(r.pang)})});
+  const dd=Object.entries(dn).filter(([k,v])=>v.size>1);
+  if(dd.length&&await ask('<p><b>NIK yang sama dipakai lebih dari satu therapist:</b></p><p class=why>'+dd.slice(0,8).map(([k,v])=>esc(k.split('|')[2])+': '+[...v].map(esc).join(', ')).join('<br>')+'</p><p class=sm>Coretax menolak bukti potong ganda untuk NIK dan masa pajak yang sama. Periksa NIK-nya atau hapus baris yang dobel.</p>',['Batal','Tetap buat'])!=1)return}
+ sel.forEach(p=>{p.n=Math.max(0,...(p.g.batches||[]).map(b=>b.n||0))+1;p.recs=recs(p.g,p.l,p.rows)});
+ const gab=sel.length>1&&(S.mode=='gab'||S.scope=='non')&&new Set(sel.map(p=>p.l.tin+p.g.year+'-'+p.g.month)).size==1,jobs=[];
+ if(gab){const n=Math.max(...sel.map(p=>p.n)),name=`BP21 - Gabungan - ${sel[0].g.year}-${pad(sel[0].g.month)}${sx()} - Bagian ${String(n).padStart(2,'0')}`;jobs.push({name,rs:sel.flatMap(p=>p.recs),tin:sel[0].l.tin});sel.forEach(p=>p.fn=name)}else sel.forEach(p=>{p.fn=nm(p.l,p.g,p.n);jobs.push({name:p.fn,rs:p.recs,tin:p.l.tin})});
+ sel.forEach(p=>p.rows.forEach(r=>{let m=S.m.find(x=>x.id==r.mid)||S.m.find(x=>x.nik==r.nik);if(!m){m={id:Math.random(),pang:r.pang,kd:r.kd||''};S.m.push(m)}r.mid=m.id;m.nama=r.nama||m.nama;m.nik=r.nik;m.ptkp=r.ptkp;if(r.pv)m.pv=1;alias(r,m.id)}));
+ const files=await emit(jobs),ts=new Date().toISOString();localforage.setItem('master',S.m);saveA();
+ for(const p of sel){const{g,l}=p;p.rows.forEach(r=>r.bp={n:p.n,at:ts});const key=g.key||`${l.kode}|${g.year}-${pad(g.month)}`;g.key=key;
+  g.batches=[...(g.batches||[]),{n:p.n,at:ts,files:files.filter(f=>f.replace(/\.(xlsx|xml)$/,'')==p.fn),count:p.rows.length,srcs:(g.srcs||[]).map(x=>({...x})),recs:p.recs}];const dn=g.rows.filter(r=>r.bp);
+  await localforage.setItem('ar:'+key,{schema:2,key,kode:l.kode,outlet:l.nama,lok:{...l},month:g.month,year:g.year,at:ts,total:dn.reduce((s,r)=>s+r.gross,0),pph:dn.reduce((s,r)=>s+(r.tax||0),0),batches:g.batches,files:g.batches.flatMap(b=>b.files),rows:g.rows})}
+ touch();sDraft();
+ const sum=pl.map(p=>{const s=sel.find(x=>x.g==p.g),left=p.g.rows.filter(r=>rst(r).k=='blm').length;return`<p><b>${esc(p.l.nama)}</b>: `+(s?`<b>${s.rows.length}</b> therapist masuk file bagian ${s.n}`:'tidak ada file baru')+(left?`<br><span class=why>${left} therapist belum lengkap, belum dibuat.</span>`:'')+(p.le.length?`<br><span class=why>Belum bisa dibuat, isi dulu: ${p.le.join(', ')}.</span>`:'')+'</p>'}).join('');
+ const _gx=await ask(`<p>${files.length?'File BP21 sudah diunduh dan disimpan ke Arsip.':''}</p>${sum}<p class=sm>Lengkapi sisanya kapan saja, lalu klik Generate lagi: hanya yang baru akan masuk file bagian berikutnya. Untuk bisa melanjutkan setelah menutup aplikasi, upload lagi Excel yang sama atau buka dari tab Arsip.</p>`,['Lanjut ke Coretax','Tutup']);if(_gx==0){go('a');return}R()}
+
+/* ---------- Arsip ---------- */
+const ars=async()=>{const o=[];await localforage.iterate((v,k)=>{if(k.startsWith('ar:'))o.push(v)});return o.sort((a,b)=>b.at.localeCompare(a.at))};
+async function V(k){const a=await localforage.getItem('ar:'+k);if(!S.l.some(l=>l.kode==a.kode)){S.l.push(a.lok);saveL()}const leg=!a.schema;a.rows.forEach(r=>{r.ov=1;r.ko=1;r._rp=1;r._ig=1;if(leg&&r.gross>0&&!r.bp)r.bp={n:1,legacy:1}});
+ S.g=[{nama:a.outlet,kode:a.kode,month:a.month,year:a.year,file:'arsip',src:'arsip',key:a.key,batches:a.batches||[{n:1,legacy:1,files:a.files||[]}],rows:a.rows,hs:[],map:{},warn:[]}];calc();go('p');if(!S.draft)sDraft()}
+async function X(k){const a=await localforage.getItem('ar:'+k),l=a.lok,g={month:a.month,year:a.year},bs=a.batches&&a.batches.some(b=>b.recs)?a.batches:[{n:0,recs:recs(g,l,a.rows.filter(r=>r.gross>0))}];
+ await emit(bs.filter(b=>b.recs.length).map(b=>({name:nm(l,g,b.n),rs:b.recs,tin:l.tin})));ask('<p>File dibuat ulang persis seperti saat pertama dibuat.</p>',['Tutup'])}
+async function setOk(key,n,v){if(v)bq();const at=v?new Date().toISOString():'',up=b=>{if(b&&b.n==n){b.st=v?'ok':'';b.okAt=at}},a=await localforage.getItem('ar:'+key);if(a){(a.batches||[]).forEach(up);await localforage.setItem('ar:'+key,a)}S.g.forEach(g=>{if(g.key==key)(g.batches||[]).forEach(up)});touch();R()}
+async function dropBatch(key,n){const a=await localforage.getItem('ar:'+key);if(!a)return;if(!a.schema){await localforage.removeItem('ar:'+key);return}a.rows.forEach(r=>{if(r.bp&&r.bp.n==n)delete r.bp});a.batches=(a.batches||[]).filter(b=>b.n!=n);const dn=a.rows.filter(r=>r.bp);a.total=dn.reduce((s,r)=>s+r.gross,0);a.pph=dn.reduce((s,r)=>s+(r.tax||0),0);a.files=a.batches.flatMap(b=>b.files||[]);await localforage.setItem('ar:'+key,a)}
+async function DB(key,n){if(await ask(`<p>Hapus <b>bagian ${n}</b>? Therapist di dalamnya kembali berstatus <b>Siap</b> dan bisa digenerate ulang setelah diperbaiki. File yang sudah Anda unduh tidak ikut terhapus.</p>`,['Hapus bagian','Batal'])!=0)return;await dropBatch(key,n);S.g.forEach(g=>{if(g.key==key){g.rows.forEach(r=>{if(r.bp&&r.bp.n==n)delete r.bp});g.batches=(g.batches||[]).filter(b=>b.n!=n)}});touch();sDraft();R()}
+async function D(k){if(await ask('<p>Hapus arsip ini? Catatan bagian yang sudah dibuat ikut hilang.</p>',['Hapus','Batal'])==0){await localforage.removeItem('ar:'+k);touch();R()}}
+function cpy(gi){const g=S.g[gi],t=g.rows.filter(r=>rst(r).k=='blm').map(r=>`- ${r.pang}: ${rst(r).why.join(', ')}`);navigator.clipboard.writeText(`Data belum lengkap ${g.nama} ${MN[g.month]||''} ${g.year||''}:\n${t.join('\n')}`).then(()=>alert(t.length+' baris disalin. Tempel ke chat untuk diminta ke outlet.'),()=>alert('Tidak bisa menyalin otomatis di browser ini.'))}
+
+/* ---------- Tampilan ---------- */
+const cfg=()=>{const pv=S.g.reduce((s,g)=>s+g.rows.filter(r=>{const m=S.m.find(x=>x.id==r.mid);return m&&!m.pv&&!r.pv&&!r.skip&&r.gross>0}).length,0),MT={harian:'Harian',bulanan:'Bulanan'},NL={skip:'Nihil tidak dibuat',zero:'Nihil tarif 0',half:'Nihil paksa 0,5%'};
+ return`<details class=x-det style="margin-bottom:16px"><summary>Pengaturan<i>${MT[S.meth]||S.meth}</i></summary><div class=in><div class=grid><label>Dasar penghasilan bruto<select disabled><option>JUMLAH + Gapok, sebelum potongan</select></label><label>Metode PPh 21<select onchange="S.meth=this.value;saveC();calc();R()"><option value=harian${S.meth=='harian'?' selected':''}>Harian (TER harian)<option value=bulanan${S.meth=='bulanan'?' selected':''}>Bulanan (TER sesuai PTKP)</select></label><label>Upah harian ≤ Rp450.000<select onchange="S.nil=this.value;saveC();calc();R()"><option value=skip${S.nil=='skip'?' selected':''}>Tidak dibuat (disarankan)<option value=zero${S.nil=='zero'?' selected':''}>Buat tarif 0 (Coretax bisa menolak)<option value=half${S.nil=='half'?' selected':''}>Paksa tarif 0,5 (jika KPP setuju)</select></label><label>Tanggal pemotongan<input type=number min=1 max=31 value="${S.tgl||25}" onchange="S.tgl=+this.value;saveC()"></label><label>Jenis dokumen referensi<select onchange="S.jd=this.value;saveC()"><option value=PaymentProof${S.jd=='PaymentProof'?' selected':''}>PaymentProof (Bukti Pembayaran)<option value=Contract${S.jd=='Contract'?' selected':''}>Contract (Kontrak)<option value=Other${S.jd=='Other'?' selected':''}>Other (Lainnya)</select></label></div><p class=sm>Bruto = JUMLAH + Gapok (potongan tidak mengurangi).</p></div></details>${pv?`<div class=wn style="margin:0 0 16px">${pv} baris memakai PTKP default TK/0. Cek di Master.</div>`:''}`};
+const bch=b=>b.st=='ok'?'<em class=ok>Berhasil di Coretax</em>':'<em class=kosong>Belum berhasil</em>',bbt=(k,b)=>b.st=='ok'?`<button class=s onclick="setOk('${k}',${b.n},0)">Batalkan tanda</button>`:`<button class=p onclick="setOk('${k}',${b.n},1)">Tandai berhasil</button> <button class=s onclick="DB('${k}',${b.n})">Gagal: hapus &amp; generate ulang</button>`;
+const sb=s=>({siap:'<em class=cocok>Siap dibuat</em>',blm:`<em class=kosong>Belum lengkap</em><div class=why>${esc(s.why.join(', '))}</div>`,sdh:`<em class=ok>Sudah dibuat</em><div class=sm>${esc(s.why[0])}</div>`,lwt:`<em class=mirip>Dihapus</em><div class=sm>${esc(s.why[0])}</div>`,nol:'<em class=mirip>Tanpa penghasilan</em>'}[s.k]);
+const mapUI=(g,gi)=>{if(!g._ws||!g.hs||!g.hs.length)return'';const Fd=[['nc','Nama panggung'],['kc','No therapist'],['jc','Bruto (JUMLAH)'],['ac','Gapok'],['hc','Kehadiran'],['gc','Dicairkan (info)']],os=sel=>'<option value=-1>(tidak ada)</option>'+g.hs.map((h,c)=>h?`<option value=${c}${sel==c?' selected':''}>${XLSX.utils.encode_col(c)} · ${esc(h.slice(0,40))}</option>`:'').join('');
+ return`<details style="margin-bottom:12px"><summary>Kolom yang terbaca dari Excel (ubah jika salah)</summary><div class=grid style="margin-top:10px">${Fd.map(([k,t])=>`<label>${t}<select onchange="RM(${gi},'${k}',this.value)">${os(g.map[k])}</select></label>`).join('')}</div></details>`};
+const srcOf=g=>[...new Map([...(g.srcs||[]),...(g.batches||[]).flatMap(b=>b.srcs||[])].filter(x=>x&&x.f&&x.f!='arsip').map(x=>[x.f+'|'+x.s,x])).values()];
+const gc=(g,gi)=>{const l=S.l[lk(g)],li=S.l.indexOf(l),T=k=>g.rows.reduce((s,r)=>s+(r[k]||0),0),kn=g.rows.filter(r=>r.tax>0).length,c=cnt(g),le=lerr(g,l),col=`hsl(${gi*67%360} 60% 52%)`,sr=srcOf(g),tin=/^\d{16}$/.test(l.tin)&&/^\d{22}$/.test(l.nitku),
+ rows=g.rows.map((r,i)=>[r,i,rst(r)]).filter(([r,i,s])=>S.fl=='all'||s.k==S.fl||(S.fl=='lwt'&&s.k=='nol'));
+ return`<section class=x-box style="--oc:${col}"><div class=x-hd><div><h2>${esc(l.nama)}</h2><div class=x-sub>${MN[g.month]||'?'} ${g.year||''} · ${g.rows.length} therapist${nz(g.nama)!=nz(l.nama)?` · sheet ${esc(g.nama)}`:''}</div></div><div class=x-acts>${c.blm?`<button class=s data-v24=1 onclick="cpy(${gi})">Salin daftar belum lengkap</button><button class=s data-v24=1 onclick="bulkDel(${gi})">Hapus yang belum lengkap (${c.blm})</button>`:''}<button class=p onclick="gen(${gi})">${ic('zap')}Generate outlet ini</button></div></div>
+<div class=x-body><div class=x-stats><div><small>Bruto</small><b>${rp(T('gross'))}</b></div><div><small>PPh 21</small><b>${rp(T('tax'))}</b></div><div><small>Kena pajak</small><b>${kn} orang</b></div></div>
+${S.g.length>1?`<div class=x-chips><em class=cocok>Siap ${c.siap}</em><em class=kosong>Belum lengkap ${c.blm}</em><em class=ok>Sudah dibuat ${c.sdh}</em><em class=mirip>Dihapus ${(c.lwt||0)+(c.nol||0)}</em></div>`:''}
+${sr.length?`<div class=x-src>${ic('file')}Excel sumber:${sr.map(x=>`<span title="${esc(x.f)}${x.s?' / '+esc(x.s):''}">${esc(x.f)}${x.s&&sr.some(y=>y.f==x.f&&y.s!=x.s)?' · '+esc(x.s):''}</span>`).join('')}</div>`:''}
+${g.batches&&g.batches.length?g.batches.map(b=>`<div class=x-bf><b>Bagian ${b.n}</b><span class=sm>${b.count||'?'} orang</span>${bch(b)}<span class=fn>${(b.files||[]).map(esc).join(', ')}</span>${bbt(g.key,b)}</div>`).join(''):''}
+${le.length?`<div class="wn er" style="margin:0">Outlet ini belum bisa Generate. Isi dulu: ${le.join(', ')}.</div>`:''}${(g.warn||[]).map(w=>`<div class=wn style="margin:0">${esc(w)}</div>`).join('')}${mapUI(g,gi)}
+<details class=x-det><summary>Data outlet dan periode<i>${MN[g.month]||'?'} ${g.year||''}</i><i>${esc(l.kode)}</i><i>${tin?'TIN dan NITKU lengkap':'TIN atau NITKU belum lengkap'}</i></summary><div class=in><div class=grid><label>Masa pajak<select onchange="G(${gi},'month',+this.value)">${MN.slice(1).map((n,i)=>`<option value=${i+1}${g.month==i+1?' selected':''}>${n}</option>`).join('')}</select></label>
+<label>Tahun pajak<input type=number value="${g.year||''}" onchange="G(${gi},'year',+this.value)"></label>
+<label>Kode outlet<input value="${esc(l.kode)}" onchange="L(${li},'kode',this.value)"></label>
+<label>TIN perusahaan (16 digit)<input value="${esc(l.tin)}" onchange="L(${li},'tin',this.value)"></label>
+<label>NITKU (22 digit)<input value="${esc(l.nitku)}" onchange="L(${li},'nitku',this.value)"></label></div></div></details>
+<div class=selbar id=selbar${gi}>${selBar(gi)}</div></div>
+<div class=x-sc><table class=x-tbl id=rw${gi}><tr><th class=ck><input type=checkbox class=ck id=sa${gi} title="Pilih semua baris yang tampil" ${(()=>{const v=vis(g);return v.length&&v.every(r=>SEL.has(r))?'checked':''})()} onchange="selAll(${gi},this.checked)"><th>No<th>Nama panggung<th>Master<th>Nama KTP<th>NIK (16)<th>PTKP<th>Bruto<th>PPh 21<th>Status<th>
+${rows.map(([r,i,s])=>{const m=S.m.find(x=>x.id==r.mid);return`<tr data-ri=${i} class="${s.k=='lwt'||s.k=='nol'?'z':s.k=='sdh'?'sdh':''}${SEL.has(r)?' sel':''}"><td class=ck><input type=checkbox class=ck ${SEL.has(r)?'checked':''} onchange="selTg(${gi},${i},this.checked)" aria-label="Pilih ${esc(r.pang)}"><td>${i+1}<td>${esc(r.pang)}<td>${r.st=='cocok'&&!EDM.has(r)?`<em class=cocok title="${esc(m?lab(m):'')}">✓ ${esc(m?(m.pang||m.nama):'')}</em> <button class=s onclick="EDM.add(S.g[${gi}].rows[${i}]);R()">Ubah</button>`:`<input list=ml value="${esc(m?lab(m):'')}" placeholder="pilih master" onchange="M(${gi},${i},this.value)">${r.st=='mirip'?` <em class=mirip>mirip</em> <button class=s onclick="OK(${gi},${i})">Benar</button>`:r.st=='cocok'?'':' <em class=kosong>belum cocok</em>'}`}
+<td><input value="${esc(r.nama)}" onchange="F(${gi},${i},'nama',this.value)"><td><input class="${r.nik&&!NIK16.test(r.nik)?'bad':''}" value="${esc(r.nik)}" inputmode=numeric onchange="F(${gi},${i},'nik',this.value)">
+<td><select onchange="F(${gi},${i},'ptkp',this.value)">${opt(PT,r.ptkp)}</select><td><input class=n type=number title="Dicairkan ${rp(r.cair||0)}" value=${r.gross} onchange="F(${gi},${i},'gross',+this.value)"><td class=n title="Dicairkan ${rp(r.cair||0)}">${rp(r.tax)}<div class=sm>${r.rate}%${r.man?' · Pasal 17':''} · <a href=# title="Ubah kode objek pajak" onclick="event.preventDefault();const v=prompt('Kode objek pajak',S.g[${gi}].rows[${i}].kode);if(v!==null)F(${gi},${i},'kode',v.trim())">${esc(r.kode)}</a></div>${!r.man&&!(r.tax>0)&&r.kode=='21-100-24'?'<div class=why>21-100-24 wajib tarif 0,5: Coretax menolak tarif 0. Unduh di file tidak kena pajak.</div>':''}<td>${sb(s)}<td>${s.k=='lwt'?`<button class=s onclick="un(${gi},${i})">Pulihkan</button>`:`<button class=s onclick="sk(${gi},${i})">Hapus</button>`}`}).join('')}${rows.length?'':`<tr><td colspan=11 class=sm style="padding:18px;text-align:center">Tidak ada baris untuk saringan ini. <button class=s onclick="S.fl='all';R()">Tampilkan semua</button>`}</table></div></section>`};
+const fbar=()=>{const c=S.g.reduce((a,g)=>{const x=cnt(g);for(const k in x)a[k]=(a[k]||0)+x[k];return a},{}),lw=(c.lwt||0)+(c.nol||0),tot=(c.siap||0)+(c.blm||0)+(c.sdh||0)+lw;return`<div class=x-seg role=group aria-label="Saring baris">${[['all','Semua',tot],['siap','Siap dibuat',c.siap],['blm','Belum lengkap',c.blm],['sdh','Sudah dibuat',c.sdh],['lwt','Dihapus',lw]].map(([k,t,n])=>`<button class="${S.fl==k?'on':''}" aria-pressed="${S.fl==k}" onclick="S.fl='${k}';R()">${t}<b>${n||0}</b></button>`).join('')}</div>`};
+const phead=sub=>`<div class=x-ph><div><h1>Proses Komisi</h1><p>${sub||'Upload Excel, periksa, generate BP21.'}</p></div><div class=x-acts>${S.g.length?`<button class=s data-v24=1 onclick="gantiFile()">${ic('upload')}Ganti file</button>`:''}</div></div>`;
+const stp=c=>{const s=!c?0:c.blm?1:c.siap?2:3,T=['Upload','Periksa','Generate','Coretax'];return`<ol class=x-stp>${T.map((t,i)=>`<li class="${i<s?'dn':i==s?'on':''}"${i==3?' onclick="go(\'a\')" style="cursor:pointer"':''}><i>${i<s?'✓':i+1}</i>${t}</li>`).join('')}</ol>`};
+const vp=()=>{if(!S.g.length){S._f0=0;S.fl='all'}if(!S.g.length)return phead()+stp()+(S.draft?`<div class=x-qd><span><b>Ada pekerjaan yang belum selesai</b><br>${fmt(S.draft.at)} · ${S.draft.g.length} outlet</span><button class=p onclick="rdraft()">Lanjutkan</button><button class=s onclick="clr()">Buang</button></div>`:'')+upUI();
+ const c=S.g.reduce((a,g)=>{const x=cnt(g);for(const k in x)a[k]=(a[k]||0)+x[k];return a},{});if(S._f0!==S.g.length){S._f0=S.g.length;S.fl='all'}let n=0,br=0,tx=0,kn=0;S.g.forEach(g=>g.rows.forEach(r=>{if(r.skip||!(r.gross>0))return;n++;br+=r.gross;tx+=r.tax||0;if(r.tax>0)kn++}));
+ const ttl=S.g.length==1?`${esc(S.g[0].nama)} · ${MN[S.g[0].month]||'?'} ${S.g[0].year||''}`:`${S.g.length} outlet sedang diproses`;
+ return`<datalist id=ml>${S.m.map(m=>`<option value="${esc(lab(m))}">`).join('')}</datalist>${phead(ttl)}${stp(c)}
+${S.g.length>1?`<div class=x-tiles><div class=x-tile><small>Therapist</small><b>${n}</b><span>${kn} kena pajak</span></div><div class=x-tile><small>Total bruto</small><b>${rp(br)}</b><span>masuk BP21</span></div><div class=x-tile><small>Total PPh 21</small><b>${rp(tx)}</b><span>dipotong</span></div><div class=x-tile><small>Status</small><b>${c.siap||0} siap</b><span>${c.blm||0} belum lengkap · ${c.sdh||0} sudah dibuat</span></div></div>`:''}
+${cfg()}${fbar()}${S.g.map(gc).join('')}<div class=x-bar><div class=x-acts style="margin-left:auto"><details class=x-pop><summary>Opsi file</summary><div class=pp>${S.g.length>1?`<label>Export<select onchange="S.mode=this.value;saveC()"><option value=gab>Satu file gabungan<option value=zip${S.mode=='zip'?' selected':''}>Satu file per outlet</select></label>`:''}<label>Isi file<select onchange="S.scope=this.value;saveC()"><option value=kena${S.scope=='kena'?' selected':''}>Kena pajak saja (disarankan)<option value=non${S.scope=='non'?' selected':''}>Tidak kena pajak saja<option value=all${S.scope=='all'?' selected':''}>Semua</select></label><label>Unduh<select onchange="S.fmt=this.value;saveC()"><option value=both${S.fmt=='both'?' selected':''}>Excel + XML<option value=xlsx${S.fmt=='xlsx'?' selected':''}>Excel saja<option value=xml${S.fmt=='xml'?' selected':''}>XML saja</select></label></div></details>${c.blm&&S.g.length>1?`<button class=s onclick="bulkDel()">Hapus semua belum lengkap (${c.blm})</button>`:''}<button class=p onclick="gen()">${ic('zap')}Generate BP21 (${c.siap||0} siap)</button></div></div>`};
+/* Ganti file: tanyakan dulu bila masih ada yang belum dibuat; draf disimpan; riwayat tetap bisa dibuka */
+async function gantiFile(){const arsip=S.g.length&&S.g.every(g=>g.src=='arsip'),c=S.g.reduce((a,g)=>{const x=cnt(g);for(const k in x)a[k]=(a[k]||0)+x[k];return a},{}),pend=(c.siap||0)+(c.blm||0);
+ if(S.g.length&&!arsip&&pend){const r=await ask(`<p><b>Ganti file Excel?</b></p><p>Masih ada <b>${c.siap||0}</b> therapist siap dan <b>${c.blm||0}</b> belum lengkap yang belum dibuatkan BP21. Pekerjaan ini disimpan sebagai draf dan bisa dilanjutkan dari layar upload.</p><p class=sm>File yang sudah pernah diproses tetap ada di Riwayat File.</p>`,['Ganti file','Batal']);if(r!=0)return;
+  clearTimeout(tD);S.draft={at:new Date().toISOString(),g:S.g.map(({_ws,...g})=>g)};await localforage.setItem('draft',S.draft);SEL.clear();S.g=[];R();return}
+ clearTimeout(tD);SEL.clear();S.g=[];if(!pend||arsip){S.draft=null;localforage.removeItem('draft')}R()}
+const rdraft=()=>{S.g=S.draft.g;S.draft=null;calc();R()};
+/* ---------- Master: validasi NIK, kelengkapan, filter, halaman ---------- */
+const PROV=new Set([11,12,13,14,15,16,17,18,19,21,31,32,33,34,35,36,51,52,53,61,62,63,64,65,71,72,73,74,75,76,81,82,91,92,93,94,95,96]),MPS=50;
+function nikChk(n){if(!NIK16.test(n||''))return'';const p=+n.slice(0,2),d=+n.slice(6,8),mo=+n.slice(8,10),dd=d>40?d-40:d;if(!PROV.has(p))return'Kode provinsi (2 digit awal) tidak lazim, cek lagi';if(dd<1||dd>31||mo<1||mo>12)return'Tanggal/bulan lahir di dalam NIK tidak lazim, cek lagi';return''}
+const mDupMap=()=>{const c={};S.m.forEach(m=>{if(NIK16.test(m.nik||''))c[m.nik]=(c[m.nik]||0)+1});return c};
+function mProb(m,dup){const p=[],n=m.nik||'';if(!n)p.push(['kosong','NIK belum diisi']);else if(!NIK16.test(n))p.push(['kosong',`NIK ${n.length} digit (harus 16)`]);else{if(dup[n]>1)p.push(['kosong',`NIK ganda (${dup[n]} baris)`]);const c=nikChk(n);if(c)p.push(['mirip',c])}return p}
+const mBadge=(m,dup)=>mProb(m,dup).map(([k,t])=>`<div class=why${k=='mirip'?' style="color:var(--wfg)"':''}>${esc(t)}</div>`).join('');
+const mFull=(m,dup)=>NIK16.test(m.nik||'')&&dup[m.nik]==1&&(m.nama||'').trim()&&(m.alamat||'').trim();
+function mStat(){const dup=mDupMap(),c={n:S.m.length,ok:0,nik:0,al:0,pv:0};S.m.forEach(m=>{if(mProb(m,dup).some(p=>p[0]=='kosong'))c.nik++;if(!(m.alamat||'').trim())c.al++;if(!m.pv)c.pv++;if(mFull(m,dup))c.ok++});return c}
+const mSum=()=>{const s=mStat();return`<div class=sm style="margin-bottom:4px"><b>${s.ok}</b> dari ${s.n} therapist lengkap (NIK 16 digit unik, nama KTP, alamat KTP)</div><div class=pb><i style="width:${s.n?s.ok/s.n*100:0}%"></i></div>`};
+const mBanner=()=>{const st=mStat();if(!st.n)return`<div class=wn style="margin-bottom:24px">Master therapist masih kosong. <button class=s onclick="go('m')">Buka Master dan import Excel</button></div>`;if(st.ok==st.n)return'';
+ return`<div class=wn style="margin-bottom:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center"><span><b>${st.ok} dari ${st.n}</b> therapist di master sudah lengkap (NIK 16 digit, nama KTP, alamat KTP).</span>${st.nik?`<button class=s onclick="S.mf='nik';S.mp=0;go('m')">NIK bermasalah (${st.nik})</button>`:''}${st.al?`<button class=s onclick="S.mf='al';S.mp=0;go('m')">Alamat KTP kosong (${st.al})</button>`:''}</div>`};
+function mBadges(){const dup=mDupMap();document.querySelectorAll('[data-mb]').forEach(e=>{const m=S.m[+e.dataset.mb];if(!m)return;e.innerHTML=mBadge(m,dup);const i=e.parentElement.querySelector('input');if(i)i.classList.toggle('bad',mProb(m,dup).some(p=>p[0]=='kosong'))});
+ document.querySelectorAll('[data-mv]').forEach(e=>{const m=S.m[+e.dataset.mv];if(m)e.innerHTML=m.pv?'':'<em class=mirip>belum diverifikasi</em>'});document.querySelectorAll('[data-mav]').forEach(e=>{const m=S.m[+e.dataset.mav];if(!m)return;const pr=mProb(m,dup).some(p=>p[0]=='kosong');e.className='av2 '+(pr?'bad':mFull(m,dup)?'ok':'warn');e.style.setProperty('--c',`hsl(${avc(m.pang||m.nama)} 55% 52%)`);e.textContent=ini(m.pang||m.nama)});const s=$('#msum');if(s)s.innerHTML=mSum()}
+function MS(i,f,el){const m=S.m[i];if(!m)return;let v=el.value;if(f=='nik'){v=v.replace(/\D/g,'');el.value=v}else v=v.trim();m[f]=v;if(f=='ptkp')m.pv=1;
+ if(f=='nik'||f=='nama'||f=='ptkp'){S.g.forEach(g=>g.rows.forEach(r=>{if(r.mid==m.id&&!r.bp)r[f]=m[f]}));calc();sDraft()}
+ localforage.setItem('master',S.m);touch();mBadges();el.classList.add('sv');setTimeout(()=>el.classList.remove('sv'),900)}
+let tQ=0;const mSearch=v=>{clearTimeout(tQ);tQ=setTimeout(()=>{S.mq=v;S.mp=0;mUpd()},200)},mUpd=()=>{const e=$('#mt');if(e)e.innerHTML=mTab()};
+function mAdd(){S.mq='';S.mf='all';S.mp=0;S.m.unshift({id:Math.random(),kd:'',pang:'',nama:'',nik:'',ptkp:'TK/0',outlet:S.mo,alamat:''});R().then(()=>{const i=document.querySelector('#mr0 td:nth-child(2) input');if(i)i.focus()})}
+
+const bpOf=m=>(S.bpm&&S.bpm[m.id])||[];
+function bpBuild(){const bn={},bm={};S.m.forEach(m=>{if(m.nik)bn[m.nik]=m.id;const k=nz(m.pang);if(k&&!(k in bm))bm[k]=m.id});const o={};
+(S.ar||[]).forEach(a=>(a.rows||[]).forEach(r=>{if(!(a.schema?r.bp:r.gross>0))return;const id=S.m.some(m=>m.id==r.mid)?r.mid:(bn[r.nik]!==undefined?bn[r.nik]:bm[nz(r.pang)]);if(id===undefined||id===null)return;const L=o[id]=o[id]||{},e=L[a.kode]=L[a.kode]||{kode:a.kode,nama:a.outlet,per:new Set(),br:0,tx:0};e.per.add(a.year+'-'+pad(a.month));e.br+=r.gross||0;e.tx+=r.tax||0}));
+S.bpm={};S.bpd={};for(const id in o){S.bpm[id]=Object.values(o[id]).map(e=>({...e,per:[...e.per].sort()}));const P={};S.bpm[id].forEach(x=>x.per.forEach(p=>(P[p]=P[p]||[]).push(x.nama)));const d=Object.entries(P).filter(([p,n])=>n.length>1).sort();if(d.length)S.bpd[id]=d.map(([p,n])=>({p,n}))}}
+const perL=p=>(MN[+p.slice(5)]||p.slice(5))+' '+p.slice(0,4);
+const bpCell=m=>{const b=bpOf(m);if(!b.length)return'<em class=mirip>Belum pernah</em>';return b.map(x=>`<span class=bpc style="--c:${oc(x.kode)}" title="${esc(x.per.map(p=>(MN[+p.slice(5)]||p.slice(5))+' '+p.slice(0,4)).join(', '))} · Bruto ${rp(x.br)} · PPh ${rp(x.tx)}">${esc(x.nama)}<small>${x.per.length} bln</small></span>`).join('')+((S.bpd&&S.bpd[m.id])?`<em class=mirip title="Tercatat di lebih dari satu CV pada periode yang sama. Wajar bila therapist mutasi di tengah periode; periksa lagi jika tidak ada mutasi.">⚠ Periode ganda: ${S.bpd[m.id].map(d=>esc(perL(d.p)+' ('+d.n.join(' + ')+')')).join('; ')}</em>`:'')};
+const mBp=()=>{const ids=S.m.map(bpOf),T=(k,t,n,col)=>`<button class="bpk${S.mb==k?' on':''}" style="--c:${col}" onclick="S.mb=S.mb=='${k}'?'':'${k}';S.mp=0;R()"><b>${n}</b><span>${t}</span></button>`,mul=ids.filter(b=>b.length>1).length,dup=Object.keys(S.bpd||{}).length;
+return(dup?`<div class=wn style="margin-bottom:10px"><b>${dup} therapist</b> tercatat di lebih dari satu CV pada periode yang sama. Ini bisa wajar kalau therapist mutasi di tengah periode kerja. Periksa lagi bila tidak ada mutasi. <button class=s onclick="S.mb='dup';S.mp=0;R()">Lihat daftar</button></div>`:'')+`<div class=bpg>${S.l.map(l=>T(esc(l.kode),esc(l.nama),ids.filter(b=>b.some(x=>x.kode==l.kode)).length,oc(l.kode))).join('')}${T('none','Belum pernah diproses',ids.filter(b=>!b.length).length,'#a85d00')}${mul?T('multi','Pernah di lebih dari 1 CV',mul,'#1d5fa8'):''}${dup?T('dup','⚠ Periode ganda',dup,'#b45309'):''}</div><p class=sm>Pengelompokan therapist menurut arsip BP21 yang sudah digenerate. Klik kartu untuk menyaring tabel, klik lagi untuk melepas.</p>`};
+function expBp(){const A=[['Kode','Nama panggung','Nama KTP','NIK','CV / Outlet pelaporan BP21','Periode','Bruto','PPh 21']];S.m.forEach(m=>bpOf(m).forEach(x=>A.push([m.kd||'',m.pang||'',m.nama||'',String(m.nik||''),x.nama,x.per.join(', '),x.br,x.tx])));if(A.length<2)return toast('Belum ada therapist yang diproses BP21.');const ws=XLSX.utils.aoa_to_sheet(A);ws['!cols']=[8,22,26,20,30,28,14,14].map(w=>({wch:w}));const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'BP21 per CV');dl(`therapist_per_cv_bp21_${new Date().toISOString().slice(0,10)}.xlsx`,new Blob([XLSX.write(wb,{type:'array',bookType:'xlsx'})]))}
+function mTab(){const q=(S.mq||'').toLowerCase().trim(),dup=mDupMap(),f=S.mf||'all',
+ L=S.m.map((m,i)=>[m,i]).filter(([m])=>{if(S.mo&&m.outlet!=S.mo)return false;if(S.mb){const b=bpOf(m);if(S.mb=='none'?b.length:S.mb=='multi'?b.length<2:S.mb=='dup'?!(S.bpd&&S.bpd[m.id]):!b.some(x=>x.kode==S.mb))return false}if(q&&![m.kd,m.pang,m.nama,m.nik,m.alamat,bpOf(m).map(x=>x.nama).join(' ')].join(' ').toLowerCase().includes(q))return false;
+  if(f=='nik')return mProb(m,dup).some(p=>p[0]=='kosong');if(f=='al')return !(m.alamat||'').trim();if(f=='pv')return !m.pv;return true}),
+ pages=Math.max(1,Math.ceil(L.length/MPS));if(S.mp>=pages)S.mp=pages-1;if(S.mp<0)S.mp=0;const from=S.mp*MPS,sl=L.slice(from,from+MPS),
+ pager=`<div class=mpg><span class=sm>${L.length?`Menampilkan ${from+1}–${from+sl.length} dari ${L.length}`:'Tidak ada data yang cocok'}</span>${pages>1?`<span class=f style="margin:0;align-items:center"><button class=s ${S.mp?'':'disabled'} onclick="S.mp--;mUpd()">Sebelumnya</button><span class=sm>Hal ${S.mp+1}/${pages}</span><button class=s ${S.mp<pages-1?'':'disabled'} onclick="S.mp++;mUpd()">Berikutnya</button></span>`:''}</div>`;
+ if(!S.m.length)return`<div class=empty><i class=bigic>${ic('users')}</i><h2>Master therapist masih kosong</h2><p>Import file Excel data therapist (NIK dan alamat KTP terbaca otomatis), atau tambah satu per satu.</p><div class=f style="justify-content:center"><label class=p style="cursor:pointer">${ic('upload')}Import Excel<input type=file hidden accept=".xlsx,.xls,.xlsm" onchange="imp(this.files[0]);this.value=''"></label><button class=s onclick="tplM()">${ic('file')}Unduh template</button><button class=s onclick="mAdd()">${ic('plus')}Tambah therapist</button></div></div>`;
+ return pager+`<table id=mtab style="min-width:1500px"><tr><th>Kode<th>Nama panggung<th>Nama KTP<th>NIK KTP (16 digit)<th>PTKP<th>Alamat KTP<th>Tempat/Tgl lahir<th>Outlet<th>Dilaporkan BP21 di<th>Kontrak<th>
+${sl.map(([m,i])=>`<tr id=mr${i}><td><input style="min-width:70px" value="${esc(m.kd||'')}" onchange="MS(${i},'kd',this)"><td><div class=mcell><span class="av2 ${mProb(m,dup).some(p=>p[0]=='kosong')?'bad':mFull(m,dup)?'ok':'warn'}" data-mav=${i} style="--c:hsl(${avc(m.pang||m.nama)} 55% 52%)" aria-hidden=true>${esc(ini(m.pang||m.nama))}</span><input value="${esc(m.pang)}" onchange="MS(${i},'pang',this)"></div><td><input value="${esc(m.nama)}" onchange="MS(${i},'nama',this)">
+<td><input data-nik style="min-width:175px" class="${mProb(m,dup).some(p=>p[0]=='kosong')?'bad':''}" value="${esc(m.nik)}" inputmode=numeric placeholder="16 digit" onchange="MS(${i},'nik',this)"><div data-mb=${i}>${mBadge(m,dup)}</div>
+<td><select onchange="MS(${i},'ptkp',this)">${opt(PT,m.ptkp)}</select><div data-mv=${i}>${m.pv?'':'<em class=mirip>belum diverifikasi</em>'}</div>
+<td><textarea rows=2 placeholder="Alamat sesuai KTP (jalan, RT/RW, kelurahan, kecamatan, kota)" onchange="MS(${i},'alamat',this)">${esc(m.alamat||'')}</textarea>
+<td><input value="${esc(m.lahir||'')}" placeholder="Kota, 01 Jan 1998" onchange="MS(${i},'lahir',this)">
+<td><select onchange="MS(${i},'outlet',this)"><option value="">(semua outlet)${S.l.map(l=>`<option value="${esc(l.kode)}"${m.outlet==l.kode?' selected':''}>${esc(l.nama)}`).join('')}</select>
+<td>${bpCell(m)}<td class=sm>${esc([m.awal,m.akhir].filter(Boolean).join(' – '))}<td><button class=s onclick="delM(${i})">Hapus</button>`).join('')}</table>`+(pages>1?pager:'')}
+const vm=()=>{const igs=Object.keys(S.ig),st=mStat(),f=S.mf||'all',chip=(k,t)=>`<button class="s${f==k?' on':''}" onclick="S.mf='${k}';S.mp=0;R()">${t}</button>`;
+ return`<div class=card><header><h2>${ic('users')}Master Therapist (${S.m.length})</h2><span class=f style="margin:0"><button class=s onclick="mAdd()">${ic('plus')}Tambah therapist</button><button class=p onclick="svAll()">${ic('save')}Simpan</button><button class=s onclick="expM()">${ic('download')}Ekspor ke Excel</button><button class=s onclick="expBp()">${ic('filecheck')}Ekspor per CV BP21</button><button class=s onclick="tplM()">${ic('file')}Unduh template</button><label class=b style="cursor:pointer">${ic('upload')}Import Excel<input type=file hidden accept=".xlsx,.xls,.xlsm" onchange="imp(this.files[0]);this.value=''"></label></span></header>
+<p class=sm>Import membaca kolom otomatis: NIK dikenali dari judul kolom (NIK, NIK KTP, No. KTP, e-KTP, dan sejenisnya) atau dari isi kolom yang berisi angka 16 digit. Alamat KTP dibaca dari kolom ALAMAT / ALAMAT KTP. Sebelum disimpan, Anda melihat dulu kolom mana yang terbaca. Format kolom NIK sebagai Text agar tidak terpotong Excel. Perubahan di tabel tersimpan otomatis.</p>
+<div id=msum style="margin-bottom:16px">${mSum()}</div>${mBp()}
+<div class=f>${chip('all',`Semua (${st.n})`)}${chip('nik',`NIK bermasalah (${st.nik})`)}${chip('al',`Alamat KTP kosong (${st.al})`)}${chip('pv',`PTKP belum diverifikasi (${st.pv})`)}</div>
+<div class=f><select onchange="S.mo=this.value;S.mp=0;R()"><option value="">Semua outlet${S.l.map(l=>`<option value="${esc(l.kode)}"${S.mo==l.kode?' selected':''}>${esc(l.nama)}`).join('')}</select><label class=sch>${ic('search')}<input placeholder="Cari nama, NIK, atau alamat" value="${esc(S.mq)}" oninput="mSearch(this.value)">${S.mq?`<button class=g aria-label="Hapus pencarian" onclick="S.mq='';S.mp=0;R()">${ic('x')}</button>`:''}</label></div>
+<div id=mt>${mTab()}</div></div>
+${igs.length?`<div class=card><header><h2>Diabaikan di outlet tertentu (${igs.length})</h2></header><p class=sm>Therapist ini tidak muncul lagi saat upload Excel outlet tersebut.</p>${igs.map(k=>`<span style="display:inline-block;margin:0 8px 6px 0">${esc(k.replace('|',' · '))} <button class=s onclick="delIg('${esc(k)}')">Pulihkan</button></span>`).join('')}</div>`:''}`};
+const vl=()=>`<div class=card><header><h2>${ic('store')}Outlet (5)</h2><span><button class=p onclick="svAll()">${ic('save')}Simpan</button> </span></header><p class=sm>Isi TIN (16 digit) dan NITKU (22 digit) persis seperti di Coretax. NITKU otomatis TIN + 000000; ubah hanya bila outlet punya NITKU sendiri.</p><table><tr><th>Kode outlet<th>Nama outlet<th>TIN (16)<th>NITKU / ID outlet (22)<th>Alamat<th>Awalan no. dokumen<th>Nama lokasi yang dikenali<th>
+${S.l.map((l,i)=>`<tr>${['kode','nama','tin','nitku','alamat','dp'].map(f=>`<td><input value="${esc(l[f])}" onchange="L(${i},'${f}',this.value)">`).join('')}<td class=sm>${esc((OKW.find(o=>lkk(o[0])==lkk(l.nama))||[])[2]||'')}`).join('')}</table></div>`;
+const va=()=>{const f=S.f,ra=S.ra||'hasil',A0=S.ar,U=S.ul||[],q=(f.q||'').toLowerCase(),
+ a=A0.filter(x=>(!f.o||x.outlet==f.o)&&(!f.y||x.year==f.y)&&(!f.s||(f.s=='ok'?(x.batches||[]).length&&(x.batches||[]).every(b=>b.st=='ok'):(x.batches||[]).some(b=>b.st!='ok')))&&(!q||JSON.stringify(x.rows.map(r=>[r.pang,r.nama])).toLowerCase().includes(q)||x.outlet.toLowerCase().includes(q)||arcSrc(x).some(s=>s.f.toLowerCase().includes(q))||(x.batches||[]).some(b=>(b.files||[]).some(n=>n.toLowerCase().includes(q))))),
+ os=[...new Set(A0.map(x=>x.outlet))],ys=[...new Set(A0.map(x=>x.year))].sort((p,r)=>r-p),
+ hd=`<div class=x-ph><div><h1>Riwayat File</h1><p>Semua periode yang sudah diproses: Excel sumber, file BP21 yang dihasilkan, dan statusnya di Coretax.</p></div><div class=x-acts><button class=p onclick="go('p')">${ic('upload')}Proses file baru</button></div></div>
+ <div class=x-seg><button class="${ra=='hasil'?'on':''}" onclick="S.ra='hasil';R()">Hasil BP21<b>${A0.length}</b></button><button class="${ra=='upload'?'on':''}" onclick="S.ra='upload';R()">Excel yang pernah diupload<b>${U.length}</b></button></div>`,
+ flt=`<div class=x-flt><select aria-label=Outlet onchange="S.f.o=this.value;R()"><option value="">Semua outlet${os.map(o=>`<option${f.o==o?' selected':''}>${esc(o)}`).join('')}</select><select aria-label=Tahun onchange="S.f.y=this.value;R()"><option value="">Semua tahun${ys.map(y=>`<option${f.y==y?' selected':''}>${y}`).join('')}</select><select aria-label=Status onchange="S.f.s=this.value;R()"><option value="">Semua status<option value=bl${f.s=='bl'?' selected':''}>Belum berhasil di Coretax<option value=ok${f.s=='ok'?' selected':''}>Berhasil di Coretax</select><input placeholder="Cari outlet, therapist, atau nama file" value="${esc(f.q)}" onchange="S.f.q=this.value;R()"></div>`;
+ if(ra=='upload'){const u=U.filter(x=>(!f.o||x.outlet==f.o)&&(!f.y||x.year==f.y)&&(!q||(x.f+' '+x.outlet).toLowerCase().includes(q)));
+  return hd+flt+(u.length?`<div class="x-box plain"><div class=x-sc style="border:0"><table class=x-lt><tr><th>Waktu upload<th>File Excel<th>Outlet<th>Periode<th class=n>Therapist<th>Status<th>${u.map(x=>{const s=ulSt(x);return`<tr><td>${fdt2(x.at)}<td><b>${esc(x.f)}</b>${x.s?`<div class=sm>Sheet: ${esc(x.s)}</div>`:''}<td>${esc(x.outlet)}<td>${MN[x.month]||'?'} ${x.year||''}<td class=n>${x.n}<td><em class=${s[0]}>${s[1]}</em><td>${s[2]?`<button class=s onclick="prevArc('${esc(s[2])}')">Lihat isi</button>`:''}`}).join('')}</table></div></div>`:`<div class=x-empty>Belum ada upload tercatat. Setiap Excel yang Anda upload di Proses Komisi akan dicatat di sini.</div>`)}
+ let last='';
+ return hd+flt+(a.length?a.map(x=>{const t=arcSt(x),sr=arcSrc(x),gh=MN[x.month]+' '+x.year,h=gh!=last?`<div class=x-gh>${gh}</div>`:'';last=gh;
+  return h+`<article class=x-ac><div class=x-ach><span class=x-av style="--c:${oc(x.kode)}">${esc(arcAb(x))}</span><div><b>${esc(x.outlet)}${String(x.key).includes('#')?' (revisi '+String(x.key).split('#')[1]+')':''}</b><div class=x-sub>Diproses ${fdt2(x.at)}</div></div>${arcChip(x,t)}</div>
+<div class=x-met><div><small>Therapist dibuat</small><b>${t.dn}</b></div><div><small>Belum dibuat</small><b${t.pend?' style="color:var(--wr)"':''}>${t.pend}</b></div><div><small>Bruto dibuat</small><b>${rp(t.br)}</b></div><div><small>PPh 21</small><b>${rp(t.tx)}</b></div></div>
+${sr.length?`<div class=x-src>${ic('file')}Excel sumber:${sr.map(s=>`<span title="${esc(s.f)}">${esc(s.f)}</span>`).join('')}</div>`:''}
+${(x.batches||[]).length?(x.batches||[]).map(b=>`<div class=x-bf><b>Bagian ${b.n}</b>${bch(b)}<span class=fn>Hasil: ${(b.files||[]).map(esc).join(', ')||'–'}</span>${bbt(x.key,b)}</div>`).join(''):`<div class=x-src>${ic('download')}Hasil: ${(x.files||[]).map(n=>`<span>${esc(n)}</span>`).join('')||'–'}</div>`}
+<div class=x-acts><button class=p onclick="prevArc('${esc(x.key)}')">Lihat isi</button><button class=s data-v24=1 onclick="openArc('${esc(x.key)}')">${t.pend?'Lanjutkan':'Buka'}${ic('arrow')}</button><button class=s data-v24=1 onclick="X('${esc(x.key)}')">${ic('download')}Re-export</button><button class=s data-v24=1 onclick="D('${esc(x.key)}')">${ic('trash')}Hapus</button></div></article>`}).join(''):`<div class=x-empty>${A0.length?'Tidak ada arsip yang cocok dengan saringan.':'Belum ada arsip. Arsip tersimpan otomatis setiap kali BP21 dibuat.'}</div>`)};
+const vc=()=>{const n=S.ar.length;return`<div class=card><header><h2>${ic('shield')}Data &amp; Cadangan</h2></header>
+<p>Semua data (master therapist, lokasi, arsip, alias pencocokan) tersimpan di browser laptop ini dan tetap ada setelah ditutup. Data <b>tidak ikut pindah</b> ke laptop lain atau browser lain, jadi buat cadangan file.</p>
+<div class=kp>${kc('users','#4f46e5','Therapist di master',S.m.length,0,0)}${kc('store','#0d9488','Lokasi',S.l.length,0,1)}${kc('archive','#d97706','Arsip',n,0,2)}${kc('shield','#16a34a','Penyimpanan browser',S.pers===null?'?':S.pers?'Terlindungi':'Belum dikunci',0,3)}</div>
+<div class=f><button class=p onclick="bk()">${ic('download')}Simpan cadangan ke file</button><label class=s style="cursor:pointer">${ic('upload')}Buka cadangan<input type=file hidden accept=.json onchange="rs(this.files[0]);this.value=''"></label></div>
+<p class=sm>Terakhir disimpan: <b>${fmt(+localStorage.lastBackup||0)}</b>. File cadangan memuat NIK; beri kata sandi bila dikirim lewat email atau chat.</p></div>
+<div class=card><header><h2>${ic('save')}Penyimpanan online</h2></header><p>Data PPh 21 disimpan otomatis ke cloud (Supabase). Tidak perlu menautkan file lokal.</p></div>
+<div class=card><header><h2>${ic('arrow')}Pindah ke laptop lain</h2></header><ol><li>Di laptop lama: <b>Simpan cadangan ke file</b> (atau tautkan file otomatis di folder sinkron).</li><li>Salin file itu ke laptop baru, buka <code>index.html</code>, lalu <b>Buka cadangan</b>.</li><li>Pilih <b>Timpa semua</b> untuk laptop baru yang masih kosong, atau <b>Gabungkan</b> bila sudah ada data.</li></ol><p class=sm>Catatan Gabungkan: therapist yang sudah dihapus di satu laptop bisa muncul lagi bila masih ada di cadangan lain.</p></div>`};
+const go=t=>{TAB=t;R()};
+const svAll=async()=>{await localforage.setItem('master',S.m);await localforage.setItem('lokasi',S.l);await localforage.setItem('alias',S.a);touch();await autoWrite();ask(`<p>Tersimpan: <b>${S.m.length}</b> therapist, <b>${S.l.length}</b> outlet.</p>`,['Tutup'])};
+
+/* ---------- Tahap 1: ikon, toast, dashboard, outlet bawaan ---------- */
+const IC={home:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',file:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5.5 6.5-5.5s5.9 2.100 6.5 5.5M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.8c1.6.8 2.7 2.4 3 5.2"/>',store:'<path d="M4 9l1.5-5h13L20 9M4 9v11h16V9M4 9a2.700 2.700 0 0 0 5.300 0 2.700 2.700 0 0 0 5.400 0A2.700 2.700 0 0 0 20 9M10 20v-5h4v5"/>',archive:'<rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4"/>',shield:'<path d="M12 3 4 6v6c0 4.500 3.200 7.800 8 9 4.800-1.200 8-4.500 8-9V6z"/><path d="m9 12 2 2 4-4"/>',upload:'<path d="M12 16V4m0 0L7 9m5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/>',zap:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',edit:'<path d="M4 20h4L19 9l-4-4L4 16zM14 6l4 4"/>',collapse:'<path d="m11 17-5-5 5-5M18 17l-5-5 5-5"/>'};
+const ic=n=>`<svg class=ic viewBox="0 0 24 24" aria-hidden=true>${IC[n]||''}</svg>`;
+function toast(m,o={}){const t=$('#tz');if(!t)return;const e=document.createElement('div');e.className='ts';e.setAttribute('role','status');e.innerHTML=`<span>${esc(m)}</span>`;let id;const x=()=>{clearTimeout(id);e.remove()};
+ if(o.undo){const b=document.createElement('button');b.textContent=o.label||'Dibatalkan?';b.onclick=()=>{x();o.undo()};e.append(b)}
+ t.append(e);id=setTimeout(x,o.ms||(o.undo?8000:Math.min(9000,3500+m.length*30)))}
+/* dialog satu tombol yang hanya memberi info menjadi toast; konfirmasi tetap dialog, tombol Hapus/Timpa berwarna merah */
+const ask=(msg,bs)=>{if(typeof document!=='undefined'&&bs.length==1&&msg.length<200){toast(msg.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim());return Promise.resolve(0)}return ask0(msg,bs)};
+const NAV=[['d','home','Dashboard'],['p','file','Proses Komisi'],['m','users','Master Therapist'],['l','store','Outlet'],['a','archive','Riwayat File'],['c','shield','Data & Cadangan']];
+function boot(){const sb=$('#sb');sb.innerHTML=`<div class=brand><svg viewBox="0 0 32 32" aria-hidden=true><rect width=32 height=32 rx=9 fill="#4f46e5"/><path d="M9 10h9a3.500 3.500 0 0 1 0 7H9m0 0h10a3.500 3.500 0 0 1 0 7H9V10z" fill="none" stroke="#fff" stroke-width="2.200" stroke-linejoin="round"/></svg><b>Sistem PPH 21 Therapist</b></div>`+NAV.map(([t,i,n])=>`<button data-t=${t} onclick="go('${t}')" aria-label="${n}" title="${n}">${ic(i)}<span>${esc(n)}</span></button>`).join('')+`<div class=sp></div><button class=thm onclick="toggleTheme()" aria-label="Ganti mode terang atau gelap"></button><button class=colbtn onclick="colSb()" aria-label="Ciutkan atau perluas menu">${ic('collapse')}<span>Ciutkan</span></button>`;
+ themeBtn();if(localStorage.sbc=='1')document.body.classList.add('col');window.alert=m=>toast(String(m));
+ document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=='s'){e.preventDefault();svAll()}else if(e.key=='/'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){const i=document.querySelector('main input[placeholder*=Cari]');if(i){e.preventDefault();i.focus()}}})}
+const colSb=()=>{localStorage.sbc=document.body.classList.toggle('col')?'1':'0'};
+/* outlet bawaan + TIN/awalan dokumen terverifikasi dari XML yang sudah berhasil di Coretax; hanya mengisi yang masih kosong, tidak menimpa isian pengguna. Batam: TIN = NPWP OPA Putri Ayu Lestari (sesuai Coretax) */
+const lkk=s=>nz(s).replace(/^OUTLET/,'').replace(/JAYA$/,''),OUTL=[['OPA LAMPUNG JAYA','0392172391322000','OLJ'],['OCTO CIREBON JAYA','0398224080455000','OCJ'],['OCTO BATANG HARI JAYA','0993399625335000','OBHJ'],['OCTO MUSI JAYA','0632564548301000','OMJ'],['OCTO BATAM JAYA','0392579231422000','OBJ']];
+function seedOutlets(){let n=0;OUTL.forEach(([nm,tin,dp])=>{const k=lkk(nm);let l=S.l.find(x=>lkk(x.nama)==k||lkk(x.kode)==k);if(!l){l={kode:nm.replace(/ /g,'-'),nama:nm,tin:'',nitku:'',nv:'',alamat:''};S.l.push(l);n++}
+ if(!l.tin){l.tin=tin;if(!l.nitku)l.nitku=tin+'000000';n++}if(!l.dp){l.dp=dp;n++}});if(n)saveL()}
+const hue=k=>Math.max(0,S.l.findIndex(l=>l.kode==k))*67%360,oc=k=>`hsl(${hue(k)} 55% 52%)`;
+function osum(l){const y=S.dy,m=S.dm,g=S.g.find(x=>x.kode==l.kode&&x.year==y&&x.month==m),a=S.ar.find(x=>x.key==`${l.kode}|${y}-${pad(m)}`),rows=g?g.rows:a?a.rows:[],bt=(g&&g.batches)||(a&&a.batches)||[],act=rows.filter(r=>!r.skip&&r.gross>0),c={siap:0,blm:0};
+ rows.forEach(r=>{const k=rst(r).k;if(k in c)c[k]++});
+ return{n:act.length,br:act.reduce((s,r)=>s+r.gross,0),tx:act.reduce((s,r)=>s+(r.tax||0),0),N:bt.length,ok:bt.filter(b=>b.st=='ok').length,siap:g?c.siap:0,blm:g?c.blm:0,has:!!(g||a),tin:/^\d{16}$/.test(l.tin)&&/^\d{22}$/.test(l.nitku)}}
+Object.assign(IC,{wallet:'<path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h15V9H5a2 2 0 0 1-2-2zM16 14.500h.01"/>',percent:'<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.500"/><circle cx="17" cy="17" r="2.500"/>',filecheck:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 14l2 2 4-4"/>',alert:'<path d="M12 4 2.500 20h19z"/><path d="M12 10v4M12 17h.01"/>',arrow:'<path d="M5 12h14m-6-6 6 6-6 6"/>',sparkle:'<path d="M12 3l1.800 5.200L19 10l-5.200 1.800L12 17l-1.800-5.200L5 10l5.200-1.800z"/>'});
+function fx(){if(typeof matchMedia=='undefined'||matchMedia('(prefers-reduced-motion:reduce)').matches)return;document.querySelectorAll('[data-cu]').forEach(e=>{const v=+e.dataset.cu,f=e.dataset.f=='rp',t0=performance.now(),st=t=>{const p=Math.min(1,(t-t0)/800),x=v*(1-Math.pow(1-p,3));e.textContent=f?rp(x):Math.round(x);if(p<1)requestAnimationFrame(st)};requestAnimationFrame(st)})}
+const ocard=(l,s,i=0)=>{const rs=[];if(s.has&&!s.tin)rs.push('Lengkapi TIN & NITKU');if(s.blm)rs.push(s.blm+' therapist belum lengkap');if(s.siap)rs.push(s.siap+' siap digenerate');if(s.N>s.ok)rs.push((s.N-s.ok)+' file belum berhasil');
+ const st=!s.has?'<em class=nt>Belum ada data</em>':rs.length?'<em class=mirip>Perlu tindakan</em>':'<em class=ok>Selesai</em>',k=esc(l.kode),ab=(l.dp||l.kode.split('-').map(w=>w[0]).join('')).slice(0,3);
+ return`<article class=oc style="--c:${oc(l.kode)};--i:${i}" tabindex=0 role=button aria-label="Buka ${esc(l.nama)}" onclick="openOutlet('${k}')" onkeydown="if(event.key=='Enter'&&event.target===this)openOutlet('${k}')"><div class=oh><span class=av aria-hidden=true>${esc(ab)}</span><div style="flex:1;min-width:0"><b style="font:700 15px var(--fh)">${esc(l.nama)}</b><div class=sm>${s.tin?'TIN & NITKU terisi':'<span style="color:var(--wfg)">TIN / NITKU belum diisi</span>'}</div></div>${st}</div>
+<div class=ob><div class=mt><div><small>${ic('users')}Therapist</small><b>${s.n}</b></div><div><small>${ic('wallet')}Bruto</small><b>${rp(s.br)}</b></div><div><small>${ic('percent')}PPh 21</small><b>${rp(s.tx)}</b></div></div>
+<div><div class=pb role=progressbar aria-label="Progres file di Coretax" aria-valuemin=0 aria-valuemax=${s.N} aria-valuenow=${s.ok}><i style="width:${s.N?s.ok/s.N*100:0}%"></i></div><div class=sm style="margin-top:4px">${s.N?`${s.ok} dari ${s.N} file berhasil di Coretax`:'Belum ada file dibuat'}</div></div>${rs.length?`<div>${rs.map(r=>`<span class=rz>${ic('alert')}${esc(r)}</span>`).join('')}</div>`:''}
+<div class=oa><button class=p onclick="event.stopPropagation();openOutlet('${k}')">${s.has?'Buka outlet':'Upload Excel'}${ic('arrow')}</button><button class=g aria-label="Atur TIN dan NITKU ${esc(l.nama)}" title="Atur TIN & NITKU" onclick="event.stopPropagation();editOutlet('${k}')">${ic('edit')}</button></div></div></article>`};
+const kc=(ico,col,lb,v,cu,i)=>`<div style="--k:${col};--i:${i}"><span class=ki>${ic(ico)}</span><div><small>${lb}</small><b${cu?` data-cu=${cu} data-f=rp`:''}>${v}</b></div></div>`;
+const vd=()=>{if(!S.dm){const a=S.ar[0],n=new Date();n.setMonth(n.getMonth()-1);S.dm=a?a.month:n.getMonth()+1;S.dy=a?a.year:n.getFullYear()}
+ const ss=S.l.map(osum),T=k=>ss.reduce((s,x)=>s+x[k],0),h=new Date().getHours(),sal=h<11?'pagi':h<15?'siang':h<18?'sore':'malam',hs=ss.filter(x=>x.has).length;
+ return`<section class=hero><div><small>Sistem PPH 21 Therapist</small><h1>Selamat ${sal}</h1><p>Masa pajak <b>${MN[S.dm]} ${S.dy}</b> · ${hs} dari ${S.l.length} outlet sudah punya data</p></div><div class=f style="margin:0"><select aria-label=Bulan onchange="S.dm=+this.value;R()">${MN.slice(1).map((n,i)=>`<option value=${i+1}${S.dm==i+1?' selected':''}>${n}`).join('')}</select><input type=number aria-label=Tahun value=${S.dy} style="width:96px" onchange="S.dy=+this.value;R()"><label class="p bw">${ic('upload')}Upload Excel<input type=file hidden multiple accept=".xlsx,.xls,.xlsm" onchange="const f=[...this.files];this.value='';ld(f).then(()=>S.g.length&&go('p'))"></label><button class="s bq" onclick="genAll()">${ic('zap')}Generate semua yang siap</button></div></section>
+<div class=kp>${kc('store','#4f46e5','Outlet dengan data',`${hs} dari ${S.l.length}`,0,0)}${kc('wallet','#0d9488','Total bruto',rp(T('br')),T('br'),1)}${kc('percent','#d97706','Total PPh 21',rp(T('tx')),T('tx'),2)}${kc('filecheck','#16a34a','File berhasil di Coretax',`${T('ok')} dari ${T('N')}`,0,3)}</div>
+${vq()}<div class=og>${S.l.map((l,i)=>ocard(l,ss[i],i)).join('')}</div>`};
+function openOutlet(k){const l=S.l.find(x=>x.kode==k),key=`${k}|${S.dy}-${pad(S.dm)}`;if(S.g.some(g=>g.kode==k))return go('p');
+ if(S.g.length){toast('Selesaikan atau tutup pekerjaan yang sedang berjalan dulu.');return go('p')}
+ if(S.ar.some(a=>a.key==key))return V(key);toast(`Belum ada data ${l?l.nama:k} untuk ${MN[S.dm]} ${S.dy}. Upload Excel komisinya.`);S.po=k;go('p')}
+const genAll=()=>{if(!S.g.length)return toast('Belum ada data. Upload Excel komisi dulu.');go('p');gen()};
+function editOutlet(k){const i=S.l.findIndex(x=>x.kode==k);if(i<0)return;const l=S.l[i],d=document.createElement('dialog'),f=(lb,fn,n)=>`<label>${lb}<input id=ol_${fn} value="${esc(l[fn])}" ${n?`inputmode=numeric data-len=${n} class="${(l[fn]||'').length&&l[fn].length!=n?'bad':''}"`:''} onchange="setOl(${i},'${fn}',this)"></label>`;
+ d.innerHTML=`<h2 style="margin-bottom:16px">${esc(l.nama)}</h2><div class=grid style="grid-template-columns:1fr">${f('TIN perusahaan (16 digit NPWP)','tin',16)}${f('NITKU / ID outlet (22 digit)','nitku',22)}${f('Alamat','alamat')}</div><p class=sm>Tersimpan otomatis dan dipakai di semua halaman: Generate, XML, Excel, dan Arsip. NITKU terisi otomatis dari TIN + 000000; ubah hanya bila outlet punya NITKU cabang sendiri.</p><div class=bt><button class=p onclick="this.closest('dialog').close()">Selesai</button></div>`;d.onclose=()=>d.remove();document.body.append(d);d.showModal()}
+function setOl(i,fn,el){L(i,fn,el.value);const l=S.l[i];if(fn=='tin'){const n=$('#ol_nitku');n.value=l.nitku;n.classList.toggle('bad',n.value.length!=22)}el.value=l[fn];if(el.dataset.len)el.classList.toggle('bad',el.value.length!=+el.dataset.len);toast('Tersimpan')}
+async function R(){document.querySelectorAll('#sb button[data-t]').forEach(b=>{b.classList.toggle('on',b.dataset.t==TAB);b.setAttribute('aria-current',b.dataset.t==TAB?'page':'false')});if(TAB=='a'||TAB=='c'||TAB=='d'||(TAB=='p'&&!S.g.length)||TAB=='m'){S.ar=await ars();if(TAB=='m')bpBuild()}const mn=$('main');mn.innerHTML=({d:vd,p:vp,m:vm,l:vl,a:va,c:vc})[TAB]();if(TAB!=S.lt){S.lt=TAB;mn.classList.add('in');setTimeout(()=>mn.classList.remove('in'),1300)}stb();fx();if(TAB=='p'&&S.g.length)sDraft()}
+
+/* ---------- Proses Komisi per outlet (CV): pilih outlet dulu, baru upload ---------- */
+const arcSrc=a=>[...new Map((a.batches||[]).flatMap(b=>b.srcs||[]).filter(x=>x&&x.f).map(x=>[x.f,x])).values()];
+const arcSt=a=>{const bs=a.batches||[],pend=a.schema?a.rows.filter(r=>!r.skip&&r.gross>0&&!r.bp).length:0,dn=a.schema?a.rows.filter(r=>r.bp).length:a.rows.filter(r=>r.gross>0).length,done=a.schema?a.rows.filter(r=>r.bp):a.rows.filter(r=>r.gross>0);return{pend,dn,ok:!!bs.length&&bs.every(b=>b.st=='ok'),br:done.reduce((s,r)=>s+(r.gross||0),0),tx:done.reduce((s,r)=>s+(r.tax||0),0)}};
+const fdt2=s=>s?new Date(s).toLocaleString('id-ID',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+const arcChip=(a,t)=>t.ok?'<em class=ok>Berhasil di Coretax</em>':t.pend?`<em class=mirip>${t.pend} belum dibuat</em>`:'<em class=kosong>Belum berhasil di Coretax</em>';
+const arcAb=a=>(((S.l.find(l=>l.kode==a.kode)||{}).dp)||String(a.kode||a.outlet).split('-').map(w=>w[0]).join('')).slice(0,3);
+const riwayatMini=()=>{const A=S.ar||[];if(!A.length)return`<div class=x-box plain style="--oc:var(--line)"><div class=x-hd><h2>File yang sudah diproses</h2></div><div class=x-pad><div class=x-empty>Belum ada riwayat.</div></div></div>`;
+ return`<div class="x-box plain"><div class=x-hd><div><h2>File yang sudah diproses</h2></div><button class=s onclick="go('a')">Lihat semua</button></div><div class="x-body x-rh">${A.slice(0,3).map(a=>{const t=arcSt(a),sr=arcSrc(a),fl=(a.batches||[]).flatMap(b=>b.files||[]);return`<div class=x-ri style="--c:${oc(a.kode)}"><span class=x-av>${esc(arcAb(a))}</span><div style="min-width:0"><b>${esc(a.outlet)} · ${MN[a.month]} ${a.year}${String(a.key).includes('#')?' (revisi '+String(a.key).split('#')[1]+')':''}</b><div class=fnl title="${esc((sr.length?sr.map(x=>x.f):fl).join(', '))}">${sr.length?'Excel: '+sr.map(x=>esc(x.f)).join(', '):fl.length?'Hasil: '+fl.map(esc).join(', '):'–'}</div><div class=sm>${t.dn} dibuat · ${fdt2(a.at)}</div></div><div class=x-acts>${arcChip(a,t)}<button class=p onclick="prevArc('${esc(a.key)}')">Lihat isi</button></div></div>`}).join('')}</div></div>`};
+const upUI=()=>{const l=S.l.find(x=>x.kode==S.po),k=l?esc(l.kode):'';
+return`<div class="x-box plain"><div class=x-body><label class=drop style="padding:44px 20px" ondragover="event.preventDefault();this.classList.add('h')" ondragleave="this.classList.remove('h')" ondrop="event.preventDefault();event.stopPropagation();ld(event.dataTransfer.files,S.po||undefined)"><i class=bigic>${ic('upload')}</i><b>Upload Excel komisi</b><span>Seret file ke sini atau klik. Outlet dikenali otomatis.</span><input type=file hidden multiple accept=".xlsx,.xls,.xlsm" onchange="const f=[...this.files];this.value='';ld(f,S.po||undefined)"></label>
+<div class=x-pill role=group aria-label="Outlet" style="margin-top:14px"><span class=sm style="align-self:center">Outlet:</span><button class="${S.po?'':'on'}" onclick="S.po='';R()"><i></i>Otomatis</button>${S.l.map(x=>`<button class="${x.kode==S.po?'on':''}" style="--c:${oc(x.kode)}" onclick="S.po=S.po=='${esc(x.kode)}'?'':'${esc(x.kode)}';R()"><i></i>${esc(x.nama)}</button>`).join('')}</div>${l&&!/^\d{16}$/.test(l.tin)?`<div class=wn style="margin:12px 0 0">TIN ${esc(l.nama)} belum diisi (wajib sebelum Generate). <button class=s onclick="editOutlet('${k}')">Isi sekarang</button></div>`:''}</div></div>${riwayatMini()}`};
+/* Pratinjau isi arsip tanpa mengubah pekerjaan yang sedang berjalan */
+async function prevArc(key){const a=await localforage.getItem('ar:'+key);if(!a)return toast('Arsip tidak ditemukan');const t=arcSt(a),sr=arcSrc(a),d=document.createElement('dialog');d.style.maxWidth='1040px';
+ const st=r=>r.skip?'<em class=mirip>Dihapus</em>':r.bp?`<em class=ok>Bagian ${r.bp.n||1}</em>`:r.gross>0?'<em class=cocok>Belum dibuat</em>':'<em class=mirip>Tanpa penghasilan</em>';
+ d.innerHTML=`<h2 style="margin:0 0 4px">${esc(a.outlet)} · ${MN[a.month]} ${a.year}</h2><div class=sm style="margin-bottom:12px">Diproses ${fdt2(a.at)} · ${t.dn} dibuat${t.pend?' · '+t.pend+' belum dibuat':''} · Bruto ${rp(t.br)} · PPh 21 ${rp(t.tx)}</div>
+ <div class=x-src style="margin-bottom:6px">${ic('file')}Excel sumber:${sr.length?sr.map(x=>`<span>${esc(x.f)}${x.s?' · '+esc(x.s):''}</span>`).join(''):'<span>tidak tercatat (diproses sebelum fitur ini ada)</span>'}</div>
+ <div class=x-src style="margin-bottom:12px">${ic('download')}Hasil BP21:${(a.batches||[]).map(b=>`<span>Bagian ${b.n}: ${(b.files||[]).map(esc).join(', ')||'–'}</span>`).join('')||'<span>–</span>'}</div>
+ <div class=x-sc style="max-height:50vh;border:1px solid var(--line);border-radius:10px"><table class=x-tbl style="min-width:760px"><tr><th>No<th>Nama panggung<th>Nama KTP<th>NIK<th class=n>Bruto<th class=n>Tarif<th class=n>PPh 21<th>Status
+ ${a.rows.map((r,i)=>`<tr class="${r.skip?'z':''}"><td>${i+1}<td>${esc(r.pang)}<td>${esc(r.nama||'')}<td>${esc(r.nik||'')}<td class=n>${rp(r.gross||0)}<td class=n>${r.rate??''}%<td class=n>${rp(r.tax||0)}<td>${st(r)}`).join('')}</table></div>
+ <div class=bt><button class=s onclick="X('${esc(key)}')">${ic('download')}Re-export</button><button class=s data-o>${t.pend?'Buka dan lanjutkan':'Buka untuk diedit'}</button><button class=p data-c>Tutup</button></div>`;
+ d.querySelector('[data-c]').onclick=()=>d.close();d.querySelector('[data-o]').onclick=()=>{d.close();openArc(key)};d.onclose=()=>d.remove();document.body.append(d);d.showModal()}
+async function openArc(k){const cur=S.g.length&&!S.g.every(g=>g.src=='arsip'),dr=!S.g.length&&S.draft;
+ if(cur||dr){const r=await ask(`<p>${cur?'Pekerjaan yang sedang berjalan':'Draf pekerjaan yang belum selesai'} akan <b>diganti</b> dengan arsip ini.</p><p class=sm>Untuk sekadar melihat isi tanpa mengganti, gunakan <b>Lihat isi</b>.</p>`,['Buka arsip','Batal']);if(r!=0)return}
+ await V(k)}
+async function logUp(gs,at){try{opaLog('Mengunggah '+gs.length+' file data BP21 PPh 21','pph')}catch(e){}S.ul=S.ul||[];gs.slice().reverse().forEach(g=>S.ul.unshift({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),at,f:g.file,s:g.sheet||'',outlet:g.nama,kode:g.kode,month:g.month,year:g.year,n:g.rows.length}));S.ul=S.ul.slice(0,300);await localforage.setItem('ulog',S.ul);touch()}
+const ulSt=u=>{const a=(S.ar||[]).find(x=>x.key==`${u.kode}|${u.year}-${pad(u.month||0)}`);if(!a)return['kosong','Belum digenerate',null];const b=(a.batches||[]).find(b=>(b.srcs||[]).some(x=>x.f==u.f));return b?['ok','Sudah diproses · Bagian '+b.n,a.key]:['mirip','Periode sudah ada di arsip',a.key]};
+async function mergeOutlets(){const keep=new Set(OUTL.map(o=>lkk(o[0]))),ex=S.l.filter(l=>!keep.has(lkk(l.nama))&&canonIdx(l.nama||l.kode)>=0);if(!ex.length)return;
+ for(const l of ex){const t=S.l[canonIdx(l.nama||l.kode)];if(!t||t===l)continue;
+  S.m.forEach(m=>{if(m.outlet==l.kode)m.outlet=t.kode});
+  for(const k of Object.keys(S.ig)){if(k.startsWith(l.kode+'|')){S.ig[t.kode+k.slice(l.kode.length)]=S.ig[k];delete S.ig[k]}}
+  const ks=(await localforage.keys()).filter(k=>k.startsWith('ar:'));
+  for(const k of ks){const a=await localforage.getItem(k);if(!a||a.kode!=l.kode)continue;let nk=`${t.kode}|${a.year}-${pad(a.month)}`,b=nk,n=1;while(await localforage.getItem('ar:'+nk))nk=b+'#'+(++n);
+   a.key=nk;a.kode=t.kode;a.outlet=t.nama;a.lok={...t};await localforage.setItem('ar:'+nk,a);await localforage.removeItem(k)}
+  const dr=await localforage.getItem('draft');if(dr&&dr.g){dr.g.forEach(g=>{if(g.kode==l.kode){g.kode=t.kode;g.key=undefined}});await localforage.setItem('draft',dr)}
+  if(S.po==l.kode)S.po=t.kode;
+  S.l.splice(S.l.indexOf(l),1)}
+ await localforage.setItem('master',S.m);await localforage.setItem('ignore',S.ig);await localforage.setItem('lokasi',S.l)}
+async function init(){S.m=await localforage.getItem('master')||[];S.l=await localforage.getItem('lokasi')||[];S.a=await localforage.getItem('alias')||JSON.parse(localStorage.alias||'{}');S.ig=await localforage.getItem('ignore')||{};S.ul=await localforage.getItem('ulog')||[];seedOutlets();await mergeOutlets();
+ const c=await localforage.getItem('cfg');if(c)Object.assign(S,c);if(!S.m35){S.meth='bulanan';S.m35=1;saveC()}if(!S.sc2){S.scope='all';S.sc2=1;saveC()}S.draft=await localforage.getItem('draft');
+ try{S.fh=await localforage.getItem('fh');if(S.fh&&await S.fh.queryPermission({mode:'readwrite'})!='granted')S.fhs='izin';else if(S.fh)S.fhs='ok'}catch(e){S.fh=null}
+ try{if(navigator.storage&&navigator.storage.persist)S.pers=await navigator.storage.persist()}catch(e){}}
+/* ===== Versi final: ikon tambahan, tema, palet perintah, panduan mulai cepat, efek ===== */
+Object.assign(IC,{
+ plus:'<path d="M12 5v14M5 12h14"/>',
+ save:'<path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/>',
+ download:'<path d="M12 4v12m0 0 5-5m-5 5-5-5M4 20h16"/>',
+ trash:'<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M9 7V4h6v3"/>',
+ search:'<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>',
+ check:'<path d="m5 12.5 4.5 4.5L19 7"/>',
+ x:'<path d="M6 6l12 12M18 6 6 18"/>',
+ pin:'<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+ idcard:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.5-1.5 1.7-2 3-2s2.5.5 3 2M14.5 10h4M14.5 13.5h3"/>',
+ moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/>'});
+/* tema: otomatis mengikuti sistem, bisa dipaksa terang/gelap */
+const isDark=()=>{const t=document.documentElement.dataset.theme;return t?t=='dark':!!(window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)};
+function themeBtn(){const b=document.querySelector('#sb .thm');if(b)b.innerHTML=ic(isDark()?'sun':'moon')+`<span>${isDark()?'Mode terang':'Mode gelap'}</span>`}
+function toggleTheme(){const t=isDark()?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.theme=t}catch(e){}themeBtn();toast(t=='dark'?'Mode gelap aktif':'Mode terang aktif')}
+/* avatar inisial untuk Master */
+const avc=s=>{let h=0;for(const ch of String(s||'?'))h=(h*31+ch.charCodeAt(0))%360;return h},ini=s=>String(s||'').trim().split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase()||'?';
+/* panduan mulai cepat di Dashboard: langkah dihitung otomatis dari data */
+function vq(){const st=mStat(),ok=l=>/^\d{16}$/.test(l.tin)&&/^\d{22}$/.test(l.nitku),nt=S.l.filter(ok).length,bs=S.ar.flatMap(a=>a.batches||[]),bo=bs.filter(b=>b.st=='ok').length,
+ steps=[
+ {d:S.l.length>0&&nt==S.l.length,i:'store',t:'Lengkapi TIN dan NITKU outlet',s:`${nt} dari ${S.l.length} outlet siap`,b:[['Atur outlet',"go('l')"]]},
+ {d:st.n>0&&st.ok==st.n,i:'users',t:'Lengkapi master therapist',s:st.n?`${st.ok} dari ${st.n} lengkap (NIK 16 digit, nama KTP, alamat KTP)`:'Master masih kosong',b:!st.n?[['Import atau tambah',"go('m')"]]:[...(st.nik?[[`NIK bermasalah (${st.nik})`,"S.mf='nik';S.mp=0;go('m')"]]:[]),...(st.al?[[`Alamat KTP kosong (${st.al})`,"S.mf='al';S.mp=0;go('m')"]]:[]),...(!st.nik&&!st.al?[['Buka Master',"go('m')"]]:[])]},
+ {d:S.g.length>0||S.ar.length>0,i:'upload',t:'Upload Excel komisi per outlet',s:S.ar.length?`${S.ar.length} arsip tersimpan`:'Pilih outlet, lalu upload Excel komisinya',b:[['Proses komisi',"go('p')"]]},
+ {d:bs.length>0,i:'zap',t:'Generate BP21',s:bs.length?`${bs.length} file bagian sudah dibuat`:'Belum ada file BP21 dibuat',b:[['Buka proses',"go('p')"]]},
+ {d:bs.length>0&&bo==bs.length,i:'filecheck',t:'Tandai berhasil di Coretax',s:bs.length?`${bo} dari ${bs.length} file berhasil`:'Setelah file diunggah ke Coretax',b:[['Buka arsip',"go('a')"]]}],
+ n=steps.filter(x=>x.d).length,cur=steps.findIndex(x=>!x.d),c=2*Math.PI*34;
+ if(n==5)return`<div class=x-qd><span><b>Semua langkah selesai.</b> Data lengkap dan semua file BP21 sudah berhasil di Coretax.</span><button class=s onclick="go('a')">Riwayat file</button></div>`;
+ return`<section class="card qs"><div class=qr><svg class=ring viewBox="0 0 80 80" aria-hidden=true><circle class=r0 cx=40 cy=40 r=34 /><circle class=r1 cx=40 cy=40 r=34 style="stroke-dasharray:${c.toFixed(1)};stroke-dashoffset:${(c*(1-n/5)).toFixed(1)};--c0:${c.toFixed(1)}"/></svg><b>${n}/5</b></div>
+<div class=ql><h2>${n==5?'Semua langkah selesai':'Panduan mulai cepat'}</h2><p class=sm style="margin:0 0 8px">${n==5?'Data lengkap dan semua file BP21 sudah berhasil di Coretax.':'Langkah berikutnya ditandai biru. Status dihitung otomatis dari data Anda.'}</p>
+${steps.map((x,k)=>`<div class="qi${x.d?' done':k==cur?' cur':''}"><span class=qc>${x.d?ic('check'):k+1}</span><div class=qt><b>${esc(x.t)}</b><div class=sm>${esc(x.s)}</div></div>${x.d?'':`<div class=qb>${x.b.map(([t,f])=>`<button class="${k==cur?'p':'s'}" onclick="${f}">${esc(t)}</button>`).join('')}</div>`}</div>`).join('')}</div></section>`}
+/* palet perintah (Ctrl+K): menu, outlet, therapist (nama/NIK), aksi cepat */
+let cpI=0,cpL=[];
+function cpItems(q){q=q.toLowerCase().trim();const A=[];NAV.forEach(([t,i,n])=>A.push({ic:i,t:'Buka '+n,s:'Menu',run:()=>go(t)}));S.l.forEach(l=>A.push({ic:'store',t:'Buka outlet '+l.nama,s:'Outlet',run:()=>openOutlet(l.kode)}));
+ A.push({ic:'plus',t:'Tambah therapist baru',s:'Aksi',run:()=>{TAB='m';mAdd()}},{ic:'download',t:'Ekspor master therapist ke Excel',s:'Aksi',run:expM},{ic:'file',t:'Unduh template import master',s:'Aksi',run:tplM},{ic:'zap',t:'Generate semua yang siap',s:'Aksi',run:genAll},{ic:'save',t:'Simpan cadangan data ke file',s:'Aksi',run:bk},{ic:isDark()?'sun':'moon',t:'Ganti mode terang atau gelap',s:'Aksi',run:toggleTheme});
+ const tk=q.split(/\s+/).filter(Boolean),hit=s=>tk.every(w=>s.toLowerCase().includes(w)),r=A.filter(x=>hit(x.t+' '+x.s));
+ if(q.length>=2)S.m.filter(m=>hit([m.kd,m.pang,m.nama,m.nik,m.alamat].join(' '))).slice(0,8).forEach(m=>r.push({ic:'idcard',t:(m.pang||'(tanpa nama)')+(m.nama?' — '+m.nama:''),s:'Therapist · '+(m.nik?'NIK ••••'+m.nik.slice(-4):'NIK kosong'),run:()=>{S.mq=m.pang||m.nama||m.nik;S.mf='all';S.mo='';S.mp=0;go('m')}}));
+ return r.slice(0,14)}
+function cpR(){const d=document.getElementById('cp'),q=d.querySelector('#cpq').value;cpL=cpItems(q);if(cpI>=cpL.length)cpI=0;d.querySelector('#cpl').innerHTML=cpL.length?cpL.map((x,i)=>`<div class="cpi${i==cpI?' on':''}" data-i=${i} role=option aria-selected=${i==cpI}>${ic(x.ic)}<span class=cpt>${esc(x.t)}</span><span class=sm>${esc(x.s)}</span></div>`).join(''):'<div class=sm style="padding:16px">Tidak ada hasil.</div>';const on=d.querySelector('.cpi.on');if(on&&on.scrollIntoView)on.scrollIntoView({block:'nearest'})}
+function cpRun(i){const x=cpL[i];if(!x)return;document.getElementById('cp').close();x.run()}
+function cpOpen(){let d=document.getElementById('cp');if(!d){d=document.createElement('dialog');d.id='cp';d.className='cp';d.setAttribute('aria-label','Cari dan perintah cepat');
+  d.innerHTML=`<label class=cps>${ic('search')}<input id=cpq placeholder="Cari menu, outlet, therapist (nama atau NIK), atau perintah…" autocomplete=off aria-label="Cari"><kbd>Esc</kbd></label><div id=cpl role=listbox></div><div class="sm cpf">↑ ↓ pilih · Enter jalankan · Ctrl+K kapan saja</div>`;document.body.append(d);
+  d.addEventListener('click',e=>{if(e.target===d)d.close();const it=e.target.closest&&e.target.closest('[data-i]');if(it)cpRun(+it.dataset.i)});
+  const q=d.querySelector('#cpq');q.addEventListener('input',()=>{cpI=0;cpR()});
+  q.addEventListener('keydown',e=>{if(e.key=='ArrowDown'){e.preventDefault();cpI=Math.min(cpL.length-1,cpI+1);cpR()}else if(e.key=='ArrowUp'){e.preventDefault();cpI=Math.max(0,cpI-1);cpR()}else if(e.key=='Enter'){e.preventDefault();cpRun(cpI)}})}
+ d.querySelector('#cpq').value='';cpI=0;cpR();if(!d.open)d.showModal();d.querySelector('#cpq').focus()}
+const cpBtn=()=>`<button class="s cpb" onclick="cpOpen()" aria-label="Cari dan perintah cepat (Ctrl+K)">${ic('search')}Cari<kbd>Ctrl K</kbd></button>`;
+/* efek: riak pada tombol, konfeti saat file ditandai berhasil */
+function bq(){const e=window.event,t=e&&e.target&&e.target.getBoundingClientRect?e.target.getBoundingClientRect():null;burst(t?t.left+t.width/2:innerWidth/2,t?t.top:innerHeight/2)}
+function burst(x,y){if(typeof document==='undefined'||!document.body||!document.body.animate||(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches))return;const cs=['#6366f1','#10b981','#f59e0b','#ec4899','#0ea5e9'];
+ for(let i=0;i<24;i++){const p=document.createElement('i');p.className='cf';p.style.cssText=`left:${x}px;top:${y}px;background:${cs[i%5]}`;document.body.append(p);const a=Math.random()*Math.PI*2,v=70+Math.random()*120;
+  p.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:`translate(${Math.cos(a)*v}px,${Math.sin(a)*v+70}px) rotate(${Math.random()*540}deg)`,opacity:0}],{duration:900+Math.random()*500,easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish=()=>p.remove()}}
+if(typeof document!=='undefined'&&document.addEventListener){
+ document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=='k'){e.preventDefault();cpOpen()}});
+ document.addEventListener('pointerdown',e=>{const b=e.target.closest&&e.target.closest('.p,.s,.b,.d,#sb button');if(!b||b.disabled)return;const r=b.getBoundingClientRect(),s=document.createElement('span'),z=Math.max(r.width,r.height)*2;s.className='rpl';s.style.cssText=`width:${z}px;height:${z}px;left:${e.clientX-r.left-z/2}px;top:${e.clientY-r.top-z/2}px`;b.append(s);setTimeout(()=>s.remove(),650)})}
+if(typeof document!=='undefined'&&document.querySelector('main'))init().then(()=>{boot();R()});
+</script><script id="v24js">
+
+const V24={plus:'<path d="M12 5v14M5 12h14"/>',edit:'<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',tag:'<path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.2"/>',inbox:'<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z"/>',send:'<path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',archive:'<rect x="3" y="3" width="18" height="5" rx="1"/><path d="M5 8v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4"/>',hash:'<path d="M5 9h14M5 15h14M10 3 8 21M16 3l-2 18"/>',note:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/>',users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',late:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',up:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>',down:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6"/>',pen:'<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',store:'<path d="M3 9l1-5h16l1 5M3 9v11h18V9M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/>'};
+const v24svg=n=>`<svg class="v24i" viewBox="0 0 24 24">${V24[n]||V24.plus}</svg>`;
+function v24fab(color,soft,items){const f=document.createElement('div');f.className='v24fab';f.style.setProperty('--v24c',color);f.style.setProperty('--v24s',soft);
+ f.innerHTML=`<button aria-label="Tambah" aria-expanded="false">${v24svg('plus')}</button><div class="m">${items.map(i=>`<button data-tip="${i[0]}" aria-label="${i[0]}" data-i="${i[2]}">${v24svg(i[1])}</button>`).join('')}</div>`;
+ document.body.appendChild(f);const main=f.firstChild;
+ main.onclick=()=>{const o=f.classList.toggle('on');main.setAttribute('aria-expanded',o)};
+ f.querySelector('.m').onclick=e=>{const b=e.target.closest('button[data-i]');if(!b)return;f.classList.remove('on');items[+b.dataset.i][3]()};
+ document.addEventListener('click',e=>{if(!f.contains(e.target))f.classList.remove('on')});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')f.classList.remove('on')});return f}
+function v24cu(root){root.querySelectorAll('[data-v24cu]').forEach(e=>{if(e.dataset.d)return;e.dataset.d=1;const t=+e.dataset.v24cu||0;if(!t||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const t0=performance.now();(function f(n){const q=Math.min(1,(n-t0)/700);e.textContent=Math.round(t*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(f)})(t0)})}
+function v24watch(el,fn){let o,raf;const run=()=>{o.disconnect();try{fn(el)}catch(e){}o.observe(el,{childList:true,subtree:true})};o=new MutationObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(run)});run()}
+
+V24.info='<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>';V24.zap='<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>';V24.cv='<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M12 18v-6M9 15l3-3 3 3"/>';
+function v24toggle(host,btn){const o=host.classList.toggle('v24on');btn.setAttribute('aria-expanded',o)}
+function v24hide(host,els,anchor,label){els=els.filter(e=>!e.dataset.v24n);if(!els.length)return;els.forEach(e=>{e.dataset.v24n=1;e.classList.add('v24n')});
+ if(host.querySelector(':scope .v24ib'))return;const b=document.createElement('button');b.type='button';b.className='v24ib';b.dataset.tip=label||'Info';b.setAttribute('aria-label',label||'Info');b.setAttribute('aria-expanded','false');b.innerHTML=v24svg('info');b.onclick=e=>{e.stopPropagation();v24toggle(host,b)};anchor?anchor.appendChild(b):host.prepend(b)}
+function v24ico(root,sel){root.querySelectorAll(sel).forEach(b=>{if(b.dataset.v24)return;b.dataset.v24=1;if(b.classList.contains('p')||!b.querySelector('svg'))return;const t=b.textContent.trim();if(!t)return;[...b.childNodes].forEach(n=>{if(n.nodeType===3&&n.textContent.trim()){const s=document.createElement('span');s.className='tx';s.textContent=n.textContent.trim();n.replaceWith(s)}});b.classList.add('v24btn');b.dataset.tip=t;b.setAttribute('aria-label',t)})}
+function v24rows(root,sel){root.querySelectorAll(sel).forEach(l=>[...l.children].slice(0,14).forEach((r,i)=>{if(!r.dataset.n){r.dataset.n=1;r.style.setProperty('--n',i)}}))}
+
+function v24tidy(root){
+ v24ico(root,'main button:not(td button):not(.qb button):not(dialog button):not(.cp button)');
+ root.querySelectorAll('.card').forEach(c=>{if(c.closest('dialog'))return;
+  const ex=[...c.querySelectorAll('p,ol,.sm')].filter(e=>!e.closest('table,.empty,.qs,.cp,dialog,.sk')&&!e.classList.contains('why')&&(e.tagName==='OL'||e.textContent.trim().length>70));
+  v24hide(c,ex,c.querySelector(':scope>header h2')?.parentElement||c.querySelector(':scope>header'),'Info')});
+ root.querySelectorAll('.qs .qt').forEach(q=>{const s=q.querySelector('.sm');if(s&&!q.dataset.t){q.dataset.t=1;q.parentElement.dataset.tip=s.textContent}});
+ root.querySelectorAll('.qs .qb button.s').forEach(b=>{b.dataset.tip=b.textContent.trim()});
+ v24rows(root,'tbody');
+}
+v24watch(document.querySelector('main'),v24tidy);
+v24fab('#2F7D5B','#fff',[['Proses komisi','cv',0,()=>go('p')],['Generate semua','zap',1,()=>genAll()],['Tambah therapist','users',2,()=>{TAB='m';mAdd()}]]);
+document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select')||e.ctrlKey||e.metaKey||e.altKey||document.querySelector('dialog[open]'))return;if(e.key==='1')go('d');else if(e.key==='2')go('p');else if(e.key==='3')go('m');else if(e.key==='4')go('l');else if(e.key==='5')go('a')});
+
+</script><style>.x-stp{display:flex;gap:6px;list-style:none;padding:0;margin:0 0 16px;flex-wrap:wrap}.x-stp li{display:flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border-radius:99px;background:var(--ns,#eef1f3);color:var(--mut);font-size:13px;font-weight:600}.x-stp i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;background:var(--line);color:var(--ink)}.x-stp li.on{background:var(--ac);color:#fff}.x-stp li.on i{background:#fff;color:var(--ac)}.x-stp li.dn i{background:var(--ac);color:#fff}.x-stp li.dn{color:var(--ink)}.bpg{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 6px}.bpk{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:var(--sf,#fff);border-left:4px solid var(--c)}.bpk b{font-size:18px}.bpk span{font-size:12.5px;color:var(--mut)}.bpk.on{background:var(--c);color:#fff}.bpk.on span{color:#fff}.bpc{display:inline-flex;align-items:center;gap:6px;margin:0 4px 4px 0;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--c);color:var(--ink)}.bpc small{color:var(--mut);font-weight:500}table.x-tbl[id^=rw] th:nth-child(-n+3),table.x-tbl[id^=rw] td:nth-child(-n+3){position:sticky;background:var(--card)}
+table.x-tbl[id^=rw] th:nth-child(-n+3){z-index:5}table.x-tbl[id^=rw] td:nth-child(-n+3){z-index:3}
+table.x-tbl[id^=rw] th:nth-child(1),table.x-tbl[id^=rw] td:nth-child(1){left:0}
+table.x-tbl[id^=rw] th:nth-child(2),table.x-tbl[id^=rw] td:nth-child(2){left:34px;min-width:44px;text-align:center}
+table.x-tbl[id^=rw] th:nth-child(3),table.x-tbl[id^=rw] td:nth-child(3){left:78px;min-width:150px;box-shadow:2px 0 0 var(--line)}
+table.x-tbl[id^=rw] tr.sel td:nth-child(-n+3){background:color-mix(in srgb,var(--ac) 13%,var(--card))!important}
+table.x-tbl[id^=rw] tr.sdh td:nth-child(-n+3){background:color-mix(in srgb,#16a34a 9%,var(--card))}
+</style>
+<script>addEventListener('dragover',e=>{if(e.dataTransfer&&[...e.dataTransfer.types].includes('Files'))e.preventDefault()});addEventListener('drop',e=>{const f=[...(e.dataTransfer?e.dataTransfer.files:[])].filter(x=>/\.xls[xm]?$/i.test(x.name));if(!f.length)return;e.preventDefault();ld(f,S.po||undefined).then(()=>{if(S.g.length&&TAB!='p')go('p')})});</script>
+</body></html>
